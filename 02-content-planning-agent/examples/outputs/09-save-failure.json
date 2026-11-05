@@ -1,0 +1,516 @@
+{
+  "scenario": {
+    "id": "09-save-failure",
+    "title": "保存失败：步骤成功但方案写入失败，不虚报保存",
+    "covers": [
+      "方案保存失败",
+      "成功步骤保留",
+      "不虚报"
+    ],
+    "expect": [
+      "save_failed"
+    ],
+    "source": "examples/cases/09-save-failure.json"
+  },
+  "command": "python examples/run_examples.py  # 或 python run.py run --case examples/cases/09-save-failure.json --reset",
+  "generated_at": "2026-11-05T11:56:57+08:00",
+  "provider": "mock",
+  "boundary": "MOCK 只验证流程、预算、依赖、失败重规划与幂等；不证明真实模型决策质量。",
+  "runs": [
+    {
+      "schema_version": 1,
+      "run_id": "RUN-20261105115657-895ada",
+      "mode": "plan_and_save_only",
+      "provider": "mock",
+      "model": "deterministic-planning-policy-v1",
+      "task": {
+        "request_id": "REQ-CP-09",
+        "theme": "秋季通勤穿搭",
+        "budget": 10.0,
+        "deadline": "2027-12-31T18:00:00+08:00",
+        "audience": "通勤女性",
+        "channel": "xiaohongshu",
+        "note": "",
+        "fingerprint": "5d79b81b87a6e80b968aeb3249c49dc5522b518df9e0fdb7036ad0e260bdf62d",
+        "missing_fields": []
+      },
+      "status": "save_failed",
+      "completed": false,
+      "terminal": true,
+      "saved": false,
+      "needs_user_action": true,
+      "summary": "方案保存失败：注入的工具故障：save 执行失败；步骤结果已保留，但没有已保存方案。",
+      "budget": {
+        "limit": 10.0,
+        "total": 8.0,
+        "remaining": 2.0,
+        "within_budget": true,
+        "over_by": 0.0
+      },
+      "plan": {
+        "plan_id": "lean_article",
+        "label": "轻量图文方案",
+        "quality": "standard",
+        "material_id": "MAT-01",
+        "material": {
+          "id": "MAT-01",
+          "title": "秋季通勤穿搭图文素材包",
+          "type": "image",
+          "tags": [
+            "通勤",
+            "穿搭",
+            "秋季"
+          ],
+          "cost": 2,
+          "license": "original",
+          "usable": true,
+          "note": "适合图文与轮播，授权完整"
+        },
+        "steps": [
+          {
+            "step_id": "script",
+            "label": "脚本生成",
+            "tool": "script_generation",
+            "depends_on": [],
+            "status": "succeeded",
+            "cost": 2.0,
+            "minutes": 30,
+            "result": {
+              "script": "# 秋季通勤穿搭｜轻量图文方案脚本\n\n- 受众：通勤女性\n- 渠道：xiaohongshu\n- 素材：MAT-01 秋季通勤穿搭图文素材包（通勤、穿搭、秋季）\n\n## 开场（5 秒）\n用一个通勤场景切入：秋季通勤穿搭 到底怎么落地？\n\n## 主体（3 个要点）\n1. 结合素材「秋季通勤穿搭图文素材包」展示第一处细节。\n2. 给出一个可执行的做法，避免空泛描述。\n3. 补充一个常见误区，并说明如何规避。\n\n## 收尾（5 秒）\n回收主题，引导收藏；不承诺无法验证的效果。\n",
+              "word_count": 237,
+              "artifact_path": "artifacts/5d79b81b87a6/script.md"
+            },
+            "artifact_path": "artifacts/5d79b81b87a6/script.md",
+            "completed_at": "2026-11-05T11:56:57+08:00"
+          },
+          {
+            "step_id": "poster",
+            "label": "海报生成",
+            "tool": "poster_generation",
+            "depends_on": [
+              "script"
+            ],
+            "status": "succeeded",
+            "cost": 1.0,
+            "minutes": 20,
+            "result": {
+              "artifact_path": "artifacts/5d79b81b87a6/poster.svg",
+              "label": "海报生成",
+              "step_id": "poster"
+            },
+            "artifact_path": "artifacts/5d79b81b87a6/poster.svg",
+            "completed_at": "2026-11-05T11:56:57+08:00"
+          },
+          {
+            "step_id": "review",
+            "label": "合规审核",
+            "tool": "review",
+            "depends_on": [
+              "script",
+              "poster"
+            ],
+            "status": "succeeded",
+            "cost": 1.0,
+            "minutes": 30,
+            "result": {
+              "artifact_path": "artifacts/5d79b81b87a6/review.json",
+              "label": "合规审核",
+              "step_id": "review"
+            },
+            "artifact_path": "artifacts/5d79b81b87a6/review.json",
+            "completed_at": "2026-11-05T11:56:57+08:00"
+          },
+          {
+            "step_id": "distribution",
+            "label": "分发排期",
+            "tool": "distribution",
+            "depends_on": [
+              "review"
+            ],
+            "status": "succeeded",
+            "cost": 2.0,
+            "minutes": 15,
+            "result": {
+              "artifact_path": "artifacts/5d79b81b87a6/distribution.json",
+              "label": "分发排期",
+              "step_id": "distribution"
+            },
+            "artifact_path": "artifacts/5d79b81b87a6/distribution.json",
+            "completed_at": "2026-11-05T11:56:57+08:00"
+          }
+        ],
+        "total": 8.0,
+        "minutes": 95,
+        "budget": 10.0,
+        "within_budget": true,
+        "remaining": 2.0,
+        "over_by": 0.0,
+        "deadline": "2027-12-31T18:00:00+08:00",
+        "deadline_ok": true,
+        "finish_by": "2026-11-05T13:31:57+08:00",
+        "deadline_gap_minutes": 606508,
+        "breakdown": [
+          {
+            "type": "material",
+            "id": "MAT-01",
+            "label": "秋季通勤穿搭图文素材包",
+            "cost": 2.0
+          },
+          {
+            "type": "tool",
+            "step_id": "script",
+            "label": "脚本生成",
+            "tool": "script_generation",
+            "cost": 2.0,
+            "minutes": 30
+          },
+          {
+            "type": "tool",
+            "step_id": "poster",
+            "label": "海报生成",
+            "tool": "poster_generation",
+            "cost": 1.0,
+            "minutes": 20
+          },
+          {
+            "type": "tool",
+            "step_id": "review",
+            "label": "合规审核",
+            "tool": "review",
+            "cost": 1.0,
+            "minutes": 30
+          },
+          {
+            "type": "tool",
+            "step_id": "distribution",
+            "label": "分发排期",
+            "tool": "distribution",
+            "cost": 2.0,
+            "minutes": 15
+          }
+        ],
+        "currency": "模拟单位",
+        "saved": false,
+        "deduplicated": false
+      },
+      "plan_path": null,
+      "steps": [
+        {
+          "step_id": "script",
+          "label": "脚本生成",
+          "tool": "script_generation",
+          "depends_on": [],
+          "status": "succeeded",
+          "cost": 2.0,
+          "minutes": 30,
+          "result": {
+            "script": "# 秋季通勤穿搭｜轻量图文方案脚本\n\n- 受众：通勤女性\n- 渠道：xiaohongshu\n- 素材：MAT-01 秋季通勤穿搭图文素材包（通勤、穿搭、秋季）\n\n## 开场（5 秒）\n用一个通勤场景切入：秋季通勤穿搭 到底怎么落地？\n\n## 主体（3 个要点）\n1. 结合素材「秋季通勤穿搭图文素材包」展示第一处细节。\n2. 给出一个可执行的做法，避免空泛描述。\n3. 补充一个常见误区，并说明如何规避。\n\n## 收尾（5 秒）\n回收主题，引导收藏；不承诺无法验证的效果。\n",
+            "word_count": 237,
+            "artifact_path": "artifacts/5d79b81b87a6/script.md"
+          },
+          "artifact_path": "artifacts/5d79b81b87a6/script.md",
+          "completed_at": "2026-11-05T11:56:57+08:00"
+        },
+        {
+          "step_id": "poster",
+          "label": "海报生成",
+          "tool": "poster_generation",
+          "depends_on": [
+            "script"
+          ],
+          "status": "succeeded",
+          "cost": 1.0,
+          "minutes": 20,
+          "result": {
+            "artifact_path": "artifacts/5d79b81b87a6/poster.svg",
+            "label": "海报生成",
+            "step_id": "poster"
+          },
+          "artifact_path": "artifacts/5d79b81b87a6/poster.svg",
+          "completed_at": "2026-11-05T11:56:57+08:00"
+        },
+        {
+          "step_id": "review",
+          "label": "合规审核",
+          "tool": "review",
+          "depends_on": [
+            "script",
+            "poster"
+          ],
+          "status": "succeeded",
+          "cost": 1.0,
+          "minutes": 30,
+          "result": {
+            "artifact_path": "artifacts/5d79b81b87a6/review.json",
+            "label": "合规审核",
+            "step_id": "review"
+          },
+          "artifact_path": "artifacts/5d79b81b87a6/review.json",
+          "completed_at": "2026-11-05T11:56:57+08:00"
+        },
+        {
+          "step_id": "distribution",
+          "label": "分发排期",
+          "tool": "distribution",
+          "depends_on": [
+            "review"
+          ],
+          "status": "succeeded",
+          "cost": 2.0,
+          "minutes": 15,
+          "result": {
+            "artifact_path": "artifacts/5d79b81b87a6/distribution.json",
+            "label": "分发排期",
+            "step_id": "distribution"
+          },
+          "artifact_path": "artifacts/5d79b81b87a6/distribution.json",
+          "completed_at": "2026-11-05T11:56:57+08:00"
+        }
+      ],
+      "successful_steps": [
+        {
+          "step_id": "script",
+          "plan_id": "lean_article",
+          "material_id": "MAT-01",
+          "artifact_path": "artifacts/5d79b81b87a6/script.md",
+          "cost": 2.0
+        },
+        {
+          "step_id": "poster",
+          "plan_id": "lean_article",
+          "material_id": "MAT-01",
+          "artifact_path": "artifacts/5d79b81b87a6/poster.svg",
+          "cost": 1.0
+        },
+        {
+          "step_id": "review",
+          "plan_id": "lean_article",
+          "material_id": "MAT-01",
+          "artifact_path": "artifacts/5d79b81b87a6/review.json",
+          "cost": 1.0
+        },
+        {
+          "step_id": "distribution",
+          "plan_id": "lean_article",
+          "material_id": "MAT-01",
+          "artifact_path": "artifacts/5d79b81b87a6/distribution.json",
+          "cost": 2.0
+        }
+      ],
+      "failure_history": [],
+      "pending_items": [
+        "方案保存失败：注入的工具故障：save 执行失败；需修复后重试。"
+      ],
+      "finish_claim": {
+        "status": "save_failed",
+        "summary": "注入的工具故障：save 执行失败",
+        "pending_items": [
+          "修复存储后重试；保存失败不能视为已有方案。"
+        ],
+        "rationale": "保存失败且不可继续重试，明确报告失败，不虚报保存成功。"
+      },
+      "limits": {
+        "max_steps": 16,
+        "max_tool_calls": 14
+      },
+      "usage": {
+        "steps": 12,
+        "tool_calls": 11,
+        "elapsed_ms": 31
+      },
+      "started_at": "2026-11-05T11:56:57+08:00",
+      "finished_at": "2026-11-05T11:56:57+08:00",
+      "trace_path": "examples/traces/09-save-failure-1-save-fail.jsonl",
+      "step_records": [
+        {
+          "step": 1,
+          "action": "tool",
+          "decision_basis": "先读取任务简报，判断信息是否完整。",
+          "tool": "get_brief",
+          "arguments": {},
+          "ok": true,
+          "summary": "读取任务：预算 10.0，截止 2027-12-31T18:00:00+08:00"
+        },
+        {
+          "step": 2,
+          "action": "tool",
+          "decision_basis": "先检索素材，确认是否有可用内容资产。",
+          "tool": "search_materials",
+          "arguments": {
+            "query": "秋季通勤穿搭",
+            "limit": 5
+          },
+          "ok": true,
+          "summary": "检索到 4 个可用素材；首个为 MAT-01「秋季通勤穿搭图文素材包」"
+        },
+        {
+          "step": 3,
+          "action": "tool",
+          "decision_basis": "检索完成后，列出可比较的方案模板。",
+          "tool": "list_plan_options",
+          "arguments": {},
+          "ok": true,
+          "summary": "共 4 个方案；最低成本 6.0（organic_text）"
+        },
+        {
+          "step": 4,
+          "action": "tool",
+          "decision_basis": "当前方案不可行，尝试 premium_video。",
+          "tool": "estimate_plan",
+          "arguments": {
+            "plan_id": "premium_video"
+          },
+          "ok": true,
+          "summary": "方案 premium_video 估算 12.0，超预算 2.0"
+        },
+        {
+          "step": 5,
+          "action": "tool",
+          "decision_basis": "当前方案不可行，尝试 lean_article。",
+          "tool": "estimate_plan",
+          "arguments": {
+            "plan_id": "lean_article"
+          },
+          "ok": true,
+          "summary": "方案 lean_article 估算 8.0，预算 10.0，剩余 2.0"
+        },
+        {
+          "step": 6,
+          "action": "tool",
+          "decision_basis": "方案已选中且预算内，生成脚本。",
+          "tool": "generate_script",
+          "arguments": {
+            "plan_id": "lean_article"
+          },
+          "ok": true,
+          "summary": "脚本生成成功，237 字符，已写入 artifacts/5d79b81b87a6/script.md"
+        },
+        {
+          "step": 7,
+          "action": "tool",
+          "decision_basis": "按依赖顺序执行 poster。",
+          "tool": "execute_step",
+          "arguments": {
+            "plan_id": "lean_article",
+            "step_id": "poster"
+          },
+          "ok": true,
+          "summary": "步骤 poster（海报生成）执行成功，产物 artifacts/5d79b81b87a6/poster.svg"
+        },
+        {
+          "step": 8,
+          "action": "tool",
+          "decision_basis": "按依赖顺序执行 review。",
+          "tool": "execute_step",
+          "arguments": {
+            "plan_id": "lean_article",
+            "step_id": "review"
+          },
+          "ok": true,
+          "summary": "步骤 review（合规审核）执行成功，产物 artifacts/5d79b81b87a6/review.json"
+        },
+        {
+          "step": 9,
+          "action": "tool",
+          "decision_basis": "按依赖顺序执行 distribution。",
+          "tool": "execute_step",
+          "arguments": {
+            "plan_id": "lean_article",
+            "step_id": "distribution"
+          },
+          "ok": true,
+          "summary": "步骤 distribution（分发排期）执行成功，产物 artifacts/5d79b81b87a6/distribution.json"
+        },
+        {
+          "step": 10,
+          "action": "tool",
+          "decision_basis": "全部步骤成功，保存方案。",
+          "tool": "save_plan",
+          "arguments": {
+            "plan_id": "lean_article",
+            "note": "预算内且全部步骤成功，保存方案。"
+          },
+          "ok": false,
+          "summary": "注入的工具故障：save 执行失败",
+          "error": {
+            "code": "tool_failed",
+            "message": "注入的工具故障：save 执行失败",
+            "retryable": true,
+            "details": {
+              "failed_key": "save",
+              "attempts_left": 999999999
+            }
+          }
+        },
+        {
+          "step": 11,
+          "action": "tool",
+          "decision_basis": "方案保存返回可重试错误，原参数重试一次；仍失败则明确报告。",
+          "tool": "save_plan",
+          "arguments": {
+            "plan_id": "lean_article",
+            "note": "预算内且全部步骤成功，保存方案。"
+          },
+          "ok": false,
+          "summary": "注入的工具故障：save 执行失败",
+          "error": {
+            "code": "tool_failed",
+            "message": "注入的工具故障：save 执行失败",
+            "retryable": true,
+            "details": {
+              "failed_key": "save",
+              "attempts_left": 999999998
+            }
+          }
+        },
+        {
+          "step": 12,
+          "action": "finish",
+          "decision_basis": "保存失败且不可继续重试，明确报告失败，不虚报保存成功。",
+          "finish_claim": {
+            "kind": "finish",
+            "rationale": "保存失败且不可继续重试，明确报告失败，不虚报保存成功。",
+            "status": "save_failed",
+            "summary": "注入的工具故障：save 执行失败",
+            "pending_items": [
+              "修复存储后重试；保存失败不能视为已有方案。"
+            ]
+          }
+        }
+      ],
+      "scenario": {
+        "id": "09-save-failure",
+        "title": "保存失败：步骤成功但方案写入失败，不虚报保存",
+        "covers": [
+          "方案保存失败",
+          "成功步骤保留",
+          "不虚报"
+        ],
+        "run_label": "save-fail"
+      }
+    }
+  ],
+  "store_summary": {
+    "plan_count": 0,
+    "plan_ids": [],
+    "saved_plan_count": 0,
+    "store": ".runtime/examples/09-save-failure",
+    "sequence": 0
+  },
+  "plan_counts_after_each_run": [
+    0
+  ],
+  "checks": {
+    "status_match": true,
+    "saved_flags_match": true,
+    "all_plan_files_valid": true,
+    "no_plan": true,
+    "steps_succeeded": true,
+    "explicit_failure": true,
+    "two_save_attempts": true
+  },
+  "checks_passed": true,
+  "traces": [
+    "examples/traces/09-save-failure-1-save-fail.jsonl"
+  ]
+}

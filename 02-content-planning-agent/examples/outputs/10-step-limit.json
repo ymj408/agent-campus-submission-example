@@ -1,0 +1,138 @@
+{
+  "scenario": {
+    "id": "10-step-limit",
+    "title": "执行上限：三步后停止，明确未完成",
+    "covers": [
+      "执行上限",
+      "未完成状态"
+    ],
+    "expect": [
+      "step_limit_reached"
+    ],
+    "source": "examples/cases/10-step-limit.json"
+  },
+  "command": "python examples/run_examples.py  # 或 python run.py run --case examples/cases/10-step-limit.json --reset",
+  "generated_at": "2026-11-05T11:56:57+08:00",
+  "provider": "mock",
+  "boundary": "MOCK 只验证流程、预算、依赖、失败重规划与幂等；不证明真实模型决策质量。",
+  "runs": [
+    {
+      "schema_version": 1,
+      "run_id": "RUN-20261105115657-e539c7",
+      "mode": "plan_and_save_only",
+      "provider": "mock",
+      "model": "deterministic-planning-policy-v1",
+      "task": {
+        "request_id": "REQ-CP-10",
+        "theme": "秋季通勤穿搭",
+        "budget": 10.0,
+        "deadline": "2027-12-31T18:00:00+08:00",
+        "audience": "通勤女性",
+        "channel": "xiaohongshu",
+        "note": "",
+        "fingerprint": "5d79b81b87a6e80b968aeb3249c49dc5522b518df9e0fdb7036ad0e260bdf62d",
+        "missing_fields": []
+      },
+      "status": "step_limit_reached",
+      "completed": false,
+      "terminal": false,
+      "saved": false,
+      "needs_user_action": false,
+      "summary": "达到最大步数限制，未完成；没有保存新方案。",
+      "budget": {
+        "limit": 10.0,
+        "total": 0.0,
+        "remaining": 10.0,
+        "within_budget": true,
+        "over_by": 0.0
+      },
+      "plan": null,
+      "plan_path": null,
+      "steps": [],
+      "successful_steps": [],
+      "failure_history": [],
+      "pending_items": [
+        "达到执行上限，未完成；不得把未执行步骤记为成功。"
+      ],
+      "finish_claim": null,
+      "limits": {
+        "max_steps": 3,
+        "max_tool_calls": 14
+      },
+      "usage": {
+        "steps": 3,
+        "tool_calls": 3,
+        "elapsed_ms": 1
+      },
+      "started_at": "2026-11-05T11:56:57+08:00",
+      "finished_at": "2026-11-05T11:56:57+08:00",
+      "trace_path": "examples/traces/10-step-limit-1-limit.jsonl",
+      "step_records": [
+        {
+          "step": 1,
+          "action": "tool",
+          "decision_basis": "先读取任务简报，判断信息是否完整。",
+          "tool": "get_brief",
+          "arguments": {},
+          "ok": true,
+          "summary": "读取任务：预算 10.0，截止 2027-12-31T18:00:00+08:00"
+        },
+        {
+          "step": 2,
+          "action": "tool",
+          "decision_basis": "先检索素材，确认是否有可用内容资产。",
+          "tool": "search_materials",
+          "arguments": {
+            "query": "秋季通勤穿搭",
+            "limit": 5
+          },
+          "ok": true,
+          "summary": "检索到 4 个可用素材；首个为 MAT-01「秋季通勤穿搭图文素材包」"
+        },
+        {
+          "step": 3,
+          "action": "tool",
+          "decision_basis": "检索完成后，列出可比较的方案模板。",
+          "tool": "list_plan_options",
+          "arguments": {},
+          "ok": true,
+          "summary": "共 4 个方案；最低成本 6.0（organic_text）"
+        }
+      ],
+      "limit": {
+        "kind": "step_limit",
+        "message": "达到最大步数，未完成"
+      },
+      "scenario": {
+        "id": "10-step-limit",
+        "title": "执行上限：三步后停止，明确未完成",
+        "covers": [
+          "执行上限",
+          "未完成状态"
+        ],
+        "run_label": "limit"
+      }
+    }
+  ],
+  "store_summary": {
+    "plan_count": 0,
+    "plan_ids": [],
+    "saved_plan_count": 0,
+    "store": ".runtime/examples/10-step-limit",
+    "sequence": 0
+  },
+  "plan_counts_after_each_run": [
+    0
+  ],
+  "checks": {
+    "status_match": true,
+    "saved_flags_match": true,
+    "all_plan_files_valid": true,
+    "limit_status": true,
+    "not_completed": true
+  },
+  "checks_passed": true,
+  "traces": [
+    "examples/traces/10-step-limit-1-limit.jsonl"
+  ]
+}

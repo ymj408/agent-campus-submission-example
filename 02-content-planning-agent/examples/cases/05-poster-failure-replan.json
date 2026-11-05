@@ -1,0 +1,22 @@
+{
+  "id": "05-poster-failure-replan",
+  "title": "工具失败：海报生成失败，改选无海报方案并保留脚本",
+  "covers": ["工具失败", "重规划", "部分成功结果保留", "方案保存"],
+  "request": {
+    "request_id": "REQ-CP-05",
+    "theme": "秋季通勤穿搭",
+    "budget": 10,
+    "deadline": "2027-12-31T18:00:00+08:00",
+    "audience": "通勤女性",
+    "channel": "xiaohongshu"
+  },
+  "runs": [
+    {
+      "label": "poster-fail",
+      "expect": "plan_saved",
+      "fail_steps": {"poster": 99},
+      "max_steps": 16,
+      "max_tool_calls": 14
+    }
+  ]
+}

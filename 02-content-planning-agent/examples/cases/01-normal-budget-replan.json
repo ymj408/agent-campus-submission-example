@@ -1,0 +1,16 @@
+{
+  "id": "01-normal-budget-replan",
+  "title": "正常完成：12 超预算，改选 8 的方案并保存",
+  "covers": ["正常完成", "预算超限", "重规划", "成本计算", "方案保存"],
+  "request": {
+    "request_id": "REQ-CP-01",
+    "theme": "秋季通勤穿搭",
+    "budget": 10,
+    "deadline": "2027-12-31T18:00:00+08:00",
+    "audience": "通勤女性",
+    "channel": "xiaohongshu"
+  },
+  "runs": [
+    {"label": "normal", "expect": "plan_saved", "max_steps": 16, "max_tool_calls": 14}
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "id": "07-resume-failed-step",
+  "title": "失败步骤续跑：先审核失败，修复后从检查点续跑并保存",
+  "covers": ["工具失败", "成功结果保留", "失败步骤续跑", "方案保存"],
+  "request": {
+    "request_id": "REQ-CP-07",
+    "theme": "秋季通勤穿搭",
+    "budget": 10,
+    "deadline": "2027-12-31T18:00:00+08:00",
+    "audience": "通勤女性",
+    "channel": "xiaohongshu"
+  },
+  "runs": [
+    {
+      "label": "first-fail",
+      "expect": "incomplete_tool_failure",
+      "fail_steps": {"review": 99},
+      "max_steps": 16,
+      "max_tool_calls": 14
+    },
+    {
+      "label": "resume",
+      "expect": "plan_saved",
+      "resume": true,
+      "max_steps": 16,
+      "max_tool_calls": 14
+    }
+  ]
+}

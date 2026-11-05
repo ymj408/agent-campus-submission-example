@@ -1,0 +1,15 @@
+{
+  "id": "03-missing-deadline",
+  "title": "缺截止时间：不猜测排期，返回未完成",
+  "covers": ["缺截止时间", "未完成原因"],
+  "request": {
+    "request_id": "REQ-CP-03",
+    "theme": "秋季通勤穿搭",
+    "budget": 10,
+    "audience": "通勤女性",
+    "channel": "xiaohongshu"
+  },
+  "runs": [
+    {"label": "missing-deadline", "expect": "blocked_missing_fields"}
+  ]
+}

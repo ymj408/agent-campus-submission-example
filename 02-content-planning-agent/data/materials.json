@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "description": "合成内容素材库；不含真实品牌或用户数据。",
+  "materials": {
+    "MAT-01": {
+      "id": "MAT-01",
+      "title": "秋季通勤穿搭图文素材包",
+      "type": "image",
+      "tags": ["通勤", "穿搭", "秋季"],
+      "cost": 2,
+      "license": "original",
+      "usable": true,
+      "note": "适合图文与轮播，授权完整"
+    },
+    "MAT-02": {
+      "id": "MAT-02",
+      "title": "早秋街拍视频素材",
+      "type": "video",
+      "tags": ["街拍", "通勤", "秋季"],
+      "cost": 4,
+      "license": "original",
+      "usable": true,
+      "note": "适合短视频，画面质量高"
+    },
+    "MAT-03": {
+      "id": "MAT-03",
+      "title": "素人改造视频素材",
+      "type": "video",
+      "tags": ["改造", "穿搭", "通勤"],
+      "cost": 4,
+      "license": "licensed",
+      "usable": true,
+      "note": "品牌视频方案素材"
+    },
+    "MAT-04": {
+      "id": "MAT-04",
+      "title": "品牌授权背景音乐",
+      "type": "audio",
+      "tags": ["通勤", "氛围"],
+      "cost": 1,
+      "license": "expired",
+      "usable": false,
+      "note": "授权已过期，检索时排除"
+    },
+    "MAT-05": {
+      "id": "MAT-05",
+      "title": "秋季面料特写图",
+      "type": "image",
+      "tags": ["秋季", "面料", "通勤"],
+      "cost": 1,
+      "license": "original",
+      "usable": true,
+      "note": "轻量图文方案素材"
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "id": "08-duplicate-execution",
+  "title": "重复执行：同一任务只保留一份方案",
+  "covers": ["重复执行", "幂等", "方案保存"],
+  "request": {
+    "request_id": "REQ-CP-08",
+    "theme": "秋季通勤穿搭",
+    "budget": 10,
+    "deadline": "2027-12-31T18:00:00+08:00",
+    "audience": "通勤女性",
+    "channel": "xiaohongshu"
+  },
+  "runs": [
+    {"label": "first", "expect": "plan_saved"},
+    {"label": "duplicate", "expect": "plan_saved_deduplicated"}
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "id": "06-review-failure-preserve",
+  "title": "工具失败：审核失败且无替代，保留脚本/海报，不保存",
+  "covers": ["工具失败", "无替代方案", "成功结果保留", "不保存"],
+  "request": {
+    "request_id": "REQ-CP-06",
+    "theme": "秋季通勤穿搭",
+    "budget": 10,
+    "deadline": "2027-12-31T18:00:00+08:00",
+    "audience": "通勤女性",
+    "channel": "xiaohongshu"
+  },
+  "runs": [
+    {
+      "label": "review-fail",
+      "expect": "incomplete_tool_failure",
+      "fail_steps": {"review": 99},
+      "max_steps": 16,
+      "max_tool_calls": 14
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "id": "09-save-failure",
+  "title": "保存失败：步骤成功但方案写入失败，不虚报保存",
+  "covers": ["方案保存失败", "成功步骤保留", "不虚报"],
+  "request": {
+    "request_id": "REQ-CP-09",
+    "theme": "秋季通勤穿搭",
+    "budget": 10,
+    "deadline": "2027-12-31T18:00:00+08:00",
+    "audience": "通勤女性",
+    "channel": "xiaohongshu"
+  },
+  "runs": [
+    {
+      "label": "save-fail",
+      "expect": "save_failed",
+      "fail_steps": {"save": 99},
+      "max_steps": 16,
+      "max_tool_calls": 14
+    }
+  ]
+}

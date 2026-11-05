@@ -1,0 +1,15 @@
+{
+  "id": "02-missing-budget",
+  "title": "缺预算：不猜测预算，返回未完成",
+  "covers": ["缺预算", "未完成原因"],
+  "request": {
+    "request_id": "REQ-CP-02",
+    "theme": "秋季通勤穿搭",
+    "deadline": "2027-12-31T18:00:00+08:00",
+    "audience": "通勤女性",
+    "channel": "xiaohongshu"
+  },
+  "runs": [
+    {"label": "missing-budget", "expect": "blocked_missing_fields"}
+  ]
+}

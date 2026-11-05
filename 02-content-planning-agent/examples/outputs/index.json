@@ -1,0 +1,276 @@
+{
+  "generated_at": "2026-11-05T11:56:57+08:00",
+  "provider": "mock",
+  "boundary": "MOCK 只验证流程、预算、依赖、失败重规划与幂等；不证明真实模型决策质量。",
+  "scenarios": [
+    {
+      "id": "01-normal-budget-replan",
+      "title": "正常完成：12 超预算，改选 8 的方案并保存",
+      "covers": [
+        "正常完成",
+        "预算超限",
+        "重规划",
+        "成本计算",
+        "方案保存"
+      ],
+      "statuses": [
+        "plan_saved"
+      ],
+      "plan_count": 1,
+      "checks_passed": true,
+      "checks": {
+        "status_match": true,
+        "saved_flags_match": true,
+        "all_plan_files_valid": true,
+        "premium_was_over_budget": true,
+        "selected_lean": true,
+        "cost_is_8": true,
+        "all_steps_success": true
+      },
+      "output": "examples/outputs/01-normal-budget-replan.json",
+      "traces": [
+        "examples/traces/01-normal-budget-replan-1-normal.jsonl"
+      ]
+    },
+    {
+      "id": "02-missing-budget",
+      "title": "缺预算：不猜测预算，返回未完成",
+      "covers": [
+        "缺预算",
+        "未完成原因"
+      ],
+      "statuses": [
+        "blocked_missing_fields"
+      ],
+      "plan_count": 0,
+      "checks_passed": true,
+      "checks": {
+        "status_match": true,
+        "saved_flags_match": true,
+        "all_plan_files_valid": true
+      },
+      "output": "examples/outputs/02-missing-budget.json",
+      "traces": [
+        "examples/traces/02-missing-budget-1-missing-budget.jsonl"
+      ]
+    },
+    {
+      "id": "03-missing-deadline",
+      "title": "缺截止时间：不猜测排期，返回未完成",
+      "covers": [
+        "缺截止时间",
+        "未完成原因"
+      ],
+      "statuses": [
+        "blocked_missing_fields"
+      ],
+      "plan_count": 0,
+      "checks_passed": true,
+      "checks": {
+        "status_match": true,
+        "saved_flags_match": true,
+        "all_plan_files_valid": true
+      },
+      "output": "examples/outputs/03-missing-deadline.json",
+      "traces": [
+        "examples/traces/03-missing-deadline-1-missing-deadline.jsonl"
+      ]
+    },
+    {
+      "id": "04-no-feasible-plan",
+      "title": "预算 3：所有方案都超预算，返回缺口 3",
+      "covers": [
+        "预算超限",
+        "无可行方案",
+        "缺口",
+        "不保存"
+      ],
+      "statuses": [
+        "incomplete_no_feasible_plan"
+      ],
+      "plan_count": 0,
+      "checks_passed": true,
+      "checks": {
+        "status_match": true,
+        "saved_flags_match": true,
+        "all_plan_files_valid": true,
+        "gap_is_3": true,
+        "no_plan_saved": true
+      },
+      "output": "examples/outputs/04-no-feasible-plan.json",
+      "traces": [
+        "examples/traces/04-no-feasible-plan-1-no-feasible.jsonl"
+      ]
+    },
+    {
+      "id": "05-poster-failure-replan",
+      "title": "工具失败：海报生成失败，改选无海报方案并保留脚本",
+      "covers": [
+        "工具失败",
+        "重规划",
+        "部分成功结果保留",
+        "方案保存"
+      ],
+      "statuses": [
+        "plan_saved"
+      ],
+      "plan_count": 1,
+      "checks_passed": true,
+      "checks": {
+        "status_match": true,
+        "saved_flags_match": true,
+        "all_plan_files_valid": true,
+        "fallback_no_poster": true,
+        "poster_failed": true,
+        "script_preserved": true
+      },
+      "output": "examples/outputs/05-poster-failure-replan.json",
+      "traces": [
+        "examples/traces/05-poster-failure-replan-1-poster-fail.jsonl"
+      ]
+    },
+    {
+      "id": "06-review-failure-preserve",
+      "title": "工具失败：审核失败且无替代，保留脚本/海报，不保存",
+      "covers": [
+        "工具失败",
+        "无替代方案",
+        "成功结果保留",
+        "不保存"
+      ],
+      "statuses": [
+        "incomplete_tool_failure"
+      ],
+      "plan_count": 0,
+      "checks_passed": true,
+      "checks": {
+        "status_match": true,
+        "saved_flags_match": true,
+        "all_plan_files_valid": true,
+        "review_failed": true,
+        "script_poster_preserved": true,
+        "not_saved": true
+      },
+      "output": "examples/outputs/06-review-failure-preserve.json",
+      "traces": [
+        "examples/traces/06-review-failure-preserve-1-review-fail.jsonl"
+      ]
+    },
+    {
+      "id": "07-resume-failed-step",
+      "title": "失败步骤续跑：先审核失败，修复后从检查点续跑并保存",
+      "covers": [
+        "工具失败",
+        "成功结果保留",
+        "失败步骤续跑",
+        "方案保存"
+      ],
+      "statuses": [
+        "incomplete_tool_failure",
+        "plan_saved"
+      ],
+      "plan_count": 1,
+      "checks_passed": true,
+      "checks": {
+        "status_match": true,
+        "saved_flags_match": true,
+        "all_plan_files_valid": true,
+        "first_failed": true,
+        "resume_saved": true,
+        "resume_skips_script": true,
+        "one_plan": true
+      },
+      "output": "examples/outputs/07-resume-failed-step.json",
+      "traces": [
+        "examples/traces/07-resume-failed-step-1-first-fail.jsonl",
+        "examples/traces/07-resume-failed-step-2-resume.jsonl"
+      ]
+    },
+    {
+      "id": "08-duplicate-execution",
+      "title": "重复执行：同一任务只保留一份方案",
+      "covers": [
+        "重复执行",
+        "幂等",
+        "方案保存"
+      ],
+      "statuses": [
+        "plan_saved",
+        "plan_saved_deduplicated"
+      ],
+      "plan_count": 1,
+      "checks_passed": true,
+      "checks": {
+        "status_match": true,
+        "saved_flags_match": true,
+        "all_plan_files_valid": true,
+        "one_plan": true,
+        "second_deduplicated": true,
+        "same_plan_id": true,
+        "second_only_get_brief": true
+      },
+      "output": "examples/outputs/08-duplicate-execution.json",
+      "traces": [
+        "examples/traces/08-duplicate-execution-1-first.jsonl",
+        "examples/traces/08-duplicate-execution-2-duplicate.jsonl"
+      ]
+    },
+    {
+      "id": "09-save-failure",
+      "title": "保存失败：步骤成功但方案写入失败，不虚报保存",
+      "covers": [
+        "方案保存失败",
+        "成功步骤保留",
+        "不虚报"
+      ],
+      "statuses": [
+        "save_failed"
+      ],
+      "plan_count": 0,
+      "checks_passed": true,
+      "checks": {
+        "status_match": true,
+        "saved_flags_match": true,
+        "all_plan_files_valid": true,
+        "no_plan": true,
+        "steps_succeeded": true,
+        "explicit_failure": true,
+        "two_save_attempts": true
+      },
+      "output": "examples/outputs/09-save-failure.json",
+      "traces": [
+        "examples/traces/09-save-failure-1-save-fail.jsonl"
+      ]
+    },
+    {
+      "id": "10-step-limit",
+      "title": "执行上限：三步后停止，明确未完成",
+      "covers": [
+        "执行上限",
+        "未完成状态"
+      ],
+      "statuses": [
+        "step_limit_reached"
+      ],
+      "plan_count": 0,
+      "checks_passed": true,
+      "checks": {
+        "status_match": true,
+        "saved_flags_match": true,
+        "all_plan_files_valid": true,
+        "limit_status": true,
+        "not_completed": true
+      },
+      "output": "examples/outputs/10-step-limit.json",
+      "traces": [
+        "examples/traces/10-step-limit-1-limit.jsonl"
+      ]
+    }
+  ],
+  "totals": {
+    "scenarios": 10,
+    "runs": 12,
+    "saved_plans": 4,
+    "all_checks_passed": true
+  }
+}

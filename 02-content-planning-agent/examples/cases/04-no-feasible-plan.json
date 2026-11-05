@@ -1,0 +1,16 @@
+{
+  "id": "04-no-feasible-plan",
+  "title": "预算 3：所有方案都超预算，返回缺口 3",
+  "covers": ["预算超限", "无可行方案", "缺口", "不保存"],
+  "request": {
+    "request_id": "REQ-CP-04",
+    "theme": "秋季通勤穿搭",
+    "budget": 3,
+    "deadline": "2027-12-31T18:00:00+08:00",
+    "audience": "通勤女性",
+    "channel": "xiaohongshu"
+  },
+  "runs": [
+    {"label": "no-feasible", "expect": "incomplete_no_feasible_plan"}
+  ]
+}

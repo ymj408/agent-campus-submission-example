@@ -1,0 +1,16 @@
+{
+  "id": "10-step-limit",
+  "title": "执行上限：三步后停止，明确未完成",
+  "covers": ["执行上限", "未完成状态"],
+  "request": {
+    "request_id": "REQ-CP-10",
+    "theme": "秋季通勤穿搭",
+    "budget": 10,
+    "deadline": "2027-12-31T18:00:00+08:00",
+    "audience": "通勤女性",
+    "channel": "xiaohongshu"
+  },
+  "runs": [
+    {"label": "limit", "expect": "step_limit_reached", "max_steps": 3, "max_tool_calls": 14}
+  ]
+}

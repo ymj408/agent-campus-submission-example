@@ -1,0 +1,56 @@
+command: python scripts/run_tests.py
+started_at: 2026-11-05T11:57:03+08:00
+python: 3.13.5 | packaged by Anaconda, Inc. | (main, Jun 12 2025, 16:37:03) [MSC v.1929 64 bit (AMD64)]
+==============================================================================
+test_duplicate_execution_returns_one_plan (tests.test_agent.AgentPathTest.test_duplicate_execution_returns_one_plan) ... ok
+test_missing_budget_blocks (tests.test_agent.AgentPathTest.test_missing_budget_blocks) ... ok
+test_missing_deadline_blocks (tests.test_agent.AgentPathTest.test_missing_deadline_blocks) ... ok
+test_no_feasible_plan_reports_gap (tests.test_agent.AgentPathTest.test_no_feasible_plan_reports_gap) ... ok
+test_normal_budget_replan (tests.test_agent.AgentPathTest.test_normal_budget_replan) ... ok
+test_poster_failure_replans_and_preserves_script (tests.test_agent.AgentPathTest.test_poster_failure_replans_and_preserves_script) ... ok
+test_resume_after_failure_skips_succeeded_steps (tests.test_agent.AgentPathTest.test_resume_after_failure_skips_succeeded_steps) ... ok
+test_review_failure_preserves_successes_and_does_not_save (tests.test_agent.AgentPathTest.test_review_failure_preserves_successes_and_does_not_save) ... ok
+test_runtime_rejects_false_save_claim (tests.test_agent.AgentPathTest.test_runtime_rejects_false_save_claim) ... ok
+test_save_failure_preserves_steps_but_no_plan (tests.test_agent.AgentPathTest.test_save_failure_preserves_steps_but_no_plan) ... ok
+test_step_limit_is_explicit_and_traced (tests.test_agent.AgentPathTest.test_step_limit_is_explicit_and_traced) ... ok
+test_tool_limit_is_explicit (tests.test_agent.AgentPathTest.test_tool_limit_is_explicit) ... ok
+test_trace_has_decision_basis_and_artifacts (tests.test_agent.AgentPathTest.test_trace_has_decision_basis_and_artifacts) ... ok
+test_case_run_writes_json (tests.test_cli.CliTest.test_case_run_writes_json) ... ok
+test_missing_budget_human_output (tests.test_cli.CliTest.test_missing_budget_human_output) ... ok
+test_openai_without_key_is_clear_error (tests.test_cli.CliTest.test_openai_without_key_is_clear_error) ... ok
+test_verify (tests.test_cli.CliTest.test_verify) ... ok
+test_all_scenarios_passed (tests.test_examples_artifacts.ExamplesArtifactTest.test_all_scenarios_passed) ... ok
+test_duplicate_has_one_plan (tests.test_examples_artifacts.ExamplesArtifactTest.test_duplicate_has_one_plan) ... ok
+test_failure_preserves_and_resume (tests.test_examples_artifacts.ExamplesArtifactTest.test_failure_preserves_and_resume) ... ok
+test_reference_replan_output (tests.test_examples_artifacts.ExamplesArtifactTest.test_reference_replan_output) ... ok
+test_required_cases_present (tests.test_examples_artifacts.ExamplesArtifactTest.test_required_cases_present) ... ok
+test_traces_exist_and_limit (tests.test_examples_artifacts.ExamplesArtifactTest.test_traces_exist_and_limit) ... ok
+test_http_error_is_wrapped (tests.test_llm_adapter.LLMAdapterTest.test_http_error_is_wrapped) ... ok
+test_json_fallback_parser (tests.test_llm_adapter.LLMAdapterTest.test_json_fallback_parser) ... ok
+test_missing_key_is_rejected (tests.test_llm_adapter.LLMAdapterTest.test_missing_key_is_rejected) ... ok
+test_native_tool_calling_loop (tests.test_llm_adapter.LLMAdapterTest.test_native_tool_calling_loop) ... ok
+test_artifact_paths_are_relative_to_store (tests.test_tools.ToolTest.test_artifact_paths_are_relative_to_store) ... ok
+test_brief_missing_budget_and_deadline (tests.test_tools.ToolTest.test_brief_missing_budget_and_deadline) ... ok
+test_dependency_is_enforced (tests.test_tools.ToolTest.test_dependency_is_enforced) ... ok
+test_estimate_lean_is_within_budget (tests.test_tools.ToolTest.test_estimate_lean_is_within_budget) ... ok
+test_estimate_premium_is_over_budget (tests.test_tools.ToolTest.test_estimate_premium_is_over_budget) ... ok
+test_plan_costs_match_reference (tests.test_tools.ToolTest.test_plan_costs_match_reference) ... ok
+test_poster_failure_preserves_script_and_fallback (tests.test_tools.ToolTest.test_poster_failure_preserves_script_and_fallback) ... ok
+test_resume_skips_succeeded_steps (tests.test_tools.ToolTest.test_resume_skips_succeeded_steps) ... ok
+test_save_failure_is_explicit_and_no_plan (tests.test_tools.ToolTest.test_save_failure_is_explicit_and_no_plan) ... ok
+test_save_is_idempotent (tests.test_tools.ToolTest.test_save_is_idempotent) ... ok
+test_save_requires_all_steps_succeeded (tests.test_tools.ToolTest.test_save_requires_all_steps_succeeded) ... ok
+test_script_success_writes_artifact (tests.test_tools.ToolTest.test_script_success_writes_artifact) ... ok
+test_search_excludes_expired_material (tests.test_tools.ToolTest.test_search_excludes_expired_material) ... ok
+
+----------------------------------------------------------------------
+Ran 40 tests in 2.560s
+
+OK
+==============================================================================
+success: True
+tests_run: 40
+failures: 0
+errors: 0
+skipped: 0
+finished_at: 2026-11-05T11:57:06+08:00

@@ -1,0 +1,122 @@
+{
+  "schema_version": 1,
+  "description": "预置内容方案模板。步骤依赖由 depends_on 明确声明；成本 = 素材成本 + 工具费用合计。",
+  "plans": [
+    {
+      "id": "premium_video",
+      "label": "品牌视频方案",
+      "material_id": "MAT-03",
+      "quality": "premium",
+      "steps": [
+        {
+          "id": "script",
+          "label": "脚本生成",
+          "tool": "script_generation",
+          "depends_on": []
+        },
+        {
+          "id": "video_edit",
+          "label": "视频剪辑",
+          "tool": "video_edit",
+          "depends_on": ["script"]
+        },
+        {
+          "id": "review",
+          "label": "合规审核",
+          "tool": "review",
+          "depends_on": ["script", "video_edit"]
+        },
+        {
+          "id": "distribution",
+          "label": "分发排期",
+          "tool": "distribution",
+          "depends_on": ["review"]
+        }
+      ]
+    },
+    {
+      "id": "lean_article",
+      "label": "轻量图文方案",
+      "material_id": "MAT-01",
+      "quality": "standard",
+      "steps": [
+        {
+          "id": "script",
+          "label": "脚本生成",
+          "tool": "script_generation",
+          "depends_on": []
+        },
+        {
+          "id": "poster",
+          "label": "海报生成",
+          "tool": "poster_generation",
+          "depends_on": ["script"]
+        },
+        {
+          "id": "review",
+          "label": "合规审核",
+          "tool": "review",
+          "depends_on": ["script", "poster"]
+        },
+        {
+          "id": "distribution",
+          "label": "分发排期",
+          "tool": "distribution",
+          "depends_on": ["review"]
+        }
+      ]
+    },
+    {
+      "id": "lean_no_poster",
+      "label": "轻量图文方案（无海报）",
+      "material_id": "MAT-01",
+      "quality": "lean",
+      "steps": [
+        {
+          "id": "script",
+          "label": "脚本生成",
+          "tool": "script_generation",
+          "depends_on": []
+        },
+        {
+          "id": "review",
+          "label": "合规审核",
+          "tool": "review",
+          "depends_on": ["script"]
+        },
+        {
+          "id": "distribution",
+          "label": "分发排期",
+          "tool": "distribution",
+          "depends_on": ["review"]
+        }
+      ]
+    },
+    {
+      "id": "organic_text",
+      "label": "自然流量图文方案",
+      "material_id": "MAT-05",
+      "quality": "organic",
+      "steps": [
+        {
+          "id": "script",
+          "label": "脚本生成",
+          "tool": "script_generation",
+          "depends_on": []
+        },
+        {
+          "id": "review",
+          "label": "合规审核",
+          "tool": "review",
+          "depends_on": ["script"]
+        },
+        {
+          "id": "distribution",
+          "label": "分发排期",
+          "tool": "distribution",
+          "depends_on": ["review"]
+        }
+      ]
+    }
+  ]
+}

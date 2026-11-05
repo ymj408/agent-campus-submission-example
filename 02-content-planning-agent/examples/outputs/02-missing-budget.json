@@ -1,0 +1,134 @@
+{
+  "scenario": {
+    "id": "02-missing-budget",
+    "title": "缺预算：不猜测预算，返回未完成",
+    "covers": [
+      "缺预算",
+      "未完成原因"
+    ],
+    "expect": [
+      "blocked_missing_fields"
+    ],
+    "source": "examples/cases/02-missing-budget.json"
+  },
+  "command": "python examples/run_examples.py  # 或 python run.py run --case examples/cases/02-missing-budget.json --reset",
+  "generated_at": "2026-11-05T11:56:56+08:00",
+  "provider": "mock",
+  "boundary": "MOCK 只验证流程、预算、依赖、失败重规划与幂等；不证明真实模型决策质量。",
+  "runs": [
+    {
+      "schema_version": 1,
+      "run_id": "RUN-20261105115656-60cc50",
+      "mode": "plan_and_save_only",
+      "provider": "mock",
+      "model": "deterministic-planning-policy-v1",
+      "task": {
+        "request_id": "REQ-CP-02",
+        "theme": "秋季通勤穿搭",
+        "budget": null,
+        "deadline": "2027-12-31T18:00:00+08:00",
+        "audience": "通勤女性",
+        "channel": "xiaohongshu",
+        "note": "",
+        "fingerprint": "e1c3c6ea0470c4a68bcc7583ecd170309186bc67096ee11883456ef0de8102b8",
+        "missing_fields": [
+          "budget"
+        ]
+      },
+      "status": "blocked_missing_fields",
+      "completed": false,
+      "terminal": true,
+      "saved": false,
+      "needs_user_action": true,
+      "summary": "未生成方案：缺少 budget；请补充后重试。",
+      "budget": {
+        "limit": null,
+        "total": 0.0,
+        "remaining": null,
+        "within_budget": null,
+        "over_by": null
+      },
+      "plan": null,
+      "plan_path": null,
+      "steps": [],
+      "successful_steps": [],
+      "failure_history": [],
+      "pending_items": [
+        "请补充：预算"
+      ],
+      "finish_claim": {
+        "status": "blocked_missing_fields",
+        "summary": "缺少预算或截止时间，不能形成可验证方案。",
+        "pending_items": [
+          "补充：budget"
+        ],
+        "rationale": "关键约束缺失，不做猜测或伪造预算/截止时间。"
+      },
+      "limits": {
+        "max_steps": 16,
+        "max_tool_calls": 14
+      },
+      "usage": {
+        "steps": 2,
+        "tool_calls": 1,
+        "elapsed_ms": 1
+      },
+      "started_at": "2026-11-05T11:56:56+08:00",
+      "finished_at": "2026-11-05T11:56:56+08:00",
+      "trace_path": "examples/traces/02-missing-budget-1-missing-budget.jsonl",
+      "step_records": [
+        {
+          "step": 1,
+          "action": "tool",
+          "decision_basis": "先读取任务简报，判断信息是否完整。",
+          "tool": "get_brief",
+          "arguments": {},
+          "ok": true,
+          "summary": "任务信息不完整，缺少：budget"
+        },
+        {
+          "step": 2,
+          "action": "finish",
+          "decision_basis": "关键约束缺失，不做猜测或伪造预算/截止时间。",
+          "finish_claim": {
+            "kind": "finish",
+            "rationale": "关键约束缺失，不做猜测或伪造预算/截止时间。",
+            "status": "blocked_missing_fields",
+            "summary": "缺少预算或截止时间，不能形成可验证方案。",
+            "pending_items": [
+              "补充：budget"
+            ]
+          }
+        }
+      ],
+      "scenario": {
+        "id": "02-missing-budget",
+        "title": "缺预算：不猜测预算，返回未完成",
+        "covers": [
+          "缺预算",
+          "未完成原因"
+        ],
+        "run_label": "missing-budget"
+      }
+    }
+  ],
+  "store_summary": {
+    "plan_count": 0,
+    "plan_ids": [],
+    "saved_plan_count": 0,
+    "store": ".runtime/examples/02-missing-budget",
+    "sequence": 0
+  },
+  "plan_counts_after_each_run": [
+    0
+  ],
+  "checks": {
+    "status_match": true,
+    "saved_flags_match": true,
+    "all_plan_files_valid": true
+  },
+  "checks_passed": true,
+  "traces": [
+    "examples/traces/02-missing-budget-1-missing-budget.jsonl"
+  ]
+}

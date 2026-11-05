@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "currency": "模拟单位",
+  "description": "合成工具费用与耗时表；成本与时长均为计划口径。",
+  "tools": {
+    "script_generation": {
+      "label": "脚本生成",
+      "unit_cost": 2,
+      "minutes": 30
+    },
+    "poster_generation": {
+      "label": "海报生成",
+      "unit_cost": 1,
+      "minutes": 20
+    },
+    "video_edit": {
+      "label": "视频剪辑",
+      "unit_cost": 3,
+      "minutes": 60
+    },
+    "review": {
+      "label": "合规审核",
+      "unit_cost": 1,
+      "minutes": 30
+    },
+    "distribution": {
+      "label": "分发排期",
+      "unit_cost": 2,
+      "minutes": 15
+    }
+  }
+}
