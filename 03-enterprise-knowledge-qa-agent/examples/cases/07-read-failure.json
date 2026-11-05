@@ -1,0 +1,15 @@
+{
+  "id": "07-read-failure",
+  "title": "工具失败：检索成功但原文读取失败，保留检索结果",
+  "covers": ["工具失败", "保留检索结果", "不凭摘要回答"],
+  "request": {
+    "request_id": "REQ-KQ-07",
+    "question": "总部差旅报销期限多久？"
+  },
+  "run": {
+    "expect": "tool_failure",
+    "fail_tools": {"read_document": 99},
+    "max_steps": 10,
+    "max_tool_calls": 8
+  }
+}

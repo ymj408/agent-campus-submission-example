@@ -1,0 +1,14 @@
+{
+  "id": "02-document-conflict",
+  "title": "文档冲突：D01 30 天 vs D02 15 天，不擅自回答",
+  "covers": ["文档冲突", "引用双方", "追问", "不擅自选择"],
+  "request": {
+    "request_id": "REQ-KQ-02",
+    "question": "报销期限多久？"
+  },
+  "run": {
+    "expect": "needs_confirmation",
+    "max_steps": 10,
+    "max_tool_calls": 8
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "id": "01-clear-answer",
+  "title": "明确答案：总部报销期限 30 天，引用 D01 原文",
+  "covers": ["明确答案", "原文引用", "范围检索"],
+  "request": {
+    "request_id": "REQ-KQ-01",
+    "question": "总部差旅报销期限多久？"
+  },
+  "run": {
+    "expect": "answered",
+    "max_steps": 10,
+    "max_tool_calls": 8
+  }
+}

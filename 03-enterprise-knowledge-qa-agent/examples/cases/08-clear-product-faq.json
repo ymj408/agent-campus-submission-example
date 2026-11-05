@@ -1,0 +1,14 @@
+{
+  "id": "08-clear-product-faq",
+  "title": "产品 FAQ：产品 X 退款期限 7 天",
+  "covers": ["明确答案", "产品问题", "原文引用"],
+  "request": {
+    "request_id": "REQ-KQ-08",
+    "question": "产品 X 签收后几天可以退款？"
+  },
+  "run": {
+    "expect": "answered",
+    "max_steps": 10,
+    "max_tool_calls": 8
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "id": "05-context-followup",
+  "title": "上下文追问：上一轮问华南，这一轮问总部，改写成总部查询",
+  "covers": ["上下文追问", "查询改写", "明确答案"],
+  "request": {
+    "request_id": "REQ-KQ-05",
+    "question": "那总部呢？",
+    "history": [
+      {"role": "user", "content": "华南区差旅报销期限多久？"},
+      {"role": "assistant", "content": "根据 D02，报销期限为 15 天。"}
+    ]
+  },
+  "run": {
+    "expect": "answered",
+    "max_steps": 10,
+    "max_tool_calls": 8
+  }
+}

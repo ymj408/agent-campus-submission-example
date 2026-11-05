@@ -1,0 +1,137 @@
+{
+  "scenario": {
+    "id": "03-out-of-scope",
+    "title": "资料外问题：知识库无食堂信息，返回资料缺口",
+    "covers": [
+      "资料外问题",
+      "无依据不回答",
+      "资料缺口"
+    ],
+    "expect": "insufficient_evidence",
+    "source": "examples/cases/03-out-of-scope.json"
+  },
+  "command": "python run.py run --case examples/cases/03-out-of-scope.json",
+  "generated_at": "2026-11-05T12:14:07+08:00",
+  "provider": "mock",
+  "boundary": "MOCK 只验证检索、引用、冲突、追问、上下文与工具失败；不证明真实模型问答质量。",
+  "runs": [
+    {
+      "schema_version": 1,
+      "run_id": "RUN-20261105121407-07918a",
+      "mode": "retrieval_qa_with_citations",
+      "provider": "mock",
+      "model": "deterministic-retrieval-policy-v1",
+      "task": {
+        "request_id": "REQ-KQ-03",
+        "question": "公司食堂今天吃什么？",
+        "history": []
+      },
+      "status": "insufficient_evidence",
+      "completed": false,
+      "terminal": true,
+      "needs_user_action": true,
+      "answer": null,
+      "answer_type": "insufficient",
+      "answer_supported": false,
+      "citations": [],
+      "citation_check": {
+        "model_citations_valid": false,
+        "invalid_model_citations": [],
+        "checked_model_citations": [],
+        "canonical_citations_valid": true,
+        "canonical_checks": []
+      },
+      "conflict": null,
+      "follow_up_question": null,
+      "missing_information": [
+        "知识库没有匹配的 active 文档；请补充问题背景或确认知识范围。"
+      ],
+      "pending_items": [
+        "知识库没有匹配的 active 文档；请补充问题背景或确认知识范围。"
+      ],
+      "rewritten_query": "公司食堂今天吃什么？",
+      "history_used": false,
+      "retrieved_doc_ids": [],
+      "read_doc_ids": [],
+      "search": {
+        "query": "公司食堂今天吃什么？",
+        "terms": [
+          "公司食堂今天",
+          "吃什么",
+          "食堂"
+        ],
+        "scope_hints": [],
+        "candidates": [],
+        "potential_conflicts": []
+      },
+      "preserved_evidence": [],
+      "model_claim": {
+        "status": "insufficient_evidence",
+        "summary": "知识库没有匹配的 active 文档。",
+        "payload": {},
+        "rationale": "没有检索到资料，不能无依据回答。"
+      },
+      "tool_errors": [],
+      "limits": {
+        "max_steps": 10,
+        "max_tool_calls": 8
+      },
+      "usage": {
+        "steps": 2,
+        "tool_calls": 1,
+        "elapsed_ms": 0
+      },
+      "started_at": "2026-11-05T12:14:07+08:00",
+      "finished_at": "2026-11-05T12:14:07+08:00",
+      "trace_path": "examples/traces/03-out-of-scope.jsonl",
+      "step_records": [
+        {
+          "step": 1,
+          "action": "tool",
+          "decision_basis": "检索制度/FAQ，优先确认是否存在同事实冲突。",
+          "tool": "search_documents",
+          "arguments": {
+            "query": "公司食堂今天吃什么？",
+            "top_k": 5
+          },
+          "ok": true,
+          "summary": "没有检索到与「公司食堂今天吃什么？」匹配的 active 文档"
+        },
+        {
+          "step": 2,
+          "action": "finish",
+          "decision_basis": "没有检索到资料，不能无依据回答。",
+          "finish_claim": {
+            "kind": "finish",
+            "rationale": "没有检索到资料，不能无依据回答。",
+            "payload": {},
+            "status": "insufficient_evidence",
+            "summary": "知识库没有匹配的 active 文档。",
+            "pending_items": [
+              "补充问题背景，或确认该主题是否在知识库范围内。"
+            ]
+          }
+        }
+      ],
+      "clarification": null,
+      "scenario": {
+        "id": "03-out-of-scope",
+        "title": "资料外问题：知识库无食堂信息，返回资料缺口",
+        "covers": [
+          "资料外问题",
+          "无依据不回答",
+          "资料缺口"
+        ]
+      }
+    }
+  ],
+  "checks": {
+    "status_match": true,
+    "no_unsupported_answer": true,
+    "citation_checks_valid": true
+  },
+  "checks_passed": true,
+  "traces": [
+    "examples/traces/03-out-of-scope.jsonl"
+  ]
+}

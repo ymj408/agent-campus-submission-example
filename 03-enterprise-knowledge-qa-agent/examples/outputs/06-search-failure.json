@@ -1,0 +1,165 @@
+{
+  "scenario": {
+    "id": "06-search-failure",
+    "title": "工具失败：检索连续失败，不编造答案",
+    "covers": [
+      "工具失败",
+      "不编造",
+      "任务状态"
+    ],
+    "expect": "tool_failure",
+    "source": "examples/cases/06-search-failure.json"
+  },
+  "command": "python run.py run --case examples/cases/06-search-failure.json",
+  "generated_at": "2026-11-05T12:14:07+08:00",
+  "provider": "mock",
+  "boundary": "MOCK 只验证检索、引用、冲突、追问、上下文与工具失败；不证明真实模型问答质量。",
+  "runs": [
+    {
+      "schema_version": 1,
+      "run_id": "RUN-20261105121407-7ac801",
+      "mode": "retrieval_qa_with_citations",
+      "provider": "mock",
+      "model": "deterministic-retrieval-policy-v1",
+      "task": {
+        "request_id": "REQ-KQ-06",
+        "question": "报销期限多久？",
+        "history": []
+      },
+      "status": "tool_failure",
+      "completed": false,
+      "terminal": true,
+      "needs_user_action": true,
+      "answer": null,
+      "answer_type": "insufficient",
+      "answer_supported": false,
+      "citations": [],
+      "citation_check": {
+        "model_citations_valid": false,
+        "invalid_model_citations": [],
+        "checked_model_citations": [],
+        "canonical_citations_valid": true,
+        "canonical_checks": []
+      },
+      "conflict": null,
+      "follow_up_question": null,
+      "missing_information": [
+        "检索工具失败，无法继续查证。"
+      ],
+      "pending_items": [
+        "检索工具失败，无法继续查证。"
+      ],
+      "rewritten_query": null,
+      "history_used": false,
+      "retrieved_doc_ids": [],
+      "read_doc_ids": [],
+      "search": null,
+      "preserved_evidence": [],
+      "model_claim": {
+        "status": "tool_failure",
+        "summary": "",
+        "payload": {},
+        "rationale": "检索连续失败。"
+      },
+      "tool_errors": [
+        {
+          "tool": "search_documents",
+          "code": "tool_failed",
+          "message": "注入的工具故障：search_documents 执行失败"
+        },
+        {
+          "tool": "search_documents",
+          "code": "tool_failed",
+          "message": "注入的工具故障：search_documents 执行失败"
+        }
+      ],
+      "limits": {
+        "max_steps": 10,
+        "max_tool_calls": 8
+      },
+      "usage": {
+        "steps": 3,
+        "tool_calls": 2,
+        "elapsed_ms": 0
+      },
+      "started_at": "2026-11-05T12:14:07+08:00",
+      "finished_at": "2026-11-05T12:14:07+08:00",
+      "trace_path": "examples/traces/06-search-failure.jsonl",
+      "step_records": [
+        {
+          "step": 1,
+          "action": "tool",
+          "decision_basis": "检索制度/FAQ，优先确认是否存在同事实冲突。",
+          "tool": "search_documents",
+          "arguments": {
+            "query": "报销期限多久？",
+            "top_k": 5
+          },
+          "ok": false,
+          "summary": "注入的工具故障：search_documents 执行失败",
+          "error": {
+            "code": "tool_failed",
+            "message": "注入的工具故障：search_documents 执行失败",
+            "retryable": true,
+            "details": {
+              "failed_key": "search_documents"
+            }
+          }
+        },
+        {
+          "step": 2,
+          "action": "tool",
+          "decision_basis": "检索制度/FAQ，优先确认是否存在同事实冲突。",
+          "tool": "search_documents",
+          "arguments": {
+            "query": "报销期限多久？",
+            "top_k": 5
+          },
+          "ok": false,
+          "summary": "注入的工具故障：search_documents 执行失败",
+          "error": {
+            "code": "tool_failed",
+            "message": "注入的工具故障：search_documents 执行失败",
+            "retryable": true,
+            "details": {
+              "failed_key": "search_documents"
+            }
+          }
+        },
+        {
+          "step": 3,
+          "action": "finish",
+          "decision_basis": "检索连续失败。",
+          "finish_claim": {
+            "kind": "finish",
+            "rationale": "检索连续失败。",
+            "payload": {},
+            "status": "tool_failure",
+            "summary": "",
+            "pending_items": []
+          }
+        }
+      ],
+      "clarification": null,
+      "scenario": {
+        "id": "06-search-failure",
+        "title": "工具失败：检索连续失败，不编造答案",
+        "covers": [
+          "工具失败",
+          "不编造",
+          "任务状态"
+        ]
+      }
+    }
+  ],
+  "checks": {
+    "status_match": true,
+    "no_unsupported_answer": true,
+    "citation_checks_valid": true,
+    "no_answer": true
+  },
+  "checks_passed": true,
+  "traces": [
+    "examples/traces/06-search-failure.jsonl"
+  ]
+}

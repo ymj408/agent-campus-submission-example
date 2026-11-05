@@ -1,0 +1,252 @@
+{
+  "scenario": {
+    "id": "08-clear-product-faq",
+    "title": "产品 FAQ：产品 X 退款期限 7 天",
+    "covers": [
+      "明确答案",
+      "产品问题",
+      "原文引用"
+    ],
+    "expect": "answered",
+    "source": "examples/cases/08-clear-product-faq.json"
+  },
+  "command": "python run.py run --case examples/cases/08-clear-product-faq.json",
+  "generated_at": "2026-11-05T12:14:07+08:00",
+  "provider": "mock",
+  "boundary": "MOCK 只验证检索、引用、冲突、追问、上下文与工具失败；不证明真实模型问答质量。",
+  "runs": [
+    {
+      "schema_version": 1,
+      "run_id": "RUN-20261105121407-8d6657",
+      "mode": "retrieval_qa_with_citations",
+      "provider": "mock",
+      "model": "deterministic-retrieval-policy-v1",
+      "task": {
+        "request_id": "REQ-KQ-08",
+        "question": "产品 X 签收后几天可以退款？",
+        "history": []
+      },
+      "status": "answered",
+      "completed": true,
+      "terminal": true,
+      "needs_user_action": false,
+      "answer": "根据 D04《产品 X 退款政策》v5.1（生效 2026-02-01；适用 全国），退款期限为 7 天。原文：“用户可自签收之日起 7 个自然日内申请无理由退款。”",
+      "answer_type": "direct",
+      "answer_supported": true,
+      "citations": [
+        {
+          "doc_id": "D04",
+          "title": "产品 X 退款政策",
+          "version": "5.1",
+          "effective_date": "2026-02-01",
+          "scope_terms": [
+            "全国"
+          ],
+          "section_id": "S1",
+          "quote": "用户可自签收之日起 7 个自然日内申请无理由退款。",
+          "value": 7,
+          "unit": "天",
+          "label": "退款期限"
+        }
+      ],
+      "citation_check": {
+        "model_citations_valid": true,
+        "invalid_model_citations": [],
+        "checked_model_citations": [
+          {
+            "citation": {
+              "doc_id": "D04",
+              "section_id": "S1",
+              "quote": "用户可自签收之日起 7 个自然日内申请无理由退款。"
+            },
+            "validation": {
+              "valid": true,
+              "doc_id": "D04",
+              "section_id": "S1",
+              "quote": "用户可自签收之日起 7 个自然日内申请无理由退款。"
+            }
+          }
+        ],
+        "canonical_citations_valid": true,
+        "canonical_checks": [
+          {
+            "valid": true,
+            "doc_id": "D04",
+            "section_id": "S1",
+            "quote": "用户可自签收之日起 7 个自然日内申请无理由退款。"
+          }
+        ]
+      },
+      "conflict": null,
+      "follow_up_question": null,
+      "missing_information": [],
+      "pending_items": [],
+      "rewritten_query": "产品 X 签收后几天可以退款？",
+      "history_used": false,
+      "retrieved_doc_ids": [
+        "D04"
+      ],
+      "read_doc_ids": [
+        "D04"
+      ],
+      "search": {
+        "query": "产品 X 签收后几天可以退款？",
+        "terms": [
+          "产品",
+          "以退款",
+          "签收后几天可",
+          "退款",
+          "退货"
+        ],
+        "scope_hints": [],
+        "candidates": [
+          {
+            "doc_id": "D04",
+            "title": "产品 X 退款政策",
+            "version": "5.1",
+            "effective_date": "2026-02-01",
+            "scope_terms": [
+              "全国"
+            ],
+            "summary": "产品 X 的退款申请窗口、所需材料与到账时间。",
+            "faq_questions": [
+              "产品 X 退款期限",
+              "签收后几天可以退款"
+            ],
+            "score": 24,
+            "matched_terms": [
+              "产品",
+              "以退款",
+              "签收后几天可",
+              "退款"
+            ],
+            "facts_preview": {
+              "refund_window_days": {
+                "label": "退款期限",
+                "value": 7,
+                "unit": "天"
+              }
+            }
+          }
+        ],
+        "potential_conflicts": []
+      },
+      "preserved_evidence": [
+        {
+          "doc_id": "D04",
+          "title": "产品 X 退款政策",
+          "version": "5.1",
+          "effective_date": "2026-02-01",
+          "scope_terms": [
+            "全国"
+          ],
+          "fact_key": "refund_window_days",
+          "label": "退款期限",
+          "value": 7,
+          "unit": "天",
+          "section_id": "S1",
+          "section_title": "退款期限",
+          "quote": "用户可自签收之日起 7 个自然日内申请无理由退款。"
+        }
+      ],
+      "model_claim": {
+        "status": "answered",
+        "summary": "",
+        "payload": {
+          "answer": "根据 D04《产品 X 退款政策》v5.1（生效 2026-02-01；适用 全国），退款期限为 7 天。原文：“用户可自签收之日起 7 个自然日内申请无理由退款。”",
+          "citations": [
+            {
+              "doc_id": "D04",
+              "section_id": "S1",
+              "quote": "用户可自签收之日起 7 个自然日内申请无理由退款。"
+            }
+          ]
+        },
+        "rationale": "读取到的 active 文档对目标事实取值一致，基于原文回答。"
+      },
+      "tool_errors": [],
+      "limits": {
+        "max_steps": 10,
+        "max_tool_calls": 8
+      },
+      "usage": {
+        "steps": 3,
+        "tool_calls": 2,
+        "elapsed_ms": 0
+      },
+      "started_at": "2026-11-05T12:14:07+08:00",
+      "finished_at": "2026-11-05T12:14:07+08:00",
+      "trace_path": "examples/traces/08-clear-product-faq.jsonl",
+      "step_records": [
+        {
+          "step": 1,
+          "action": "tool",
+          "decision_basis": "检索制度/FAQ，优先确认是否存在同事实冲突。",
+          "tool": "search_documents",
+          "arguments": {
+            "query": "产品 X 签收后几天可以退款？",
+            "top_k": 5
+          },
+          "ok": true,
+          "summary": "检索到 1 个 active 文档，首条 D04"
+        },
+        {
+          "step": 2,
+          "action": "tool",
+          "decision_basis": "读取 D04 原文，检查事实和引用。",
+          "tool": "read_document",
+          "arguments": {
+            "doc_id": "D04"
+          },
+          "ok": true,
+          "summary": "读取 D04 v5.1 章节「退款期限」；quote 长度 25 字符"
+        },
+        {
+          "step": 3,
+          "action": "finish",
+          "decision_basis": "读取到的 active 文档对目标事实取值一致，基于原文回答。",
+          "finish_claim": {
+            "kind": "finish",
+            "rationale": "读取到的 active 文档对目标事实取值一致，基于原文回答。",
+            "payload": {
+              "answer": "根据 D04《产品 X 退款政策》v5.1（生效 2026-02-01；适用 全国），退款期限为 7 天。原文：“用户可自签收之日起 7 个自然日内申请无理由退款。”",
+              "citations": [
+                {
+                  "doc_id": "D04",
+                  "section_id": "S1",
+                  "quote": "用户可自签收之日起 7 个自然日内申请无理由退款。"
+                }
+              ]
+            },
+            "status": "answered",
+            "summary": "",
+            "pending_items": []
+          }
+        }
+      ],
+      "clarification": null,
+      "scenario": {
+        "id": "08-clear-product-faq",
+        "title": "产品 FAQ：产品 X 退款期限 7 天",
+        "covers": [
+          "明确答案",
+          "产品问题",
+          "原文引用"
+        ]
+      }
+    }
+  ],
+  "checks": {
+    "status_match": true,
+    "no_unsupported_answer": true,
+    "citation_checks_valid": true,
+    "has_citations": true,
+    "answer_quotes_evidence": true,
+    "answer_7": true,
+    "cite_d04": true
+  },
+  "checks_passed": true,
+  "traces": [
+    "examples/traces/08-clear-product-faq.jsonl"
+  ]
+}

@@ -2,7 +2,7 @@
 
 本仓库按**题号目录**组织，每个题目保持自包含（README / src / tests / examples / data / docs）。
 
-> 当前已完成并提交**项目题 1、项目题 2**。剩余两题尚未完成，因此不占空目录；后续按同样结构新增 `03-*`、`04-*`。
+> 当前已完成并提交**项目题 1、项目题 2、项目题 3**。剩余一题尚未完成，因此不占空目录；后续按同样结构新增 `04-*`。
 
 ## 题目索引
 
@@ -10,10 +10,10 @@
 |---:|---|---|---|---|
 | 1 | 素材审核与发布排期 Agent | ✅ 已完成 | [01-media-review-scheduler/](01-media-review-scheduler/) | 47 tests |
 | 2 | 内容任务规划 Agent | ✅ 已完成 | [02-content-planning-agent/](02-content-planning-agent/) | 40 tests |
-| 3 | 待完成 | — | — | — |
+| 3 | 企业知识问答 Agent | ✅ 已完成 | [03-enterprise-knowledge-qa-agent/](03-enterprise-knowledge-qa-agent/) | 40 tests |
 | 4 | 待完成 | — | — | — |
 
-考核要求是“四选一”。当前提交包含两个完整项目，可任选其一评审；题 2 是后加的独立子项目，不影响题 1。
+考核要求是“四选一”。当前提交包含三个完整项目，可任选其一评审；每个题目目录独立，新增项目不影响已完成题目。
 
 ## 题 1 快速入口
 
@@ -43,12 +43,29 @@ python scripts/run_tests.py
 - 失败续跑：[审核失败 → resume 保存](02-content-planning-agent/examples/outputs/07-resume-failed-step.json)
 - 运行总览：[examples/outputs/index.json](02-content-planning-agent/examples/outputs/index.json)
 
+## 题 3 快速入口
+
+```bash
+cd 03-enterprise-knowledge-qa-agent
+python run.py verify
+python run.py run --question "总部差旅报销期限多久？"
+python run.py run --question "报销期限多久？"
+python scripts/run_tests.py
+```
+
+- 题 3 说明：[03-enterprise-knowledge-qa-agent/README.md](03-enterprise-knowledge-qa-agent/README.md)
+- 明确答案：[D01 30 天](03-enterprise-knowledge-qa-agent/examples/outputs/01-clear-answer.json)
+- 文档冲突：[D01/D02 冲突待确认](03-enterprise-knowledge-qa-agent/examples/outputs/02-document-conflict.json)
+- 上下文追问：[华南 → 总部](03-enterprise-knowledge-qa-agent/examples/outputs/05-context-followup.json)
+- 资料外：[无资料不回答](03-enterprise-knowledge-qa-agent/examples/outputs/03-out-of-scope.json)
+- 运行总览：[examples/outputs/index.json](03-enterprise-knowledge-qa-agent/examples/outputs/index.json)
+
 ## 提交信息
 
 - **仓库**：<https://github.com/ymj408/agent-campus-submission-example>
-- **项目目录**：`01-media-review-scheduler/`、`02-content-planning-agent/`
+- **项目目录**：`01-media-review-scheduler/`、`02-content-planning-agent/`、`03-enterprise-knowledge-qa-agent/`
 - **最终 commit SHA**：见远程 `main` 分支最新提交，或本仓库提交回复
-- **AI 使用记录**：题 1 [docs/04-ai-usage.md](01-media-review-scheduler/docs/04-ai-usage.md)；题 2 [docs/04-ai-usage.md](02-content-planning-agent/docs/04-ai-usage.md)
+- **AI 使用记录**：题 1 [docs/04-ai-usage.md](01-media-review-scheduler/docs/04-ai-usage.md)；题 2 [docs/04-ai-usage.md](02-content-planning-agent/docs/04-ai-usage.md)；题 3 [docs/04-ai-usage.md](03-enterprise-knowledge-qa-agent/docs/04-ai-usage.md)
 
 ## 目录约定
 
@@ -62,7 +79,12 @@ python scripts/run_tests.py
 │   ├── src/ tests/ examples/ data/ docs/
 │   ├── run.py
 │   └── pyproject.toml / requirements.txt / .env.example
-└── 02-content-planning-agent/      # 题 2，自包含
+├── 02-content-planning-agent/      # 题 2，自包含
+│   ├── README.md
+│   ├── src/ tests/ examples/ data/ docs/
+│   ├── run.py
+│   └── pyproject.toml / requirements.txt / .env.example
+└── 03-enterprise-knowledge-qa-agent/ # 题 3，自包含
     ├── README.md
     ├── src/ tests/ examples/ data/ docs/
     ├── run.py

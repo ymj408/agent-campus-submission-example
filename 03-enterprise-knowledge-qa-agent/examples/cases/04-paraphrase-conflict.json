@@ -1,0 +1,14 @@
+{
+  "id": "04-paraphrase-conflict",
+  "title": "改写后的相似问题：出差回来多久内报销，仍识别冲突",
+  "covers": ["相似问题", "检索改进", "文档冲突"],
+  "request": {
+    "request_id": "REQ-KQ-04",
+    "question": "出差回来多久内要报销？"
+  },
+  "run": {
+    "expect": "needs_confirmation",
+    "max_steps": 10,
+    "max_tool_calls": 8
+  }
+}

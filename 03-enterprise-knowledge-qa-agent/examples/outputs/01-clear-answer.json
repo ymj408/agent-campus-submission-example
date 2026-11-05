@@ -1,0 +1,264 @@
+{
+  "scenario": {
+    "id": "01-clear-answer",
+    "title": "明确答案：总部报销期限 30 天，引用 D01 原文",
+    "covers": [
+      "明确答案",
+      "原文引用",
+      "范围检索"
+    ],
+    "expect": "answered",
+    "source": "examples/cases/01-clear-answer.json"
+  },
+  "command": "python run.py run --case examples/cases/01-clear-answer.json",
+  "generated_at": "2026-11-05T12:14:07+08:00",
+  "provider": "mock",
+  "boundary": "MOCK 只验证检索、引用、冲突、追问、上下文与工具失败；不证明真实模型问答质量。",
+  "runs": [
+    {
+      "schema_version": 1,
+      "run_id": "RUN-20261105121407-c8b645",
+      "mode": "retrieval_qa_with_citations",
+      "provider": "mock",
+      "model": "deterministic-retrieval-policy-v1",
+      "task": {
+        "request_id": "REQ-KQ-01",
+        "question": "总部差旅报销期限多久？",
+        "history": []
+      },
+      "status": "answered",
+      "completed": true,
+      "terminal": true,
+      "needs_user_action": false,
+      "answer": "根据 D01《差旅报销制度（总部/华东区）》v2.0（生效 2026-01-01；适用 总部/华东），报销期限为 30 天。原文：“员工应在差旅结束后 30 个自然日内提交报销申请，逾期需说明原因。”",
+      "answer_type": "direct",
+      "answer_supported": true,
+      "citations": [
+        {
+          "doc_id": "D01",
+          "title": "差旅报销制度（总部/华东区）",
+          "version": "2.0",
+          "effective_date": "2026-01-01",
+          "scope_terms": [
+            "总部",
+            "华东"
+          ],
+          "section_id": "S2",
+          "quote": "员工应在差旅结束后 30 个自然日内提交报销申请，逾期需说明原因。",
+          "value": 30,
+          "unit": "天",
+          "label": "报销期限"
+        }
+      ],
+      "citation_check": {
+        "model_citations_valid": true,
+        "invalid_model_citations": [],
+        "checked_model_citations": [
+          {
+            "citation": {
+              "doc_id": "D01",
+              "section_id": "S2",
+              "quote": "员工应在差旅结束后 30 个自然日内提交报销申请，逾期需说明原因。"
+            },
+            "validation": {
+              "valid": true,
+              "doc_id": "D01",
+              "section_id": "S2",
+              "quote": "员工应在差旅结束后 30 个自然日内提交报销申请，逾期需说明原因。"
+            }
+          }
+        ],
+        "canonical_citations_valid": true,
+        "canonical_checks": [
+          {
+            "valid": true,
+            "doc_id": "D01",
+            "section_id": "S2",
+            "quote": "员工应在差旅结束后 30 个自然日内提交报销申请，逾期需说明原因。"
+          }
+        ]
+      },
+      "conflict": null,
+      "follow_up_question": null,
+      "missing_information": [],
+      "pending_items": [],
+      "rewritten_query": "总部差旅报销期限多久？",
+      "history_used": false,
+      "retrieved_doc_ids": [
+        "D01"
+      ],
+      "read_doc_ids": [
+        "D01"
+      ],
+      "search": {
+        "query": "总部差旅报销期限多久？",
+        "terms": [
+          "多久",
+          "天",
+          "差旅",
+          "总部差旅报销",
+          "截止",
+          "报销",
+          "期限",
+          "期限多久",
+          "费用"
+        ],
+        "scope_hints": [
+          "总部"
+        ],
+        "candidates": [
+          {
+            "doc_id": "D01",
+            "title": "差旅报销制度（总部/华东区）",
+            "version": "2.0",
+            "effective_date": "2026-01-01",
+            "scope_terms": [
+              "总部",
+              "华东"
+            ],
+            "summary": "总部及华东区员工差旅报销的适用范围、申请期限与凭证要求。",
+            "faq_questions": [
+              "报销期限多久",
+              "出差回来多久内要报销",
+              "总部报销要几天"
+            ],
+            "score": 31,
+            "matched_terms": [
+              "多久",
+              "天",
+              "差旅",
+              "报销",
+              "期限",
+              "期限多久"
+            ],
+            "facts_preview": {
+              "reimbursement_deadline_days": {
+                "label": "报销期限",
+                "value": 30,
+                "unit": "天"
+              }
+            }
+          }
+        ],
+        "potential_conflicts": []
+      },
+      "preserved_evidence": [
+        {
+          "doc_id": "D01",
+          "title": "差旅报销制度（总部/华东区）",
+          "version": "2.0",
+          "effective_date": "2026-01-01",
+          "scope_terms": [
+            "总部",
+            "华东"
+          ],
+          "fact_key": "reimbursement_deadline_days",
+          "label": "报销期限",
+          "value": 30,
+          "unit": "天",
+          "section_id": "S2",
+          "section_title": "报销期限",
+          "quote": "员工应在差旅结束后 30 个自然日内提交报销申请，逾期需说明原因。"
+        }
+      ],
+      "model_claim": {
+        "status": "answered",
+        "summary": "",
+        "payload": {
+          "answer": "根据 D01《差旅报销制度（总部/华东区）》v2.0（生效 2026-01-01；适用 总部/华东），报销期限为 30 天。原文：“员工应在差旅结束后 30 个自然日内提交报销申请，逾期需说明原因。”",
+          "citations": [
+            {
+              "doc_id": "D01",
+              "section_id": "S2",
+              "quote": "员工应在差旅结束后 30 个自然日内提交报销申请，逾期需说明原因。"
+            }
+          ]
+        },
+        "rationale": "读取到的 active 文档对目标事实取值一致，基于原文回答。"
+      },
+      "tool_errors": [],
+      "limits": {
+        "max_steps": 10,
+        "max_tool_calls": 8
+      },
+      "usage": {
+        "steps": 3,
+        "tool_calls": 2,
+        "elapsed_ms": 1
+      },
+      "started_at": "2026-11-05T12:14:07+08:00",
+      "finished_at": "2026-11-05T12:14:07+08:00",
+      "trace_path": "examples/traces/01-clear-answer.jsonl",
+      "step_records": [
+        {
+          "step": 1,
+          "action": "tool",
+          "decision_basis": "检索制度/FAQ，优先确认是否存在同事实冲突。",
+          "tool": "search_documents",
+          "arguments": {
+            "query": "总部差旅报销期限多久？",
+            "top_k": 5
+          },
+          "ok": true,
+          "summary": "检索到 1 个 active 文档，首条 D01"
+        },
+        {
+          "step": 2,
+          "action": "tool",
+          "decision_basis": "读取 D01 原文，检查事实和引用。",
+          "tool": "read_document",
+          "arguments": {
+            "doc_id": "D01"
+          },
+          "ok": true,
+          "summary": "读取 D01 v2.0 章节「报销期限」；quote 长度 33 字符"
+        },
+        {
+          "step": 3,
+          "action": "finish",
+          "decision_basis": "读取到的 active 文档对目标事实取值一致，基于原文回答。",
+          "finish_claim": {
+            "kind": "finish",
+            "rationale": "读取到的 active 文档对目标事实取值一致，基于原文回答。",
+            "payload": {
+              "answer": "根据 D01《差旅报销制度（总部/华东区）》v2.0（生效 2026-01-01；适用 总部/华东），报销期限为 30 天。原文：“员工应在差旅结束后 30 个自然日内提交报销申请，逾期需说明原因。”",
+              "citations": [
+                {
+                  "doc_id": "D01",
+                  "section_id": "S2",
+                  "quote": "员工应在差旅结束后 30 个自然日内提交报销申请，逾期需说明原因。"
+                }
+              ]
+            },
+            "status": "answered",
+            "summary": "",
+            "pending_items": []
+          }
+        }
+      ],
+      "clarification": null,
+      "scenario": {
+        "id": "01-clear-answer",
+        "title": "明确答案：总部报销期限 30 天，引用 D01 原文",
+        "covers": [
+          "明确答案",
+          "原文引用",
+          "范围检索"
+        ]
+      }
+    }
+  ],
+  "checks": {
+    "status_match": true,
+    "no_unsupported_answer": true,
+    "citation_checks_valid": true,
+    "has_citations": true,
+    "answer_quotes_evidence": true,
+    "answer_30": true,
+    "cite_d01": true
+  },
+  "checks_passed": true,
+  "traces": [
+    "examples/traces/01-clear-answer.jsonl"
+  ]
+}

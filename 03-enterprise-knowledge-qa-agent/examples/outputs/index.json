@@ -1,0 +1,160 @@
+{
+  "generated_at": "2026-11-05T12:14:07+08:00",
+  "provider": "mock",
+  "boundary": "MOCK 只验证检索、引用、冲突、追问、上下文与工具失败；不证明真实模型问答质量。",
+  "scenarios": [
+    {
+      "id": "01-clear-answer",
+      "title": "明确答案：总部报销期限 30 天，引用 D01 原文",
+      "status": "answered",
+      "answer_type": "direct",
+      "citation_count": 1,
+      "checks_passed": true,
+      "checks": {
+        "status_match": true,
+        "no_unsupported_answer": true,
+        "citation_checks_valid": true,
+        "has_citations": true,
+        "answer_quotes_evidence": true,
+        "answer_30": true,
+        "cite_d01": true
+      },
+      "output": "examples/outputs/01-clear-answer.json",
+      "trace": "examples/traces/01-clear-answer.jsonl"
+    },
+    {
+      "id": "02-document-conflict",
+      "title": "文档冲突：D01 30 天 vs D02 15 天，不擅自回答",
+      "status": "needs_confirmation",
+      "answer_type": "conflict",
+      "citation_count": 2,
+      "checks_passed": true,
+      "checks": {
+        "status_match": true,
+        "no_unsupported_answer": true,
+        "citation_checks_valid": true,
+        "has_citations": true,
+        "answer_quotes_evidence": true,
+        "is_conflict": true,
+        "cites_both": true,
+        "mentions_both_values": true
+      },
+      "output": "examples/outputs/02-document-conflict.json",
+      "trace": "examples/traces/02-document-conflict.jsonl"
+    },
+    {
+      "id": "03-out-of-scope",
+      "title": "资料外问题：知识库无食堂信息，返回资料缺口",
+      "status": "insufficient_evidence",
+      "answer_type": "insufficient",
+      "citation_count": 0,
+      "checks_passed": true,
+      "checks": {
+        "status_match": true,
+        "no_unsupported_answer": true,
+        "citation_checks_valid": true
+      },
+      "output": "examples/outputs/03-out-of-scope.json",
+      "trace": "examples/traces/03-out-of-scope.jsonl"
+    },
+    {
+      "id": "04-paraphrase-conflict",
+      "title": "改写后的相似问题：出差回来多久内报销，仍识别冲突",
+      "status": "needs_confirmation",
+      "answer_type": "conflict",
+      "citation_count": 2,
+      "checks_passed": true,
+      "checks": {
+        "status_match": true,
+        "no_unsupported_answer": true,
+        "citation_checks_valid": true,
+        "has_citations": true,
+        "answer_quotes_evidence": true,
+        "retrieved_both": true,
+        "is_conflict": true
+      },
+      "output": "examples/outputs/04-paraphrase-conflict.json",
+      "trace": "examples/traces/04-paraphrase-conflict.jsonl"
+    },
+    {
+      "id": "05-context-followup",
+      "title": "上下文追问：上一轮问华南，这一轮问总部，改写成总部查询",
+      "status": "answered",
+      "answer_type": "direct",
+      "citation_count": 1,
+      "checks_passed": true,
+      "checks": {
+        "status_match": true,
+        "no_unsupported_answer": true,
+        "citation_checks_valid": true,
+        "has_citations": true,
+        "answer_quotes_evidence": true,
+        "history_used": true,
+        "query_has_headquarters": true,
+        "answer_30": true
+      },
+      "output": "examples/outputs/05-context-followup.json",
+      "trace": "examples/traces/05-context-followup.jsonl"
+    },
+    {
+      "id": "06-search-failure",
+      "title": "工具失败：检索连续失败，不编造答案",
+      "status": "tool_failure",
+      "answer_type": "insufficient",
+      "citation_count": 0,
+      "checks_passed": true,
+      "checks": {
+        "status_match": true,
+        "no_unsupported_answer": true,
+        "citation_checks_valid": true,
+        "no_answer": true
+      },
+      "output": "examples/outputs/06-search-failure.json",
+      "trace": "examples/traces/06-search-failure.jsonl"
+    },
+    {
+      "id": "07-read-failure",
+      "title": "工具失败：检索成功但原文读取失败，保留检索结果",
+      "status": "tool_failure",
+      "answer_type": "insufficient",
+      "citation_count": 0,
+      "checks_passed": true,
+      "checks": {
+        "status_match": true,
+        "no_unsupported_answer": true,
+        "citation_checks_valid": true,
+        "no_answer": true
+      },
+      "output": "examples/outputs/07-read-failure.json",
+      "trace": "examples/traces/07-read-failure.jsonl"
+    },
+    {
+      "id": "08-clear-product-faq",
+      "title": "产品 FAQ：产品 X 退款期限 7 天",
+      "status": "answered",
+      "answer_type": "direct",
+      "citation_count": 1,
+      "checks_passed": true,
+      "checks": {
+        "status_match": true,
+        "no_unsupported_answer": true,
+        "citation_checks_valid": true,
+        "has_citations": true,
+        "answer_quotes_evidence": true,
+        "answer_7": true,
+        "cite_d04": true
+      },
+      "output": "examples/outputs/08-clear-product-faq.json",
+      "trace": "examples/traces/08-clear-product-faq.jsonl"
+    }
+  ],
+  "totals": {
+    "scenarios": 8,
+    "runs": 8,
+    "answered": 3,
+    "needs_confirmation": 2,
+    "insufficient_evidence": 1,
+    "tool_failure": 2,
+    "all_checks_passed": true
+  }
+}

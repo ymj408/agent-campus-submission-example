@@ -1,0 +1,415 @@
+{
+  "scenario": {
+    "id": "04-paraphrase-conflict",
+    "title": "改写后的相似问题：出差回来多久内报销，仍识别冲突",
+    "covers": [
+      "相似问题",
+      "检索改进",
+      "文档冲突"
+    ],
+    "expect": "needs_confirmation",
+    "source": "examples/cases/04-paraphrase-conflict.json"
+  },
+  "command": "python run.py run --case examples/cases/04-paraphrase-conflict.json",
+  "generated_at": "2026-11-05T12:14:07+08:00",
+  "provider": "mock",
+  "boundary": "MOCK 只验证检索、引用、冲突、追问、上下文与工具失败；不证明真实模型问答质量。",
+  "runs": [
+    {
+      "schema_version": 1,
+      "run_id": "RUN-20261105121407-1d7f14",
+      "mode": "retrieval_qa_with_citations",
+      "provider": "mock",
+      "model": "deterministic-retrieval-policy-v1",
+      "task": {
+        "request_id": "REQ-KQ-04",
+        "question": "出差回来多久内要报销？",
+        "history": []
+      },
+      "status": "needs_confirmation",
+      "completed": false,
+      "terminal": true,
+      "needs_user_action": true,
+      "answer": "关于“报销期限”，现行制度存在冲突，不能擅自选择其中一个。D01《差旅报销制度（总部/华东区）》v2.0（适用 总部/华东）原文“员工应在差旅结束后 30 个自然日内提交报销申请，逾期需说明原因。”对应 30 天；D02《差旅报销制度（华南区）》v3.0（适用 华南）原文“华南区员工应在差旅结束后 15 个自然日内提交报销申请，逾期需说明原因。”对应 15 天。两份文档均为 active，且未提供适用范围优先级。请确认：关于「报销期限」，现行文档给出不同值。本次问题应适用以下哪份制度？可选：D01（总部/华东，30 天）；D02（华南，15 天）",
+      "answer_type": "conflict",
+      "answer_supported": false,
+      "citations": [
+        {
+          "doc_id": "D01",
+          "title": "差旅报销制度（总部/华东区）",
+          "version": "2.0",
+          "effective_date": "2026-01-01",
+          "scope_terms": [
+            "总部",
+            "华东"
+          ],
+          "section_id": "S2",
+          "quote": "员工应在差旅结束后 30 个自然日内提交报销申请，逾期需说明原因。",
+          "value": 30,
+          "unit": "天",
+          "label": "报销期限"
+        },
+        {
+          "doc_id": "D02",
+          "title": "差旅报销制度（华南区）",
+          "version": "3.0",
+          "effective_date": "2026-03-01",
+          "scope_terms": [
+            "华南"
+          ],
+          "section_id": "S2",
+          "quote": "华南区员工应在差旅结束后 15 个自然日内提交报销申请，逾期需说明原因。",
+          "value": 15,
+          "unit": "天",
+          "label": "报销期限"
+        }
+      ],
+      "citation_check": {
+        "model_citations_valid": false,
+        "invalid_model_citations": [],
+        "checked_model_citations": [],
+        "canonical_citations_valid": true,
+        "canonical_checks": [
+          {
+            "valid": true,
+            "doc_id": "D01",
+            "section_id": "S2",
+            "quote": "员工应在差旅结束后 30 个自然日内提交报销申请，逾期需说明原因。"
+          },
+          {
+            "valid": true,
+            "doc_id": "D02",
+            "section_id": "S2",
+            "quote": "华南区员工应在差旅结束后 15 个自然日内提交报销申请，逾期需说明原因。"
+          }
+        ]
+      },
+      "conflict": {
+        "fact_key": "reimbursement_deadline_days",
+        "label": "报销期限",
+        "scope_hints": [],
+        "values": [
+          {
+            "doc_id": "D01",
+            "title": "差旅报销制度（总部/华东区）",
+            "version": "2.0",
+            "effective_date": "2026-01-01",
+            "scope_terms": [
+              "总部",
+              "华东"
+            ],
+            "label": "报销期限",
+            "value": 30,
+            "unit": "天",
+            "section_id": "S2",
+            "quote": "员工应在差旅结束后 30 个自然日内提交报销申请，逾期需说明原因。"
+          },
+          {
+            "doc_id": "D02",
+            "title": "差旅报销制度（华南区）",
+            "version": "3.0",
+            "effective_date": "2026-03-01",
+            "scope_terms": [
+              "华南"
+            ],
+            "label": "报销期限",
+            "value": 15,
+            "unit": "天",
+            "section_id": "S2",
+            "quote": "华南区员工应在差旅结束后 15 个自然日内提交报销申请，逾期需说明原因。"
+          }
+        ],
+        "reason": "多份 active 文档对同一事实给出不同值，且未提供明确优先级",
+        "question": "关于「报销期限」，现行文档给出不同值。本次问题应适用以下哪份制度？可选：D01（总部/华东，30 天）；D02（华南，15 天）"
+      },
+      "follow_up_question": "关于「报销期限」，现行文档给出不同值。本次问题应适用以下哪份制度？可选：D01（总部/华东，30 天）；D02（华南，15 天）",
+      "missing_information": [
+        "多份 active 文档对同一事实给出不同值，且未提供明确优先级",
+        "关于「报销期限」，现行文档给出不同值。本次问题应适用以下哪份制度？可选：D01（总部/华东，30 天）；D02（华南，15 天）",
+        "在用户确认适用制度前，不能把任一取值当成最终答案。"
+      ],
+      "pending_items": [
+        "关于「报销期限」，现行文档给出不同值。本次问题应适用以下哪份制度？可选：D01（总部/华东，30 天）；D02（华南，15 天）",
+        "在用户确认适用制度前，不能把任一取值当成最终答案。"
+      ],
+      "rewritten_query": "出差回来多久内要报销？",
+      "history_used": false,
+      "retrieved_doc_ids": [
+        "D01",
+        "D02"
+      ],
+      "read_doc_ids": [
+        "D01",
+        "D02"
+      ],
+      "search": {
+        "query": "出差回来多久内要报销？",
+        "terms": [
+          "内要报销",
+          "出差",
+          "出差回来多久",
+          "多久",
+          "天",
+          "差旅",
+          "报销",
+          "期限",
+          "费用"
+        ],
+        "scope_hints": [],
+        "candidates": [
+          {
+            "doc_id": "D01",
+            "title": "差旅报销制度（总部/华东区）",
+            "version": "2.0",
+            "effective_date": "2026-01-01",
+            "scope_terms": [
+              "总部",
+              "华东"
+            ],
+            "summary": "总部及华东区员工差旅报销的适用范围、申请期限与凭证要求。",
+            "faq_questions": [
+              "报销期限多久",
+              "出差回来多久内要报销",
+              "总部报销要几天"
+            ],
+            "score": 37,
+            "matched_terms": [
+              "内要报销",
+              "出差",
+              "出差回来多久",
+              "多久",
+              "天",
+              "差旅",
+              "报销",
+              "期限"
+            ],
+            "facts_preview": {
+              "reimbursement_deadline_days": {
+                "label": "报销期限",
+                "value": 30,
+                "unit": "天"
+              }
+            }
+          },
+          {
+            "doc_id": "D02",
+            "title": "差旅报销制度（华南区）",
+            "version": "3.0",
+            "effective_date": "2026-03-01",
+            "scope_terms": [
+              "华南"
+            ],
+            "summary": "华南区员工差旅报销的适用范围、申请期限与凭证要求。",
+            "faq_questions": [
+              "报销期限多久",
+              "出差回来多久内要报销",
+              "华南报销要几天"
+            ],
+            "score": 37,
+            "matched_terms": [
+              "内要报销",
+              "出差",
+              "出差回来多久",
+              "多久",
+              "天",
+              "差旅",
+              "报销",
+              "期限"
+            ],
+            "facts_preview": {
+              "reimbursement_deadline_days": {
+                "label": "报销期限",
+                "value": 15,
+                "unit": "天"
+              }
+            }
+          }
+        ],
+        "potential_conflicts": [
+          {
+            "fact_key": "reimbursement_deadline_days",
+            "label": "报销期限",
+            "values": [
+              {
+                "doc_id": "D01",
+                "label": "报销期限",
+                "value": 30,
+                "unit": "天",
+                "scope_terms": [
+                  "总部",
+                  "华东"
+                ]
+              },
+              {
+                "doc_id": "D02",
+                "label": "报销期限",
+                "value": 15,
+                "unit": "天",
+                "scope_terms": [
+                  "华南"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "preserved_evidence": [
+        {
+          "doc_id": "D01",
+          "title": "差旅报销制度（总部/华东区）",
+          "version": "2.0",
+          "effective_date": "2026-01-01",
+          "scope_terms": [
+            "总部",
+            "华东"
+          ],
+          "fact_key": "reimbursement_deadline_days",
+          "label": "报销期限",
+          "value": 30,
+          "unit": "天",
+          "section_id": "S2",
+          "section_title": "报销期限",
+          "quote": "员工应在差旅结束后 30 个自然日内提交报销申请，逾期需说明原因。"
+        },
+        {
+          "doc_id": "D02",
+          "title": "差旅报销制度（华南区）",
+          "version": "3.0",
+          "effective_date": "2026-03-01",
+          "scope_terms": [
+            "华南"
+          ],
+          "fact_key": "reimbursement_deadline_days",
+          "label": "报销期限",
+          "value": 15,
+          "unit": "天",
+          "section_id": "S2",
+          "section_title": "报销期限",
+          "quote": "华南区员工应在差旅结束后 15 个自然日内提交报销申请，逾期需说明原因。"
+        }
+      ],
+      "model_claim": {
+        "status": "needs_confirmation",
+        "summary": "",
+        "payload": {
+          "answer": "当前知识库中的现行制度给出不同值，不能擅自选择其中一个。关于「报销期限」，现行文档给出不同值。本次问题应适用以下哪份制度？可选：D01（总部/华东，30 天）；D02（华南，15 天）",
+          "follow_up_question": "关于「报销期限」，现行文档给出不同值。本次问题应适用以下哪份制度？可选：D01（总部/华东，30 天）；D02（华南，15 天）"
+        },
+        "rationale": "已创建待确认问题，不能替用户选择适用制度。"
+      },
+      "tool_errors": [],
+      "limits": {
+        "max_steps": 10,
+        "max_tool_calls": 8
+      },
+      "usage": {
+        "steps": 5,
+        "tool_calls": 4,
+        "elapsed_ms": 0
+      },
+      "started_at": "2026-11-05T12:14:07+08:00",
+      "finished_at": "2026-11-05T12:14:07+08:00",
+      "trace_path": "examples/traces/04-paraphrase-conflict.jsonl",
+      "step_records": [
+        {
+          "step": 1,
+          "action": "tool",
+          "decision_basis": "检索制度/FAQ，优先确认是否存在同事实冲突。",
+          "tool": "search_documents",
+          "arguments": {
+            "query": "出差回来多久内要报销？",
+            "top_k": 5
+          },
+          "ok": true,
+          "summary": "检索到 2 个 active 文档；发现同一事实的候选冲突，需要读取原文核验"
+        },
+        {
+          "step": 2,
+          "action": "tool",
+          "decision_basis": "读取 D01 原文，检查事实和引用。",
+          "tool": "read_document",
+          "arguments": {
+            "doc_id": "D01"
+          },
+          "ok": true,
+          "summary": "读取 D01 v2.0 章节「报销期限」；quote 长度 33 字符"
+        },
+        {
+          "step": 3,
+          "action": "tool",
+          "decision_basis": "读取 D02 原文，检查事实和引用。",
+          "tool": "read_document",
+          "arguments": {
+            "doc_id": "D02"
+          },
+          "ok": true,
+          "summary": "读取 D02 v3.0 章节「报销期限」；quote 长度 36 字符"
+        },
+        {
+          "step": 4,
+          "action": "tool",
+          "decision_basis": "读取后发现冲突；先记录待确认问题，不做单一回答。",
+          "tool": "request_clarification",
+          "arguments": {
+            "question": "关于「报销期限」，现行文档给出不同值。本次问题应适用以下哪份制度？可选：D01（总部/华东，30 天）；D02（华南，15 天）",
+            "options": [
+              "D01（总部/华东，30 天）",
+              "D02（华南，15 天）"
+            ]
+          },
+          "ok": true,
+          "summary": "已创建待确认问题 CLAR-0001；当前仍不能给出单一答案"
+        },
+        {
+          "step": 5,
+          "action": "finish",
+          "decision_basis": "已创建待确认问题，不能替用户选择适用制度。",
+          "finish_claim": {
+            "kind": "finish",
+            "rationale": "已创建待确认问题，不能替用户选择适用制度。",
+            "payload": {
+              "answer": "当前知识库中的现行制度给出不同值，不能擅自选择其中一个。关于「报销期限」，现行文档给出不同值。本次问题应适用以下哪份制度？可选：D01（总部/华东，30 天）；D02（华南，15 天）",
+              "follow_up_question": "关于「报销期限」，现行文档给出不同值。本次问题应适用以下哪份制度？可选：D01（总部/华东，30 天）；D02（华南，15 天）"
+            },
+            "status": "needs_confirmation",
+            "summary": "",
+            "pending_items": []
+          }
+        }
+      ],
+      "clarification": {
+        "clarification_id": "CLAR-0001",
+        "fingerprint": "7e5beefd604b68eba72f4f73f38fb3d225b5df6fd793ac8a8739fa26c0c31f7a",
+        "question": "关于「报销期限」，现行文档给出不同值。本次问题应适用以下哪份制度？可选：D01（总部/华东，30 天）；D02（华南，15 天）",
+        "options": [
+          "D01（总部/华东，30 天）",
+          "D02（华南，15 天）"
+        ],
+        "status": "pending_user_confirmation",
+        "approved": false
+      },
+      "scenario": {
+        "id": "04-paraphrase-conflict",
+        "title": "改写后的相似问题：出差回来多久内报销，仍识别冲突",
+        "covers": [
+          "相似问题",
+          "检索改进",
+          "文档冲突"
+        ]
+      }
+    }
+  ],
+  "checks": {
+    "status_match": true,
+    "no_unsupported_answer": true,
+    "citation_checks_valid": true,
+    "has_citations": true,
+    "answer_quotes_evidence": true,
+    "retrieved_both": true,
+    "is_conflict": true
+  },
+  "checks_passed": true,
+  "traces": [
+    "examples/traces/04-paraphrase-conflict.jsonl"
+  ]
+}

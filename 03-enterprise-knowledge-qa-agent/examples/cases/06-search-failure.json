@@ -1,0 +1,15 @@
+{
+  "id": "06-search-failure",
+  "title": "工具失败：检索连续失败，不编造答案",
+  "covers": ["工具失败", "不编造", "任务状态"],
+  "request": {
+    "request_id": "REQ-KQ-06",
+    "question": "报销期限多久？"
+  },
+  "run": {
+    "expect": "tool_failure",
+    "fail_tools": {"search_documents": 99},
+    "max_steps": 10,
+    "max_tool_calls": 8
+  }
+}

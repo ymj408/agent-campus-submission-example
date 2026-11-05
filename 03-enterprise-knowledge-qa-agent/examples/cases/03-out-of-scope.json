@@ -1,0 +1,14 @@
+{
+  "id": "03-out-of-scope",
+  "title": "资料外问题：知识库无食堂信息，返回资料缺口",
+  "covers": ["资料外问题", "无依据不回答", "资料缺口"],
+  "request": {
+    "request_id": "REQ-KQ-03",
+    "question": "公司食堂今天吃什么？"
+  },
+  "run": {
+    "expect": "insufficient_evidence",
+    "max_steps": 10,
+    "max_tool_calls": 8
+  }
+}
