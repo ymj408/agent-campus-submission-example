@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "timezone": "Asia/Shanghai",
+  "entries": [
+    {
+      "slot_id": "S001",
+      "platform": "douyin",
+      "publish_at": "2026-11-06T18:00:00+08:00",
+      "material_id": "M99",
+      "title": "品牌直播预告",
+      "status": "confirmed"
+    },
+    {
+      "slot_id": "S002",
+      "platform": "wechat",
+      "publish_at": "2026-11-06T16:00:00+08:00",
+      "material_id": "M98",
+      "title": "周报推送",
+      "status": "confirmed"
+    },
+    {
+      "slot_id": "S003",
+      "platform": "xiaohongshu",
+      "publish_at": "2026-11-07T19:00:00+08:00",
+      "material_id": "M97",
+      "title": "晚间种草合集",
+      "status": "confirmed"
+    }
+  ]
+}

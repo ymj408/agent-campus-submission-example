@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "description": "模拟制作系统/工单的补充查询结果；只回填非空字段。",
+  "notes": {
+    "M02": {
+      "source": "制作系统工单 #A-1024",
+      "confidence": "medium",
+      "note": "版权已由法务确认为原创；成片时长尚未回填。",
+      "fields": {
+        "copyright": "original",
+        "duration_minutes": null
+      }
+    }
+  }
+}

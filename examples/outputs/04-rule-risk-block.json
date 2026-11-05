@@ -1,0 +1,181 @@
+{
+  "scenario": {
+    "id": "04-rule-risk-block",
+    "title": "规则风险：医疗绝对化表述触发阻断，禁止保存草稿",
+    "covers": [
+      "规则风险",
+      "阻断",
+      "不保存草稿"
+    ],
+    "expect": [
+      "blocked_rule_risk"
+    ],
+    "source": "examples/cases/04-rule-risk-block.json"
+  },
+  "command": "python examples/run_examples.py  # 或 python run.py run --case examples/cases/04-rule-risk-block.json --reset",
+  "generated_at": "2026-11-05T11:07:35+08:00",
+  "provider": "mock",
+  "boundary": "MOCK 只验证流程、边界与幂等；不证明真实模型决策质量。",
+  "runs": [
+    {
+      "schema_version": 1,
+      "run_id": "RUN-20261105110735-e4739a",
+      "mode": "draft_only",
+      "published": false,
+      "provider": "mock",
+      "model": "deterministic-observation-policy-v1",
+      "task": {
+        "request_id": "REQ-EX-04",
+        "material_id": "M04",
+        "requested_publish_at": "2026-11-06T21:00:00+08:00",
+        "allow_time_change": true,
+        "note": "标题与简介包含根治、无需就医"
+      },
+      "status": "blocked_rule_risk",
+      "completed": false,
+      "terminal": true,
+      "needs_user_action": true,
+      "summary": "未保存草稿：规则审核阻断（命中禁用表述：根治（禁用医疗绝对化表述）；命中禁用表述：根治、无需就医（禁用医疗绝对化表述）；命中敏感主题：疗法（敏感主题人工复核））。",
+      "audit": {
+        "decision": "blocked",
+        "rule_version": "2026.11-demo",
+        "checked_at": "2026-11-05T11:07:35+08:00",
+        "missing_fields": [],
+        "risk_reasons": [
+          "命中禁用表述：根治（禁用医疗绝对化表述）",
+          "命中禁用表述：根治、无需就医（禁用医疗绝对化表述）",
+          "命中敏感主题：疗法（敏感主题人工复核）"
+        ],
+        "violations": [
+          {
+            "rule_id": "R004",
+            "rule_name": "禁用医疗绝对化表述",
+            "severity": "blocking",
+            "field": "title",
+            "message": "命中禁用表述：根治（禁用医疗绝对化表述）",
+            "evidence": "title 含 根治",
+            "action": "block"
+          },
+          {
+            "rule_id": "R004",
+            "rule_name": "禁用医疗绝对化表述",
+            "severity": "blocking",
+            "field": "summary",
+            "message": "命中禁用表述：根治、无需就医（禁用医疗绝对化表述）",
+            "evidence": "summary 含 根治, 无需就医",
+            "action": "block"
+          },
+          {
+            "rule_id": "R005",
+            "rule_name": "敏感主题人工复核",
+            "severity": "warning",
+            "field": "title",
+            "message": "命中敏感主题：疗法（敏感主题人工复核）",
+            "evidence": "title 含 疗法",
+            "action": "review"
+          }
+        ],
+        "requires_human_review": true
+      },
+      "slot_query": null,
+      "confirmation": null,
+      "draft": {
+        "saved": false,
+        "status": "not_saved",
+        "published": false
+      },
+      "pending_items": [
+        "[R004] 命中禁用表述：根治（禁用医疗绝对化表述）",
+        "[R004] 命中禁用表述：根治、无需就医（禁用医疗绝对化表述）",
+        "[R005] 命中敏感主题：疗法（敏感主题人工复核）"
+      ],
+      "finish_claim": {
+        "status": "blocked_rule_risk",
+        "summary": "命中禁用表述：根治（禁用医疗绝对化表述）；命中禁用表述：根治、无需就医（禁用医疗绝对化表述）；命中敏感主题：疗法（敏感主题人工复核）",
+        "pending_items": [],
+        "rationale": "规则审核存在阻断项，直接停止，不进入排期。"
+      },
+      "limits": {
+        "max_steps": 10,
+        "max_tool_calls": 8
+      },
+      "usage": {
+        "steps": 3,
+        "tool_calls": 2,
+        "elapsed_ms": 1
+      },
+      "started_at": "2026-11-05T11:07:35+08:00",
+      "finished_at": "2026-11-05T11:07:35+08:00",
+      "trace_path": "examples/traces/04-rule-risk-block-run1.jsonl",
+      "steps": [
+        {
+          "step": 1,
+          "action": "tool",
+          "decision_basis": "先读取素材元数据，确认是否存在缺字段。",
+          "tool": "get_material",
+          "arguments": {
+            "material_id": "M04"
+          },
+          "ok": true,
+          "summary": "读取素材 M04；必填字段完整"
+        },
+        {
+          "step": 2,
+          "action": "tool",
+          "decision_basis": "字段处理完毕后，执行规则审核，确认是否存在阻断项。",
+          "tool": "check_rules",
+          "arguments": {
+            "material_id": "M04"
+          },
+          "ok": true,
+          "summary": "规则检查阻断：命中禁用表述：根治（禁用医疗绝对化表述）"
+        },
+        {
+          "step": 3,
+          "action": "finish",
+          "decision_basis": "规则审核存在阻断项，直接停止，不进入排期。",
+          "finish_claim": {
+            "kind": "finish",
+            "rationale": "规则审核存在阻断项，直接停止，不进入排期。",
+            "status": "blocked_rule_risk",
+            "summary": "命中禁用表述：根治（禁用医疗绝对化表述）；命中禁用表述：根治、无需就医（禁用医疗绝对化表述）；命中敏感主题：疗法（敏感主题人工复核）",
+            "pending_items": []
+          }
+        }
+      ],
+      "scenario": {
+        "id": "04-rule-risk-block",
+        "title": "规则风险：医疗绝对化表述触发阻断，禁止保存草稿",
+        "covers": [
+          "规则风险",
+          "阻断",
+          "不保存草稿"
+        ],
+        "run": {
+          "repeat": 1,
+          "provider": "mock",
+          "max_steps": 10,
+          "max_tool_calls": 8,
+          "fail_save_times": 0
+        }
+      }
+    }
+  ],
+  "store_summary": {
+    "draft_count": 0,
+    "draft_ids": [],
+    "draft_status_counts": {},
+    "confirmation_count": 0,
+    "published_count": 0,
+    "store": ".runtime/examples/04-rule-risk-block"
+  },
+  "checks": {
+    "status_match": true,
+    "published_false": true,
+    "draft_published_false": true
+  },
+  "checks_passed": true,
+  "traces": [
+    "examples/traces/04-rule-risk-block-run1.jsonl"
+  ]
+}

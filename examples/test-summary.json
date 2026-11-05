@@ -1,0 +1,11 @@
+{
+  "command": "python scripts/run_tests.py",
+  "started_at": "2026-11-05T11:07:38+08:00",
+  "finished_at": "2026-11-05T11:07:40+08:00",
+  "success": true,
+  "tests_run": 47,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "result_file": "examples/test-results.txt"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "02-conflict-alternative",
+  "title": "时段冲突：18:00 被占用，建议 19:00 并等待确认；重复提交幂等",
+  "covers": ["时段冲突", "替代时段", "待确认边界", "重复提交", "不发布"],
+  "expect": ["draft_saved_pending_confirmation", "draft_saved_pending_confirmation"],
+  "request": {
+    "request_id": "REQ-EX-02",
+    "material_id": "M01",
+    "requested_publish_at": "2026-11-06T18:00:00+08:00",
+    "allow_time_change": true,
+    "note": "参考实例：18:00 已占用，19:00 可用"
+  },
+  "run": {
+    "repeat": 2,
+    "provider": "mock",
+    "max_steps": 10,
+    "max_tool_calls": 8,
+    "fail_save_times": 0
+  }
+}

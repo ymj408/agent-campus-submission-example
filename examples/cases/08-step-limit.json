@@ -1,0 +1,20 @@
+{
+  "id": "08-step-limit",
+  "title": "执行上限：两步后强制停止，返回明确的未完成状态",
+  "covers": ["执行步数上限", "未完成状态", "不发布"],
+  "expect": ["step_limit_reached"],
+  "request": {
+    "request_id": "REQ-EX-08",
+    "material_id": "M03",
+    "requested_publish_at": "2026-11-06T12:00:00+08:00",
+    "allow_time_change": true,
+    "note": "故意把 max_steps 设为 2"
+  },
+  "run": {
+    "repeat": 1,
+    "provider": "mock",
+    "max_steps": 2,
+    "max_tool_calls": 8,
+    "fail_save_times": 0
+  }
+}

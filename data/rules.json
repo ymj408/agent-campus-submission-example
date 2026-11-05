@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "version": "2026.11-demo",
+  "timezone": "Asia/Shanghai",
+  "publishing_window": {
+    "start": "09:00",
+    "end": "21:00"
+  },
+  "rules": [
+    {
+      "id": "R001",
+      "name": "必填字段完整",
+      "type": "required_fields",
+      "severity": "blocking",
+      "fields": [
+        {"name": "title", "label": "标题"},
+        {"name": "platform", "label": "发布平台"},
+        {"name": "content_type", "label": "内容类型"},
+        {"name": "duration_minutes", "label": "时长（分钟）"},
+        {"name": "copyright", "label": "版权状态"},
+        {"name": "publish_at", "label": "发布时间"}
+      ]
+    },
+    {
+      "id": "R002",
+      "name": "版权状态合法",
+      "type": "allowed_values",
+      "severity": "blocking",
+      "field": "copyright",
+      "allowed": ["original", "licensed", "authorized"],
+      "message": "版权状态必须为原创（original）、已采购（licensed）或已授权（authorized）"
+    },
+    {
+      "id": "R003",
+      "name": "发布平台合法",
+      "type": "allowed_values",
+      "severity": "blocking",
+      "field": "platform",
+      "allowed": ["douyin", "xiaohongshu", "wechat", "bilibili"],
+      "message": "发布平台不在已接入平台清单内"
+    },
+    {
+      "id": "R004",
+      "name": "禁用医疗绝对化表述",
+      "type": "forbidden_terms",
+      "severity": "blocking",
+      "fields": ["title", "summary"],
+      "terms": ["根治", "百分之百", "无副作用", "无需就医", "包治"],
+      "message": "医疗健康内容不得出现绝对化或保证疗效的表述"
+    },
+    {
+      "id": "R005",
+      "name": "敏感主题人工复核",
+      "type": "sensitive_terms",
+      "severity": "warning",
+      "fields": ["title", "summary"],
+      "terms": ["医美", "医疗建议", "投资", "疗法", "疗效"],
+      "message": "涉及医疗、医美或投资主题，草稿需人工复核后才可进入后续流程"
+    },
+    {
+      "id": "R006",
+      "name": "标题长度限制",
+      "type": "max_length",
+      "severity": "warning",
+      "field": "title",
+      "max": 40,
+      "message": "标题超过 40 个字符，建议压缩"
+    }
+  ]
+}

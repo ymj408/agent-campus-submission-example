@@ -1,0 +1,20 @@
+{
+  "id": "03-missing-information",
+  "title": "素材信息缺失：补查后仍缺时长，阻断并请求补充",
+  "covers": ["素材信息缺失", "补查", "阻断", "不保存草稿"],
+  "expect": ["blocked_missing_info"],
+  "request": {
+    "request_id": "REQ-EX-03",
+    "material_id": "M02",
+    "requested_publish_at": "2026-11-07T10:00:00+08:00",
+    "allow_time_change": true,
+    "note": "版权可从制作系统补回，但时长仍缺"
+  },
+  "run": {
+    "repeat": 1,
+    "provider": "mock",
+    "max_steps": 10,
+    "max_tool_calls": 8,
+    "fail_save_times": 0
+  }
+}

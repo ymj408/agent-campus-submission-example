@@ -1,0 +1,20 @@
+{
+  "id": "07-hard-time-no-change",
+  "title": "硬性时间边界：用户不允许改时间，冲突时不得自行替代",
+  "covers": ["硬性发布要求", "时段冲突", "阻断", "不保存草稿"],
+  "expect": ["blocked_time_change_not_allowed"],
+  "request": {
+    "request_id": "REQ-EX-07",
+    "material_id": "M01",
+    "requested_publish_at": "2026-11-06T18:00:00+08:00",
+    "allow_time_change": false,
+    "note": "18:00 不可变，即使 19:00 可用"
+  },
+  "run": {
+    "repeat": 1,
+    "provider": "mock",
+    "max_steps": 10,
+    "max_tool_calls": 8,
+    "fail_save_times": 0
+  }
+}

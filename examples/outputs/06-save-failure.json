@@ -1,0 +1,257 @@
+{
+  "scenario": {
+    "id": "06-save-failure",
+    "title": "保存失败：持久写入故障，明确返回 save_failed，不虚报成功",
+    "covers": [
+      "保存失败",
+      "失败重试",
+      "不发布",
+      "不虚报"
+    ],
+    "expect": [
+      "save_failed"
+    ],
+    "source": "examples/cases/06-save-failure.json"
+  },
+  "command": "python examples/run_examples.py  # 或 python run.py run --case examples/cases/06-save-failure.json --reset",
+  "generated_at": "2026-11-05T11:07:35+08:00",
+  "provider": "mock",
+  "boundary": "MOCK 只验证流程、边界与幂等；不证明真实模型决策质量。",
+  "runs": [
+    {
+      "schema_version": 1,
+      "run_id": "RUN-20261105110735-981f8e",
+      "mode": "draft_only",
+      "published": false,
+      "provider": "mock",
+      "model": "deterministic-observation-policy-v1",
+      "task": {
+        "request_id": "REQ-EX-06",
+        "material_id": "M05",
+        "requested_publish_at": "2026-11-06T14:00:00+08:00",
+        "allow_time_change": true,
+        "note": "通过 --fail-save 99 注入持久存储故障"
+      },
+      "status": "save_failed",
+      "completed": false,
+      "terminal": true,
+      "needs_user_action": true,
+      "summary": "草稿保存失败：模拟存储故障：草稿写入失败，未保存；未发布，不能视为已排期。",
+      "audit": {
+        "decision": "pass",
+        "rule_version": "2026.11-demo",
+        "checked_at": "2026-11-05T11:07:35+08:00",
+        "missing_fields": [],
+        "risk_reasons": [],
+        "violations": [],
+        "requires_human_review": false
+      },
+      "slot_query": {
+        "platform": "douyin",
+        "date": "2026-11-06",
+        "timezone": "Asia/Shanghai",
+        "requested": {
+          "at": "2026-11-06T14:00:00+08:00",
+          "label": "14:00",
+          "status": "available"
+        },
+        "alternatives": [
+          {
+            "at": "2026-11-06T15:00:00+08:00",
+            "label": "15:00",
+            "delta_minutes": 60
+          },
+          {
+            "at": "2026-11-06T16:00:00+08:00",
+            "label": "16:00",
+            "delta_minutes": 120
+          },
+          {
+            "at": "2026-11-06T17:00:00+08:00",
+            "label": "17:00",
+            "delta_minutes": 180
+          }
+        ],
+        "occupied_count": 1,
+        "occupied_sample": [
+          {
+            "at": "2026-11-06T18:00:00+08:00",
+            "label": "18:00",
+            "conflict": {
+              "slot_id": "S001",
+              "platform": "douyin",
+              "publish_at": "2026-11-06T18:00:00+08:00",
+              "material_id": "M99",
+              "title": "品牌直播预告",
+              "status": "confirmed",
+              "kind": "confirmed_schedule"
+            }
+          }
+        ],
+        "policy_window": {
+          "start": "09:00",
+          "end": "21:00"
+        }
+      },
+      "confirmation": null,
+      "draft": {
+        "saved": false,
+        "status": "not_saved",
+        "published": false,
+        "error": {
+          "code": "save_failed",
+          "message": "模拟存储故障：草稿写入失败，未保存",
+          "retryable": true
+        }
+      },
+      "pending_items": [
+        "草稿保存失败：模拟存储故障：草稿写入失败，未保存；需修复后重试。"
+      ],
+      "finish_claim": {
+        "status": "save_failed",
+        "summary": "模拟存储故障：草稿写入失败，未保存",
+        "pending_items": [
+          "修复存储问题后重新提交；失败时不得视为已排期。"
+        ],
+        "rationale": "保存失败且不可继续重试，明确报告失败，不虚报成功。"
+      },
+      "limits": {
+        "max_steps": 10,
+        "max_tool_calls": 8
+      },
+      "usage": {
+        "steps": 6,
+        "tool_calls": 5,
+        "elapsed_ms": 3
+      },
+      "started_at": "2026-11-05T11:07:35+08:00",
+      "finished_at": "2026-11-05T11:07:35+08:00",
+      "trace_path": "examples/traces/06-save-failure-run1.jsonl",
+      "steps": [
+        {
+          "step": 1,
+          "action": "tool",
+          "decision_basis": "先读取素材元数据，确认是否存在缺字段。",
+          "tool": "get_material",
+          "arguments": {
+            "material_id": "M05"
+          },
+          "ok": true,
+          "summary": "读取素材 M05；必填字段完整"
+        },
+        {
+          "step": 2,
+          "action": "tool",
+          "decision_basis": "字段处理完毕后，执行规则审核，确认是否存在阻断项。",
+          "tool": "check_rules",
+          "arguments": {
+            "material_id": "M05"
+          },
+          "ok": true,
+          "summary": "规则检查通过，未发现风险"
+        },
+        {
+          "step": 3,
+          "action": "tool",
+          "decision_basis": "审核通过后查询请求时段，避免在冲突时段保存草稿。",
+          "tool": "query_slots",
+          "arguments": {
+            "material_id": "M05",
+            "requested_publish_at": "2026-11-06T14:00:00+08:00",
+            "limit": 3
+          },
+          "ok": true,
+          "summary": "14:00 可用；最近替代时段：15:00"
+        },
+        {
+          "step": 4,
+          "action": "tool",
+          "decision_basis": "请求时段可用，无需改时段，保存草稿。",
+          "tool": "save_schedule_draft",
+          "arguments": {
+            "material_id": "M05",
+            "proposed_publish_at": "2026-11-06T14:00:00+08:00",
+            "confirmation_id": null,
+            "note": "请求时段可用，按硬性要求保存草稿。"
+          },
+          "ok": false,
+          "summary": "模拟存储故障：草稿写入失败，未保存",
+          "error": {
+            "code": "save_failed",
+            "message": "模拟存储故障：草稿写入失败，未保存",
+            "retryable": true
+          }
+        },
+        {
+          "step": 5,
+          "action": "tool",
+          "decision_basis": "草稿保存返回可重试失败，原参数重试一次；仍失败则明确报告。",
+          "tool": "save_schedule_draft",
+          "arguments": {
+            "material_id": "M05",
+            "proposed_publish_at": "2026-11-06T14:00:00+08:00",
+            "confirmation_id": null,
+            "note": "请求时段可用，按硬性要求保存草稿。"
+          },
+          "ok": false,
+          "summary": "模拟存储故障：草稿写入失败，未保存",
+          "error": {
+            "code": "save_failed",
+            "message": "模拟存储故障：草稿写入失败，未保存",
+            "retryable": true
+          }
+        },
+        {
+          "step": 6,
+          "action": "finish",
+          "decision_basis": "保存失败且不可继续重试，明确报告失败，不虚报成功。",
+          "finish_claim": {
+            "kind": "finish",
+            "rationale": "保存失败且不可继续重试，明确报告失败，不虚报成功。",
+            "status": "save_failed",
+            "summary": "模拟存储故障：草稿写入失败，未保存",
+            "pending_items": [
+              "修复存储问题后重新提交；失败时不得视为已排期。"
+            ]
+          }
+        }
+      ],
+      "scenario": {
+        "id": "06-save-failure",
+        "title": "保存失败：持久写入故障，明确返回 save_failed，不虚报成功",
+        "covers": [
+          "保存失败",
+          "失败重试",
+          "不发布",
+          "不虚报"
+        ],
+        "run": {
+          "repeat": 1,
+          "provider": "mock",
+          "max_steps": 10,
+          "max_tool_calls": 8,
+          "fail_save_times": 99
+        }
+      }
+    }
+  ],
+  "store_summary": {
+    "draft_count": 0,
+    "draft_ids": [],
+    "draft_status_counts": {},
+    "confirmation_count": 0,
+    "published_count": 0,
+    "store": ".runtime/examples/06-save-failure"
+  },
+  "checks": {
+    "status_match": true,
+    "published_false": true,
+    "draft_published_false": true,
+    "no_draft_after_failure": true,
+    "explicit_failure": true
+  },
+  "checks_passed": true,
+  "traces": [
+    "examples/traces/06-save-failure-run1.jsonl"
+  ]
+}

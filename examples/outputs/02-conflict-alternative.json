@@ -1,0 +1,557 @@
+{
+  "scenario": {
+    "id": "02-conflict-alternative",
+    "title": "时段冲突：18:00 被占用，建议 19:00 并等待确认；重复提交幂等",
+    "covers": [
+      "时段冲突",
+      "替代时段",
+      "待确认边界",
+      "重复提交",
+      "不发布"
+    ],
+    "expect": [
+      "draft_saved_pending_confirmation",
+      "draft_saved_pending_confirmation"
+    ],
+    "source": "examples/cases/02-conflict-alternative.json"
+  },
+  "command": "python examples/run_examples.py  # 或 python run.py run --case examples/cases/02-conflict-alternative.json --reset",
+  "generated_at": "2026-11-05T11:07:35+08:00",
+  "provider": "mock",
+  "boundary": "MOCK 只验证流程、边界与幂等；不证明真实模型决策质量。",
+  "runs": [
+    {
+      "schema_version": 1,
+      "run_id": "RUN-20261105110735-9daa27",
+      "mode": "draft_only",
+      "published": false,
+      "provider": "mock",
+      "model": "deterministic-observation-policy-v1",
+      "task": {
+        "request_id": "REQ-EX-02",
+        "material_id": "M01",
+        "requested_publish_at": "2026-11-06T18:00:00+08:00",
+        "allow_time_change": true,
+        "note": "参考实例：18:00 已占用，19:00 可用"
+      },
+      "status": "draft_saved_pending_confirmation",
+      "completed": true,
+      "terminal": true,
+      "needs_user_action": true,
+      "summary": "已保存草稿 DRAFT-0002（未发布）：请求 18:00 存在冲突，建议 19:00，等待用户确认。",
+      "audit": {
+        "decision": "pass",
+        "rule_version": "2026.11-demo",
+        "checked_at": "2026-11-05T11:07:35+08:00",
+        "missing_fields": [],
+        "risk_reasons": [],
+        "violations": [],
+        "requires_human_review": false
+      },
+      "slot_query": {
+        "platform": "douyin",
+        "date": "2026-11-06",
+        "timezone": "Asia/Shanghai",
+        "requested": {
+          "at": "2026-11-06T18:00:00+08:00",
+          "label": "18:00",
+          "status": "occupied",
+          "conflict": {
+            "slot_id": "S001",
+            "platform": "douyin",
+            "publish_at": "2026-11-06T18:00:00+08:00",
+            "material_id": "M99",
+            "title": "品牌直播预告",
+            "status": "confirmed",
+            "kind": "confirmed_schedule"
+          }
+        },
+        "alternatives": [
+          {
+            "at": "2026-11-06T19:00:00+08:00",
+            "label": "19:00",
+            "delta_minutes": 60
+          },
+          {
+            "at": "2026-11-06T20:00:00+08:00",
+            "label": "20:00",
+            "delta_minutes": 120
+          },
+          {
+            "at": "2026-11-06T21:00:00+08:00",
+            "label": "21:00",
+            "delta_minutes": 180
+          }
+        ],
+        "occupied_count": 1,
+        "occupied_sample": [
+          {
+            "at": "2026-11-06T18:00:00+08:00",
+            "label": "18:00",
+            "conflict": {
+              "slot_id": "S001",
+              "platform": "douyin",
+              "publish_at": "2026-11-06T18:00:00+08:00",
+              "material_id": "M99",
+              "title": "品牌直播预告",
+              "status": "confirmed",
+              "kind": "confirmed_schedule"
+            }
+          }
+        ],
+        "policy_window": {
+          "start": "09:00",
+          "end": "21:00"
+        }
+      },
+      "confirmation": {
+        "confirmation_id": "CONF-0001",
+        "material_id": "M01",
+        "requested_publish_at": "2026-11-06T18:00:00+08:00",
+        "proposed_publish_at": "2026-11-06T19:00:00+08:00",
+        "reason": "slot_deviation",
+        "reason_label": "时段偏离待确认",
+        "questions": [
+          "18:00 已被占用，是否同意草稿改到 19:00？"
+        ],
+        "risk_summary": "请求时段冲突；替代时段只是建议，尚未获得用户同意。",
+        "status": "pending_user_confirmation",
+        "approved": false,
+        "created_at": "2026-11-05T11:07:35+08:00"
+      },
+      "draft": {
+        "schema_version": 1,
+        "draft_id": "DRAFT-0002",
+        "idempotency_key": "af0f43d5f731c4f70a11da275d7f703fa0277058626610ec89c1800e0a776507",
+        "status": "draft_pending_confirmation",
+        "published": false,
+        "material_id": "M01",
+        "title": "城市夜跑装备清单",
+        "platform": "douyin",
+        "duration_minutes": 3,
+        "requested_publish_at": "2026-11-06T18:00:00+08:00",
+        "proposed_publish_at": "2026-11-06T19:00:00+08:00",
+        "time_deviation": true,
+        "confirmation_id": "CONF-0001",
+        "confirmation_status": "pending_user_confirmation",
+        "audit": {
+          "decision": "pass",
+          "rule_version": "2026.11-demo",
+          "checked_at": "2026-11-05T11:07:35+08:00",
+          "missing_fields": [],
+          "risk_reasons": [],
+          "violations": [],
+          "requires_human_review": false
+        },
+        "pending_items": [
+          "18:00 已被占用，是否同意草稿改到 19:00？"
+        ],
+        "note": "替代时段，等待用户确认。",
+        "created_at": "2026-11-05T11:07:35+08:00",
+        "created_by": "media-scheduler-agent",
+        "saved": true,
+        "path": "drafts/DRAFT-0002.json",
+        "deduplicated": false
+      },
+      "pending_items": [
+        "18:00 已被占用，是否同意草稿改到 19:00？",
+        "确认是否接受建议时段；确认前草稿不进入发布流程。"
+      ],
+      "finish_claim": {
+        "status": "draft_saved_pending_confirmation",
+        "summary": "",
+        "pending_items": [],
+        "rationale": "草稿保存结果已可观察，结束并报告草稿状态。"
+      },
+      "limits": {
+        "max_steps": 10,
+        "max_tool_calls": 8
+      },
+      "usage": {
+        "steps": 6,
+        "tool_calls": 5,
+        "elapsed_ms": 13
+      },
+      "started_at": "2026-11-05T11:07:35+08:00",
+      "finished_at": "2026-11-05T11:07:35+08:00",
+      "trace_path": "examples/traces/02-conflict-alternative-run1.jsonl",
+      "steps": [
+        {
+          "step": 1,
+          "action": "tool",
+          "decision_basis": "先读取素材元数据，确认是否存在缺字段。",
+          "tool": "get_material",
+          "arguments": {
+            "material_id": "M01"
+          },
+          "ok": true,
+          "summary": "读取素材 M01；必填字段完整"
+        },
+        {
+          "step": 2,
+          "action": "tool",
+          "decision_basis": "字段处理完毕后，执行规则审核，确认是否存在阻断项。",
+          "tool": "check_rules",
+          "arguments": {
+            "material_id": "M01"
+          },
+          "ok": true,
+          "summary": "规则检查通过，未发现风险"
+        },
+        {
+          "step": 3,
+          "action": "tool",
+          "decision_basis": "审核通过后查询请求时段，避免在冲突时段保存草稿。",
+          "tool": "query_slots",
+          "arguments": {
+            "material_id": "M01",
+            "requested_publish_at": "2026-11-06T18:00:00+08:00",
+            "limit": 3
+          },
+          "ok": true,
+          "summary": "18:00 已被「品牌直播预告」占用；最近可用 19:00"
+        },
+        {
+          "step": 4,
+          "action": "tool",
+          "decision_basis": "请求时段冲突，先生成待确认项，用户同意前不保存偏离草稿。",
+          "tool": "request_confirmation",
+          "arguments": {
+            "material_id": "M01",
+            "reason": "slot_deviation",
+            "proposed_publish_at": "2026-11-06T19:00:00+08:00",
+            "questions": [
+              "18:00 已被占用，是否同意草稿改到 19:00？"
+            ],
+            "risk_summary": "请求时段冲突；替代时段只是建议，尚未获得用户同意。"
+          },
+          "ok": true,
+          "summary": "创建待确认项 CONF-0001（时段偏离待确认）；当前为 pending，未获得用户同意"
+        },
+        {
+          "step": 5,
+          "action": "tool",
+          "decision_basis": "已记录待确认项，保存带 pending 标记的替代时段草稿。",
+          "tool": "save_schedule_draft",
+          "arguments": {
+            "material_id": "M01",
+            "proposed_publish_at": "2026-11-06T19:00:00+08:00",
+            "confirmation_id": "CONF-0001",
+            "note": "替代时段，等待用户确认。"
+          },
+          "ok": true,
+          "summary": "已保存草稿 DRAFT-0002（未发布）：建议 19:00，原要求 18:00，等待用户确认"
+        },
+        {
+          "step": 6,
+          "action": "finish",
+          "decision_basis": "草稿保存结果已可观察，结束并报告草稿状态。",
+          "finish_claim": {
+            "kind": "finish",
+            "rationale": "草稿保存结果已可观察，结束并报告草稿状态。",
+            "status": "draft_saved_pending_confirmation",
+            "summary": "",
+            "pending_items": []
+          }
+        }
+      ],
+      "scenario": {
+        "id": "02-conflict-alternative",
+        "title": "时段冲突：18:00 被占用，建议 19:00 并等待确认；重复提交幂等",
+        "covers": [
+          "时段冲突",
+          "替代时段",
+          "待确认边界",
+          "重复提交",
+          "不发布"
+        ],
+        "run": {
+          "repeat": 2,
+          "provider": "mock",
+          "max_steps": 10,
+          "max_tool_calls": 8,
+          "fail_save_times": 0
+        }
+      }
+    },
+    {
+      "schema_version": 1,
+      "run_id": "RUN-20261105110735-52d2a0",
+      "mode": "draft_only",
+      "published": false,
+      "provider": "mock",
+      "model": "deterministic-observation-policy-v1",
+      "task": {
+        "request_id": "REQ-EX-02",
+        "material_id": "M01",
+        "requested_publish_at": "2026-11-06T18:00:00+08:00",
+        "allow_time_change": true,
+        "note": "参考实例：18:00 已占用，19:00 可用"
+      },
+      "status": "draft_saved_pending_confirmation",
+      "completed": true,
+      "terminal": true,
+      "needs_user_action": true,
+      "summary": "已保存草稿 DRAFT-0002（未发布）：请求 18:00 存在冲突，建议 19:00，等待用户确认。",
+      "audit": {
+        "decision": "pass",
+        "rule_version": "2026.11-demo",
+        "checked_at": "2026-11-05T11:07:35+08:00",
+        "missing_fields": [],
+        "risk_reasons": [],
+        "violations": [],
+        "requires_human_review": false
+      },
+      "slot_query": {
+        "platform": "douyin",
+        "date": "2026-11-06",
+        "timezone": "Asia/Shanghai",
+        "requested": {
+          "at": "2026-11-06T18:00:00+08:00",
+          "label": "18:00",
+          "status": "occupied",
+          "conflict": {
+            "slot_id": "S001",
+            "platform": "douyin",
+            "publish_at": "2026-11-06T18:00:00+08:00",
+            "material_id": "M99",
+            "title": "品牌直播预告",
+            "status": "confirmed",
+            "kind": "confirmed_schedule"
+          }
+        },
+        "alternatives": [
+          {
+            "at": "2026-11-06T19:00:00+08:00",
+            "label": "19:00",
+            "delta_minutes": 60
+          },
+          {
+            "at": "2026-11-06T20:00:00+08:00",
+            "label": "20:00",
+            "delta_minutes": 120
+          },
+          {
+            "at": "2026-11-06T21:00:00+08:00",
+            "label": "21:00",
+            "delta_minutes": 180
+          }
+        ],
+        "occupied_count": 1,
+        "occupied_sample": [
+          {
+            "at": "2026-11-06T18:00:00+08:00",
+            "label": "18:00",
+            "conflict": {
+              "slot_id": "S001",
+              "platform": "douyin",
+              "publish_at": "2026-11-06T18:00:00+08:00",
+              "material_id": "M99",
+              "title": "品牌直播预告",
+              "status": "confirmed",
+              "kind": "confirmed_schedule"
+            }
+          }
+        ],
+        "policy_window": {
+          "start": "09:00",
+          "end": "21:00"
+        }
+      },
+      "confirmation": {
+        "confirmation_id": "CONF-0001",
+        "material_id": "M01",
+        "requested_publish_at": "2026-11-06T18:00:00+08:00",
+        "proposed_publish_at": "2026-11-06T19:00:00+08:00",
+        "reason": "slot_deviation",
+        "reason_label": "时段偏离待确认",
+        "questions": [
+          "18:00 已被占用，是否同意草稿改到 19:00？"
+        ],
+        "risk_summary": "请求时段冲突；替代时段只是建议，尚未获得用户同意。",
+        "status": "pending_user_confirmation",
+        "approved": false,
+        "created_at": "2026-11-05T11:07:35+08:00"
+      },
+      "draft": {
+        "schema_version": 1,
+        "draft_id": "DRAFT-0002",
+        "idempotency_key": "af0f43d5f731c4f70a11da275d7f703fa0277058626610ec89c1800e0a776507",
+        "status": "draft_pending_confirmation",
+        "published": false,
+        "material_id": "M01",
+        "title": "城市夜跑装备清单",
+        "platform": "douyin",
+        "duration_minutes": 3,
+        "requested_publish_at": "2026-11-06T18:00:00+08:00",
+        "proposed_publish_at": "2026-11-06T19:00:00+08:00",
+        "time_deviation": true,
+        "confirmation_id": "CONF-0001",
+        "confirmation_status": "pending_user_confirmation",
+        "audit": {
+          "decision": "pass",
+          "rule_version": "2026.11-demo",
+          "checked_at": "2026-11-05T11:07:35+08:00",
+          "missing_fields": [],
+          "risk_reasons": [],
+          "violations": [],
+          "requires_human_review": false
+        },
+        "pending_items": [
+          "18:00 已被占用，是否同意草稿改到 19:00？"
+        ],
+        "note": "替代时段，等待用户确认。",
+        "created_at": "2026-11-05T11:07:35+08:00",
+        "created_by": "media-scheduler-agent",
+        "saved": true,
+        "path": "drafts/DRAFT-0002.json",
+        "deduplicated": true
+      },
+      "pending_items": [
+        "18:00 已被占用，是否同意草稿改到 19:00？",
+        "确认是否接受建议时段；确认前草稿不进入发布流程。"
+      ],
+      "finish_claim": {
+        "status": "draft_saved_pending_confirmation",
+        "summary": "",
+        "pending_items": [],
+        "rationale": "草稿保存结果已可观察，结束并报告草稿状态。"
+      },
+      "limits": {
+        "max_steps": 10,
+        "max_tool_calls": 8
+      },
+      "usage": {
+        "steps": 6,
+        "tool_calls": 5,
+        "elapsed_ms": 5
+      },
+      "started_at": "2026-11-05T11:07:35+08:00",
+      "finished_at": "2026-11-05T11:07:35+08:00",
+      "trace_path": "examples/traces/02-conflict-alternative-run2.jsonl",
+      "steps": [
+        {
+          "step": 1,
+          "action": "tool",
+          "decision_basis": "先读取素材元数据，确认是否存在缺字段。",
+          "tool": "get_material",
+          "arguments": {
+            "material_id": "M01"
+          },
+          "ok": true,
+          "summary": "读取素材 M01；必填字段完整"
+        },
+        {
+          "step": 2,
+          "action": "tool",
+          "decision_basis": "字段处理完毕后，执行规则审核，确认是否存在阻断项。",
+          "tool": "check_rules",
+          "arguments": {
+            "material_id": "M01"
+          },
+          "ok": true,
+          "summary": "规则检查通过，未发现风险"
+        },
+        {
+          "step": 3,
+          "action": "tool",
+          "decision_basis": "审核通过后查询请求时段，避免在冲突时段保存草稿。",
+          "tool": "query_slots",
+          "arguments": {
+            "material_id": "M01",
+            "requested_publish_at": "2026-11-06T18:00:00+08:00",
+            "limit": 3
+          },
+          "ok": true,
+          "summary": "18:00 已被「品牌直播预告」占用；最近可用 19:00"
+        },
+        {
+          "step": 4,
+          "action": "tool",
+          "decision_basis": "请求时段冲突，先生成待确认项，用户同意前不保存偏离草稿。",
+          "tool": "request_confirmation",
+          "arguments": {
+            "material_id": "M01",
+            "reason": "slot_deviation",
+            "proposed_publish_at": "2026-11-06T19:00:00+08:00",
+            "questions": [
+              "18:00 已被占用，是否同意草稿改到 19:00？"
+            ],
+            "risk_summary": "请求时段冲突；替代时段只是建议，尚未获得用户同意。"
+          },
+          "ok": true,
+          "summary": "创建待确认项 CONF-0001（时段偏离待确认）；当前为 pending，未获得用户同意"
+        },
+        {
+          "step": 5,
+          "action": "tool",
+          "decision_basis": "已记录待确认项，保存带 pending 标记的替代时段草稿。",
+          "tool": "save_schedule_draft",
+          "arguments": {
+            "material_id": "M01",
+            "proposed_publish_at": "2026-11-06T19:00:00+08:00",
+            "confirmation_id": "CONF-0001",
+            "note": "替代时段，等待用户确认。"
+          },
+          "ok": true,
+          "summary": "相同请求已存在草稿 DRAFT-0002，未重复创建"
+        },
+        {
+          "step": 6,
+          "action": "finish",
+          "decision_basis": "草稿保存结果已可观察，结束并报告草稿状态。",
+          "finish_claim": {
+            "kind": "finish",
+            "rationale": "草稿保存结果已可观察，结束并报告草稿状态。",
+            "status": "draft_saved_pending_confirmation",
+            "summary": "",
+            "pending_items": []
+          }
+        }
+      ],
+      "scenario": {
+        "id": "02-conflict-alternative",
+        "title": "时段冲突：18:00 被占用，建议 19:00 并等待确认；重复提交幂等",
+        "covers": [
+          "时段冲突",
+          "替代时段",
+          "待确认边界",
+          "重复提交",
+          "不发布"
+        ],
+        "run": {
+          "repeat": 2,
+          "provider": "mock",
+          "max_steps": 10,
+          "max_tool_calls": 8,
+          "fail_save_times": 0
+        }
+      }
+    }
+  ],
+  "store_summary": {
+    "draft_count": 1,
+    "draft_ids": [
+      "DRAFT-0002"
+    ],
+    "draft_status_counts": {
+      "draft_pending_confirmation": 1
+    },
+    "confirmation_count": 1,
+    "published_count": 0,
+    "store": ".runtime/examples/02-conflict-alternative"
+  },
+  "checks": {
+    "status_match": true,
+    "published_false": true,
+    "draft_published_false": true,
+    "duplicate_one_draft": true,
+    "duplicate_same_id": true,
+    "duplicate_second_deduplicated": true
+  },
+  "checks_passed": true,
+  "traces": [
+    "examples/traces/02-conflict-alternative-run1.jsonl",
+    "examples/traces/02-conflict-alternative-run2.jsonl"
+  ]
+}

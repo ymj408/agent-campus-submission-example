@@ -1,0 +1,249 @@
+{
+  "scenario": {
+    "id": "01-normal-available",
+    "title": "正常排期：请求时段可用，审核通过",
+    "covers": [
+      "正常排期",
+      "草稿保存",
+      "不发布"
+    ],
+    "expect": [
+      "draft_saved"
+    ],
+    "source": "examples/cases/01-normal-available.json"
+  },
+  "command": "python examples/run_examples.py  # 或 python run.py run --case examples/cases/01-normal-available.json --reset",
+  "generated_at": "2026-11-05T11:07:35+08:00",
+  "provider": "mock",
+  "boundary": "MOCK 只验证流程、边界与幂等；不证明真实模型决策质量。",
+  "runs": [
+    {
+      "schema_version": 1,
+      "run_id": "RUN-20261105110735-2dbf58",
+      "mode": "draft_only",
+      "published": false,
+      "provider": "mock",
+      "model": "deterministic-observation-policy-v1",
+      "task": {
+        "request_id": "REQ-EX-01",
+        "material_id": "M03",
+        "requested_publish_at": "2026-11-06T12:00:00+08:00",
+        "allow_time_change": true,
+        "note": "正常排期样例"
+      },
+      "status": "draft_saved",
+      "completed": true,
+      "terminal": true,
+      "needs_user_action": false,
+      "summary": "已保存草稿 DRAFT-0001（未发布）：12:00。",
+      "audit": {
+        "decision": "pass",
+        "rule_version": "2026.11-demo",
+        "checked_at": "2026-11-05T11:07:35+08:00",
+        "missing_fields": [],
+        "risk_reasons": [],
+        "violations": [],
+        "requires_human_review": false
+      },
+      "slot_query": {
+        "platform": "wechat",
+        "date": "2026-11-06",
+        "timezone": "Asia/Shanghai",
+        "requested": {
+          "at": "2026-11-06T12:00:00+08:00",
+          "label": "12:00",
+          "status": "available"
+        },
+        "alternatives": [
+          {
+            "at": "2026-11-06T13:00:00+08:00",
+            "label": "13:00",
+            "delta_minutes": 60
+          },
+          {
+            "at": "2026-11-06T14:00:00+08:00",
+            "label": "14:00",
+            "delta_minutes": 120
+          },
+          {
+            "at": "2026-11-06T15:00:00+08:00",
+            "label": "15:00",
+            "delta_minutes": 180
+          }
+        ],
+        "occupied_count": 1,
+        "occupied_sample": [
+          {
+            "at": "2026-11-06T16:00:00+08:00",
+            "label": "16:00",
+            "conflict": {
+              "slot_id": "S002",
+              "platform": "wechat",
+              "publish_at": "2026-11-06T16:00:00+08:00",
+              "material_id": "M98",
+              "title": "周报推送",
+              "status": "confirmed",
+              "kind": "confirmed_schedule"
+            }
+          }
+        ],
+        "policy_window": {
+          "start": "09:00",
+          "end": "21:00"
+        }
+      },
+      "confirmation": null,
+      "draft": {
+        "schema_version": 1,
+        "draft_id": "DRAFT-0001",
+        "idempotency_key": "79ba1ff3cf7e9686f7439e5e9bdde023632b7f42a7421a7cbcd55683636fc6fa",
+        "status": "draft_ready",
+        "published": false,
+        "material_id": "M03",
+        "title": "一周通勤穿搭记录",
+        "platform": "wechat",
+        "duration_minutes": 8,
+        "requested_publish_at": "2026-11-06T12:00:00+08:00",
+        "proposed_publish_at": "2026-11-06T12:00:00+08:00",
+        "time_deviation": false,
+        "confirmation_id": null,
+        "confirmation_status": "not_required",
+        "audit": {
+          "decision": "pass",
+          "rule_version": "2026.11-demo",
+          "checked_at": "2026-11-05T11:07:35+08:00",
+          "missing_fields": [],
+          "risk_reasons": [],
+          "violations": [],
+          "requires_human_review": false
+        },
+        "pending_items": [],
+        "note": "请求时段可用，按硬性要求保存草稿。",
+        "created_at": "2026-11-05T11:07:35+08:00",
+        "created_by": "media-scheduler-agent",
+        "saved": true,
+        "path": "drafts/DRAFT-0001.json",
+        "deduplicated": false
+      },
+      "pending_items": [],
+      "finish_claim": {
+        "status": "draft_saved",
+        "summary": "",
+        "pending_items": [],
+        "rationale": "草稿保存结果已可观察，结束并报告草稿状态。"
+      },
+      "limits": {
+        "max_steps": 10,
+        "max_tool_calls": 8
+      },
+      "usage": {
+        "steps": 5,
+        "tool_calls": 4,
+        "elapsed_ms": 10
+      },
+      "started_at": "2026-11-05T11:07:35+08:00",
+      "finished_at": "2026-11-05T11:07:35+08:00",
+      "trace_path": "examples/traces/01-normal-available-run1.jsonl",
+      "steps": [
+        {
+          "step": 1,
+          "action": "tool",
+          "decision_basis": "先读取素材元数据，确认是否存在缺字段。",
+          "tool": "get_material",
+          "arguments": {
+            "material_id": "M03"
+          },
+          "ok": true,
+          "summary": "读取素材 M03；必填字段完整"
+        },
+        {
+          "step": 2,
+          "action": "tool",
+          "decision_basis": "字段处理完毕后，执行规则审核，确认是否存在阻断项。",
+          "tool": "check_rules",
+          "arguments": {
+            "material_id": "M03"
+          },
+          "ok": true,
+          "summary": "规则检查通过，未发现风险"
+        },
+        {
+          "step": 3,
+          "action": "tool",
+          "decision_basis": "审核通过后查询请求时段，避免在冲突时段保存草稿。",
+          "tool": "query_slots",
+          "arguments": {
+            "material_id": "M03",
+            "requested_publish_at": "2026-11-06T12:00:00+08:00",
+            "limit": 3
+          },
+          "ok": true,
+          "summary": "12:00 可用；最近替代时段：13:00"
+        },
+        {
+          "step": 4,
+          "action": "tool",
+          "decision_basis": "请求时段可用，无需改时段，保存草稿。",
+          "tool": "save_schedule_draft",
+          "arguments": {
+            "material_id": "M03",
+            "proposed_publish_at": "2026-11-06T12:00:00+08:00",
+            "confirmation_id": null,
+            "note": "请求时段可用，按硬性要求保存草稿。"
+          },
+          "ok": true,
+          "summary": "已保存草稿 DRAFT-0001（未发布）"
+        },
+        {
+          "step": 5,
+          "action": "finish",
+          "decision_basis": "草稿保存结果已可观察，结束并报告草稿状态。",
+          "finish_claim": {
+            "kind": "finish",
+            "rationale": "草稿保存结果已可观察，结束并报告草稿状态。",
+            "status": "draft_saved",
+            "summary": "",
+            "pending_items": []
+          }
+        }
+      ],
+      "scenario": {
+        "id": "01-normal-available",
+        "title": "正常排期：请求时段可用，审核通过",
+        "covers": [
+          "正常排期",
+          "草稿保存",
+          "不发布"
+        ],
+        "run": {
+          "repeat": 1,
+          "provider": "mock",
+          "max_steps": 10,
+          "max_tool_calls": 8,
+          "fail_save_times": 0
+        }
+      }
+    }
+  ],
+  "store_summary": {
+    "draft_count": 1,
+    "draft_ids": [
+      "DRAFT-0001"
+    ],
+    "draft_status_counts": {
+      "draft_ready": 1
+    },
+    "confirmation_count": 0,
+    "published_count": 0,
+    "store": ".runtime/examples/01-normal-available"
+  },
+  "checks": {
+    "status_match": true,
+    "published_false": true,
+    "draft_published_false": true
+  },
+  "checks_passed": true,
+  "traces": [
+    "examples/traces/01-normal-available-run1.jsonl"
+  ]
+}

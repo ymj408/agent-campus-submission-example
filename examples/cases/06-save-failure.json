@@ -1,0 +1,20 @@
+{
+  "id": "06-save-failure",
+  "title": "保存失败：持久写入故障，明确返回 save_failed，不虚报成功",
+  "covers": ["保存失败", "失败重试", "不发布", "不虚报"],
+  "expect": ["save_failed"],
+  "request": {
+    "request_id": "REQ-EX-06",
+    "material_id": "M05",
+    "requested_publish_at": "2026-11-06T14:00:00+08:00",
+    "allow_time_change": true,
+    "note": "通过 --fail-save 99 注入持久存储故障"
+  },
+  "run": {
+    "repeat": 1,
+    "provider": "mock",
+    "max_steps": 10,
+    "max_tool_calls": 8,
+    "fail_save_times": 99
+  }
+}

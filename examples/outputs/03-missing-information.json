@@ -1,0 +1,206 @@
+{
+  "scenario": {
+    "id": "03-missing-information",
+    "title": "素材信息缺失：补查后仍缺时长，阻断并请求补充",
+    "covers": [
+      "素材信息缺失",
+      "补查",
+      "阻断",
+      "不保存草稿"
+    ],
+    "expect": [
+      "blocked_missing_info"
+    ],
+    "source": "examples/cases/03-missing-information.json"
+  },
+  "command": "python examples/run_examples.py  # 或 python run.py run --case examples/cases/03-missing-information.json --reset",
+  "generated_at": "2026-11-05T11:07:35+08:00",
+  "provider": "mock",
+  "boundary": "MOCK 只验证流程、边界与幂等；不证明真实模型决策质量。",
+  "runs": [
+    {
+      "schema_version": 1,
+      "run_id": "RUN-20261105110735-e13230",
+      "mode": "draft_only",
+      "published": false,
+      "provider": "mock",
+      "model": "deterministic-observation-policy-v1",
+      "task": {
+        "request_id": "REQ-EX-03",
+        "material_id": "M02",
+        "requested_publish_at": "2026-11-07T10:00:00+08:00",
+        "allow_time_change": true,
+        "note": "版权可从制作系统补回，但时长仍缺"
+      },
+      "status": "blocked_missing_info",
+      "completed": false,
+      "terminal": true,
+      "needs_user_action": true,
+      "summary": "未保存草稿：素材信息不足，缺少 时长（分钟）；等待用户补充。",
+      "audit": {
+        "decision": "blocked",
+        "rule_version": "2026.11-demo",
+        "checked_at": "2026-11-05T11:07:35+08:00",
+        "missing_fields": [
+          "duration_minutes"
+        ],
+        "risk_reasons": [
+          "缺少必填字段：时长（分钟）（duration_minutes）"
+        ],
+        "violations": [
+          {
+            "rule_id": "R001",
+            "rule_name": "必填字段完整",
+            "severity": "blocking",
+            "field": "duration_minutes",
+            "message": "缺少必填字段：时长（分钟）（duration_minutes）",
+            "evidence": "",
+            "action": "block"
+          }
+        ],
+        "requires_human_review": false
+      },
+      "slot_query": null,
+      "confirmation": {
+        "confirmation_id": "CONF-0001",
+        "material_id": "M02",
+        "requested_publish_at": "2026-11-07T10:00:00+08:00",
+        "proposed_publish_at": null,
+        "reason": "missing_information",
+        "reason_label": "素材信息不足",
+        "questions": [
+          "请补充必填字段：时长（分钟）。"
+        ],
+        "risk_summary": "缺少必填字段：时长（分钟）（duration_minutes）",
+        "status": "pending_user_confirmation",
+        "approved": false,
+        "created_at": "2026-11-05T11:07:35+08:00"
+      },
+      "draft": {
+        "saved": false,
+        "status": "not_saved",
+        "published": false
+      },
+      "pending_items": [
+        "[R001] 缺少必填字段：时长（分钟）（duration_minutes）",
+        "请补充必填字段：时长（分钟）。"
+      ],
+      "finish_claim": {
+        "status": "blocked_missing_info",
+        "summary": "",
+        "pending_items": [],
+        "rationale": "已记录资料补充请求，但用户尚未提供，不能继续保存草稿。"
+      },
+      "limits": {
+        "max_steps": 10,
+        "max_tool_calls": 8
+      },
+      "usage": {
+        "steps": 5,
+        "tool_calls": 4,
+        "elapsed_ms": 8
+      },
+      "started_at": "2026-11-05T11:07:35+08:00",
+      "finished_at": "2026-11-05T11:07:35+08:00",
+      "trace_path": "examples/traces/03-missing-information-run1.jsonl",
+      "steps": [
+        {
+          "step": 1,
+          "action": "tool",
+          "decision_basis": "先读取素材元数据，确认是否存在缺字段。",
+          "tool": "get_material",
+          "arguments": {
+            "material_id": "M02"
+          },
+          "ok": true,
+          "summary": "读取素材 M02；缺失字段：duration_minutes, copyright"
+        },
+        {
+          "step": 2,
+          "action": "tool",
+          "decision_basis": "发现缺失字段，先补查来源；补不到再请求用户补充。",
+          "tool": "lookup_material_source",
+          "arguments": {
+            "material_id": "M02"
+          },
+          "ok": true,
+          "summary": "补查成功（制作系统工单 #A-1024）：回填 copyright；仍缺 duration_minutes"
+        },
+        {
+          "step": 3,
+          "action": "tool",
+          "decision_basis": "字段处理完毕后，执行规则审核，确认是否存在阻断项。",
+          "tool": "check_rules",
+          "arguments": {
+            "material_id": "M02"
+          },
+          "ok": true,
+          "summary": "规则检查阻断：缺少必填字段：时长（分钟）（duration_minutes）"
+        },
+        {
+          "step": 4,
+          "action": "tool",
+          "decision_basis": "规则阻断且缺资料，创建待确认项请求用户补充，不保存草稿。",
+          "tool": "request_confirmation",
+          "arguments": {
+            "material_id": "M02",
+            "reason": "missing_information",
+            "proposed_publish_at": null,
+            "questions": [
+              "请补充必填字段：时长（分钟）。"
+            ],
+            "risk_summary": "缺少必填字段：时长（分钟）（duration_minutes）"
+          },
+          "ok": true,
+          "summary": "创建待确认项 CONF-0001（素材信息不足）；当前为 pending，未获得用户同意"
+        },
+        {
+          "step": 5,
+          "action": "finish",
+          "decision_basis": "已记录资料补充请求，但用户尚未提供，不能继续保存草稿。",
+          "finish_claim": {
+            "kind": "finish",
+            "rationale": "已记录资料补充请求，但用户尚未提供，不能继续保存草稿。",
+            "status": "blocked_missing_info",
+            "summary": "",
+            "pending_items": []
+          }
+        }
+      ],
+      "scenario": {
+        "id": "03-missing-information",
+        "title": "素材信息缺失：补查后仍缺时长，阻断并请求补充",
+        "covers": [
+          "素材信息缺失",
+          "补查",
+          "阻断",
+          "不保存草稿"
+        ],
+        "run": {
+          "repeat": 1,
+          "provider": "mock",
+          "max_steps": 10,
+          "max_tool_calls": 8,
+          "fail_save_times": 0
+        }
+      }
+    }
+  ],
+  "store_summary": {
+    "draft_count": 0,
+    "draft_ids": [],
+    "draft_status_counts": {},
+    "confirmation_count": 1,
+    "published_count": 0,
+    "store": ".runtime/examples/03-missing-information"
+  },
+  "checks": {
+    "status_match": true,
+    "published_false": true,
+    "draft_published_false": true
+  },
+  "checks_passed": true,
+  "traces": [
+    "examples/traces/03-missing-information-run1.jsonl"
+  ]
+}

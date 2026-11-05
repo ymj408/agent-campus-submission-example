@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "description": "合成素材数据，仅用于演示与测试；不包含真实用户信息。",
+  "materials": {
+    "M01": {
+      "id": "M01",
+      "title": "城市夜跑装备清单",
+      "platform": "douyin",
+      "content_type": "video",
+      "duration_minutes": 3,
+      "copyright": "original",
+      "summary": "三分钟讲清夜跑鞋、反光装备与补水要点。",
+      "publish_at": "2026-11-06T18:00:00+08:00",
+      "owner": "内容一组"
+    },
+    "M02": {
+      "id": "M02",
+      "title": "秋季护肤的五个常见误区",
+      "platform": "xiaohongshu",
+      "content_type": "video",
+      "duration_minutes": null,
+      "copyright": null,
+      "summary": "换季护肤的五个常见误区，按肤质说明。",
+      "publish_at": "2026-11-07T10:00:00+08:00",
+      "owner": "内容二组"
+    },
+    "M03": {
+      "id": "M03",
+      "title": "一周通勤穿搭记录",
+      "platform": "wechat",
+      "content_type": "article",
+      "duration_minutes": 8,
+      "copyright": "original",
+      "summary": "五套通勤穿搭与单品复用思路。",
+      "publish_at": "2026-11-06T12:00:00+08:00",
+      "owner": "内容三组"
+    },
+    "M04": {
+      "id": "M04",
+      "title": "三天根治失眠的自然疗法",
+      "platform": "xiaohongshu",
+      "content_type": "video",
+      "duration_minutes": 5,
+      "copyright": "original",
+      "summary": "无需就医，三天根治失眠。",
+      "publish_at": "2026-11-06T21:00:00+08:00",
+      "owner": "内容二组"
+    },
+    "M05": {
+      "id": "M05",
+      "title": "周末零食囤货清单",
+      "platform": "douyin",
+      "content_type": "video",
+      "duration_minutes": 4,
+      "copyright": "licensed",
+      "summary": "周末零食囤货与保存建议。",
+      "publish_at": "2026-11-06T14:00:00+08:00",
+      "owner": "内容一组"
+    },
+    "M06": {
+      "id": "M06",
+      "title": "医美项目避坑指南",
+      "platform": "xiaohongshu",
+      "content_type": "video",
+      "duration_minutes": 6,
+      "copyright": "original",
+      "summary": "整理医美项目常见沟通问题，不构成医疗建议。",
+      "publish_at": "2026-11-07T14:00:00+08:00",
+      "owner": "内容二组"
+    }
+  }
+}

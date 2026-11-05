@@ -1,0 +1,221 @@
+{
+  "scenario": {
+    "id": "07-hard-time-no-change",
+    "title": "硬性时间边界：用户不允许改时间，冲突时不得自行替代",
+    "covers": [
+      "硬性发布要求",
+      "时段冲突",
+      "阻断",
+      "不保存草稿"
+    ],
+    "expect": [
+      "blocked_time_change_not_allowed"
+    ],
+    "source": "examples/cases/07-hard-time-no-change.json"
+  },
+  "command": "python examples/run_examples.py  # 或 python run.py run --case examples/cases/07-hard-time-no-change.json --reset",
+  "generated_at": "2026-11-05T11:07:35+08:00",
+  "provider": "mock",
+  "boundary": "MOCK 只验证流程、边界与幂等；不证明真实模型决策质量。",
+  "runs": [
+    {
+      "schema_version": 1,
+      "run_id": "RUN-20261105110735-b230d6",
+      "mode": "draft_only",
+      "published": false,
+      "provider": "mock",
+      "model": "deterministic-observation-policy-v1",
+      "task": {
+        "request_id": "REQ-EX-07",
+        "material_id": "M01",
+        "requested_publish_at": "2026-11-06T18:00:00+08:00",
+        "allow_time_change": false,
+        "note": "18:00 不可变，即使 19:00 可用"
+      },
+      "status": "blocked_time_change_not_allowed",
+      "completed": false,
+      "terminal": true,
+      "needs_user_action": true,
+      "summary": "未保存草稿：请求 18:00 已被占用，用户明确要求不得改时间，需人工协调。",
+      "audit": {
+        "decision": "pass",
+        "rule_version": "2026.11-demo",
+        "checked_at": "2026-11-05T11:07:35+08:00",
+        "missing_fields": [],
+        "risk_reasons": [],
+        "violations": [],
+        "requires_human_review": false
+      },
+      "slot_query": {
+        "platform": "douyin",
+        "date": "2026-11-06",
+        "timezone": "Asia/Shanghai",
+        "requested": {
+          "at": "2026-11-06T18:00:00+08:00",
+          "label": "18:00",
+          "status": "occupied",
+          "conflict": {
+            "slot_id": "S001",
+            "platform": "douyin",
+            "publish_at": "2026-11-06T18:00:00+08:00",
+            "material_id": "M99",
+            "title": "品牌直播预告",
+            "status": "confirmed",
+            "kind": "confirmed_schedule"
+          }
+        },
+        "alternatives": [
+          {
+            "at": "2026-11-06T19:00:00+08:00",
+            "label": "19:00",
+            "delta_minutes": 60
+          },
+          {
+            "at": "2026-11-06T20:00:00+08:00",
+            "label": "20:00",
+            "delta_minutes": 120
+          },
+          {
+            "at": "2026-11-06T21:00:00+08:00",
+            "label": "21:00",
+            "delta_minutes": 180
+          }
+        ],
+        "occupied_count": 1,
+        "occupied_sample": [
+          {
+            "at": "2026-11-06T18:00:00+08:00",
+            "label": "18:00",
+            "conflict": {
+              "slot_id": "S001",
+              "platform": "douyin",
+              "publish_at": "2026-11-06T18:00:00+08:00",
+              "material_id": "M99",
+              "title": "品牌直播预告",
+              "status": "confirmed",
+              "kind": "confirmed_schedule"
+            }
+          }
+        ],
+        "policy_window": {
+          "start": "09:00",
+          "end": "21:00"
+        }
+      },
+      "confirmation": null,
+      "draft": {
+        "saved": false,
+        "status": "not_saved",
+        "published": false
+      },
+      "pending_items": [
+        "需人工协调占用时段，或由用户显式放宽“不得改时间”的要求。"
+      ],
+      "finish_claim": {
+        "status": "blocked_time_change_not_allowed",
+        "summary": "18:00 被占用，但用户要求不得修改发布时间。",
+        "pending_items": [
+          "需人工协调占用时段或由用户显式放宽时间要求。"
+        ],
+        "rationale": "用户明确不允许改时间，不能自行选择替代时段。"
+      },
+      "limits": {
+        "max_steps": 10,
+        "max_tool_calls": 8
+      },
+      "usage": {
+        "steps": 4,
+        "tool_calls": 3,
+        "elapsed_ms": 2
+      },
+      "started_at": "2026-11-05T11:07:35+08:00",
+      "finished_at": "2026-11-05T11:07:35+08:00",
+      "trace_path": "examples/traces/07-hard-time-no-change-run1.jsonl",
+      "steps": [
+        {
+          "step": 1,
+          "action": "tool",
+          "decision_basis": "先读取素材元数据，确认是否存在缺字段。",
+          "tool": "get_material",
+          "arguments": {
+            "material_id": "M01"
+          },
+          "ok": true,
+          "summary": "读取素材 M01；必填字段完整"
+        },
+        {
+          "step": 2,
+          "action": "tool",
+          "decision_basis": "字段处理完毕后，执行规则审核，确认是否存在阻断项。",
+          "tool": "check_rules",
+          "arguments": {
+            "material_id": "M01"
+          },
+          "ok": true,
+          "summary": "规则检查通过，未发现风险"
+        },
+        {
+          "step": 3,
+          "action": "tool",
+          "decision_basis": "审核通过后查询请求时段，避免在冲突时段保存草稿。",
+          "tool": "query_slots",
+          "arguments": {
+            "material_id": "M01",
+            "requested_publish_at": "2026-11-06T18:00:00+08:00",
+            "limit": 3
+          },
+          "ok": true,
+          "summary": "18:00 已被「品牌直播预告」占用；最近可用 19:00"
+        },
+        {
+          "step": 4,
+          "action": "finish",
+          "decision_basis": "用户明确不允许改时间，不能自行选择替代时段。",
+          "finish_claim": {
+            "kind": "finish",
+            "rationale": "用户明确不允许改时间，不能自行选择替代时段。",
+            "status": "blocked_time_change_not_allowed",
+            "summary": "18:00 被占用，但用户要求不得修改发布时间。",
+            "pending_items": [
+              "需人工协调占用时段或由用户显式放宽时间要求。"
+            ]
+          }
+        }
+      ],
+      "scenario": {
+        "id": "07-hard-time-no-change",
+        "title": "硬性时间边界：用户不允许改时间，冲突时不得自行替代",
+        "covers": [
+          "硬性发布要求",
+          "时段冲突",
+          "阻断",
+          "不保存草稿"
+        ],
+        "run": {
+          "repeat": 1,
+          "provider": "mock",
+          "max_steps": 10,
+          "max_tool_calls": 8,
+          "fail_save_times": 0
+        }
+      }
+    }
+  ],
+  "store_summary": {
+    "draft_count": 0,
+    "draft_ids": [],
+    "draft_status_counts": {},
+    "confirmation_count": 0,
+    "published_count": 0,
+    "store": ".runtime/examples/07-hard-time-no-change"
+  },
+  "checks": {
+    "status_match": true,
+    "published_false": true,
+    "draft_published_false": true
+  },
+  "checks_passed": true,
+  "traces": [
+    "examples/traces/07-hard-time-no-change-run1.jsonl"
+  ]
+}

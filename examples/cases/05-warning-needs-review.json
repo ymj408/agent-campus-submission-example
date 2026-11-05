@@ -1,0 +1,20 @@
+{
+  "id": "05-warning-needs-review",
+  "title": "规则风险（警告）：医美主题可保存草稿，但必须人工复核",
+  "covers": ["规则风险", "人工复核", "草稿保存"],
+  "expect": ["draft_saved_needs_review"],
+  "request": {
+    "request_id": "REQ-EX-05",
+    "material_id": "M06",
+    "requested_publish_at": "2026-11-07T14:00:00+08:00",
+    "allow_time_change": true,
+    "note": "医美主题触发 warning，不是 blocking"
+  },
+  "run": {
+    "repeat": 1,
+    "provider": "mock",
+    "max_steps": 10,
+    "max_tool_calls": 8,
+    "fail_save_times": 0
+  }
+}
