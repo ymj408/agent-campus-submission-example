@@ -182,7 +182,7 @@ Trace：[`06-save-failure-run1.jsonl`](../examples/traces/06-save-failure-run1.j
 7. 草稿不支持撤销/覆盖/多方案比较；同素材已有其他草稿会被拒绝。
 8. `--fail-save` 是显式测试钩子，不是生产级故障恢复。
 9. 真实模型未做线上质量评估。
-10. 未提交 GitHub 远端（当前工作区为本地仓库；见提交回复）。
+10. 远程仓库：<https://github.com/ymj408/agent-campus-submission-example>；最终提交 SHA 以远程 `main` 为准。
 
 ## 5. 评审建议路径
 
