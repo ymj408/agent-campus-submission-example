@@ -1,0 +1,1043 @@
+{
+  "scenario": {
+    "id": "04-duration-unmet",
+    "title": "超时长无法修正：目标 10 秒，最短仍 14 秒",
+    "covers": [
+      "超时长",
+      "明确失败",
+      "不虚报"
+    ],
+    "expect": "duration_unmet",
+    "source": "examples/cases/04-duration-unmet.json"
+  },
+  "command": "python run.py run --case examples/cases/04-duration-unmet.json",
+  "generated_at": "2026-11-05T12:55:31+08:00",
+  "provider": "mock",
+  "boundary": "MOCK 只验证时长修正、素材事实、规则检查与失败处理；不证明真实模型创作质量。",
+  "runs": [
+    {
+      "schema_version": 1,
+      "run_id": "RUN-20261105125531-094eb9",
+      "mode": "script_generation_with_checks",
+      "provider": "mock",
+      "model": "deterministic-script-revision-policy-v1",
+      "task": {
+        "request_id": "REQ-SV-04",
+        "theme": "通勤降噪耳机",
+        "audience": "通勤上班族",
+        "platform": "douyin",
+        "target_duration_seconds": 10,
+        "style": "简洁可信",
+        "product": "耳机",
+        "note": "",
+        "missing_fields": []
+      },
+      "status": "duration_unmet",
+      "completed": false,
+      "terminal": true,
+      "needs_user_action": true,
+      "summary": "无法满足时长：最短候选 14.0 秒，目标 10 秒，未输出 ready 脚本。",
+      "title": "通勤降噪耳机｜10 秒字幕功能演示",
+      "script": {
+        "title": "通勤降噪耳机｜10 秒字幕功能演示",
+        "platform": "douyin",
+        "audience": "通勤上班族",
+        "style": "简洁可信",
+        "target_duration_seconds": 10,
+        "draft_version": "mini",
+        "scenes": [
+          {
+            "scene_id": 1,
+            "visual": "通勤地铁内，字幕浮层出现。",
+            "voiceover": "通勤打开字幕，地铁也看得清。",
+            "subtitle": "通勤打开字幕。",
+            "seconds": 4,
+            "material_ids": [
+              "P01"
+            ],
+            "claims": [
+              {
+                "text": "支持字幕",
+                "material_id": "P01"
+              }
+            ]
+          },
+          {
+            "scene_id": 2,
+            "visual": "耳机外观特写。",
+            "voiceover": "外观与佩戴细节特写。",
+            "subtitle": "外观与佩戴细节。",
+            "seconds": 4,
+            "material_ids": [
+              "P01"
+            ],
+            "claims": []
+          },
+          {
+            "scene_id": 3,
+            "visual": "设置界面特写。",
+            "voiceover": "设置中开启字幕。",
+            "subtitle": "设置中开启字幕。",
+            "seconds": 3,
+            "material_ids": [
+              "P01"
+            ],
+            "claims": [
+              {
+                "text": "支持字幕",
+                "material_id": "P01"
+              }
+            ]
+          },
+          {
+            "scene_id": 4,
+            "visual": "产品收尾。",
+            "voiceover": "按需开启，实际为准。",
+            "subtitle": "按需开启，实际为准。",
+            "seconds": 3,
+            "material_ids": [
+              "P01"
+            ],
+            "claims": []
+          }
+        ],
+        "total_duration_seconds": 14.0,
+        "ready": false,
+        "sources": [
+          {
+            "material_id": "P01",
+            "title": "P01 通勤耳机字幕演示片段",
+            "license": "original",
+            "facts": [
+              "支持字幕"
+            ]
+          }
+        ],
+        "risks": [
+          "估算 14.0 秒，超过目标 10 秒 4.0 秒"
+        ]
+      },
+      "storyboard": [
+        {
+          "scene_id": 1,
+          "visual": "通勤地铁内，字幕浮层出现。",
+          "voiceover": "通勤打开字幕，地铁也看得清。",
+          "subtitle": "通勤打开字幕。",
+          "seconds": 4,
+          "material_ids": [
+            "P01"
+          ],
+          "claims": [
+            {
+              "text": "支持字幕",
+              "material_id": "P01"
+            }
+          ]
+        },
+        {
+          "scene_id": 2,
+          "visual": "耳机外观特写。",
+          "voiceover": "外观与佩戴细节特写。",
+          "subtitle": "外观与佩戴细节。",
+          "seconds": 4,
+          "material_ids": [
+            "P01"
+          ],
+          "claims": []
+        },
+        {
+          "scene_id": 3,
+          "visual": "设置界面特写。",
+          "voiceover": "设置中开启字幕。",
+          "subtitle": "设置中开启字幕。",
+          "seconds": 3,
+          "material_ids": [
+            "P01"
+          ],
+          "claims": [
+            {
+              "text": "支持字幕",
+              "material_id": "P01"
+            }
+          ]
+        },
+        {
+          "scene_id": 4,
+          "visual": "产品收尾。",
+          "voiceover": "按需开启，实际为准。",
+          "subtitle": "按需开启，实际为准。",
+          "seconds": 3,
+          "material_ids": [
+            "P01"
+          ],
+          "claims": []
+        }
+      ],
+      "sources": [
+        {
+          "material_id": "P01",
+          "title": "P01 通勤耳机字幕演示片段",
+          "license": "original",
+          "facts": [
+            "支持字幕"
+          ]
+        }
+      ],
+      "risks": [
+        "估算 14.0 秒，超过目标 10 秒 4.0 秒"
+      ],
+      "total_duration_seconds": 14.0,
+      "target_duration_seconds": 10,
+      "duration_check": {
+        "target": 10,
+        "estimated": 14.0,
+        "within_target": false,
+        "gap_seconds": 4.0
+      },
+      "rule_check": {
+        "decision": "blocked",
+        "rule_version": "2026.11-demo",
+        "violations": [
+          {
+            "rule_id": "R003",
+            "code": "duration_exceeded",
+            "severity": "blocking",
+            "field": "duration",
+            "message": "估算 14.0 秒，超过目标 10 秒 4.0 秒"
+          }
+        ],
+        "duration": {
+          "total_seconds": 14.0,
+          "target_seconds": 10,
+          "within_target": false,
+          "gap_seconds": 4.0,
+          "scene_estimates": [
+            {
+              "scene_id": 1,
+              "seconds": 4.0,
+              "speech_chars": 12,
+              "chars_per_second": 3.0,
+              "pacing_ok": true
+            },
+            {
+              "scene_id": 2,
+              "seconds": 4.0,
+              "speech_chars": 9,
+              "chars_per_second": 2.25,
+              "pacing_ok": true
+            },
+            {
+              "scene_id": 3,
+              "seconds": 3.0,
+              "speech_chars": 7,
+              "chars_per_second": 2.33,
+              "pacing_ok": true
+            },
+            {
+              "scene_id": 4,
+              "seconds": 3.0,
+              "speech_chars": 8,
+              "chars_per_second": 2.67,
+              "pacing_ok": true
+            }
+          ]
+        },
+        "script": {
+          "title": "通勤降噪耳机｜10 秒字幕功能演示",
+          "platform": "douyin",
+          "audience": "通勤上班族",
+          "style": "简洁可信",
+          "target_duration_seconds": 10,
+          "draft_version": "mini",
+          "scenes": [
+            {
+              "scene_id": 1,
+              "visual": "通勤地铁内，字幕浮层出现。",
+              "voiceover": "通勤打开字幕，地铁也看得清。",
+              "subtitle": "通勤打开字幕。",
+              "seconds": 4,
+              "material_ids": [
+                "P01"
+              ],
+              "claims": [
+                {
+                  "text": "支持字幕",
+                  "material_id": "P01"
+                }
+              ]
+            },
+            {
+              "scene_id": 2,
+              "visual": "耳机外观特写。",
+              "voiceover": "外观与佩戴细节特写。",
+              "subtitle": "外观与佩戴细节。",
+              "seconds": 4,
+              "material_ids": [
+                "P01"
+              ],
+              "claims": []
+            },
+            {
+              "scene_id": 3,
+              "visual": "设置界面特写。",
+              "voiceover": "设置中开启字幕。",
+              "subtitle": "设置中开启字幕。",
+              "seconds": 3,
+              "material_ids": [
+                "P01"
+              ],
+              "claims": [
+                {
+                  "text": "支持字幕",
+                  "material_id": "P01"
+                }
+              ]
+            },
+            {
+              "scene_id": 4,
+              "visual": "产品收尾。",
+              "voiceover": "按需开启，实际为准。",
+              "subtitle": "按需开启，实际为准。",
+              "seconds": 3,
+              "material_ids": [
+                "P01"
+              ],
+              "claims": []
+            }
+          ]
+        },
+        "checked_at": "2026-11-05T12:55:31+08:00"
+      },
+      "revisions": [
+        {
+          "draft_version": "long",
+          "total_seconds": 38.0,
+          "target_seconds": 10,
+          "within_target": false
+        },
+        {
+          "draft_version": "short",
+          "total_seconds": 28.0,
+          "target_seconds": 10,
+          "within_target": false
+        },
+        {
+          "draft_version": "mini",
+          "total_seconds": 14.0,
+          "target_seconds": 10,
+          "within_target": false
+        }
+      ],
+      "draft_version": "mini",
+      "missing_information": [],
+      "pending_items": [
+        "最短候选 14.0 秒仍超过目标 10 秒；需放宽时长或减少分镜。"
+      ],
+      "model_claim": {
+        "status": "duration_unmet",
+        "summary": "最短版本 14.0 秒仍超过目标 10 秒",
+        "payload": {
+          "script": {
+            "title": "通勤降噪耳机｜10 秒字幕功能演示",
+            "platform": "douyin",
+            "audience": "通勤上班族",
+            "style": "简洁可信",
+            "target_duration_seconds": 10,
+            "draft_version": "mini",
+            "scenes": [
+              {
+                "scene_id": 1,
+                "visual": "通勤地铁内，字幕浮层出现。",
+                "voiceover": "通勤打开字幕，地铁也看得清。",
+                "subtitle": "通勤打开字幕。",
+                "seconds": 4,
+                "material_ids": [
+                  "P01"
+                ],
+                "claims": [
+                  {
+                    "text": "支持字幕",
+                    "material_id": "P01"
+                  }
+                ]
+              },
+              {
+                "scene_id": 2,
+                "visual": "耳机外观特写。",
+                "voiceover": "外观与佩戴细节特写。",
+                "subtitle": "外观与佩戴细节。",
+                "seconds": 4,
+                "material_ids": [
+                  "P01"
+                ],
+                "claims": []
+              },
+              {
+                "scene_id": 3,
+                "visual": "设置界面特写。",
+                "voiceover": "设置中开启字幕。",
+                "subtitle": "设置中开启字幕。",
+                "seconds": 3,
+                "material_ids": [
+                  "P01"
+                ],
+                "claims": [
+                  {
+                    "text": "支持字幕",
+                    "material_id": "P01"
+                  }
+                ]
+              },
+              {
+                "scene_id": 4,
+                "visual": "产品收尾。",
+                "voiceover": "按需开启，实际为准。",
+                "subtitle": "按需开启，实际为准。",
+                "seconds": 3,
+                "material_ids": [
+                  "P01"
+                ],
+                "claims": []
+              }
+            ]
+          },
+          "duration": {
+            "total_seconds": 14.0,
+            "target_seconds": 10,
+            "within_target": false,
+            "gap_seconds": 4.0,
+            "scene_estimates": [
+              {
+                "scene_id": 1,
+                "seconds": 4.0,
+                "speech_chars": 12,
+                "chars_per_second": 3.0,
+                "pacing_ok": true
+              },
+              {
+                "scene_id": 2,
+                "seconds": 4.0,
+                "speech_chars": 9,
+                "chars_per_second": 2.25,
+                "pacing_ok": true
+              },
+              {
+                "scene_id": 3,
+                "seconds": 3.0,
+                "speech_chars": 7,
+                "chars_per_second": 2.33,
+                "pacing_ok": true
+              },
+              {
+                "scene_id": 4,
+                "seconds": 3.0,
+                "speech_chars": 8,
+                "chars_per_second": 2.67,
+                "pacing_ok": true
+              }
+            ],
+            "script": {
+              "title": "通勤降噪耳机｜10 秒字幕功能演示",
+              "platform": "douyin",
+              "audience": "通勤上班族",
+              "style": "简洁可信",
+              "target_duration_seconds": 10,
+              "draft_version": "mini",
+              "scenes": [
+                {
+                  "scene_id": 1,
+                  "visual": "通勤地铁内，字幕浮层出现。",
+                  "voiceover": "通勤打开字幕，地铁也看得清。",
+                  "subtitle": "通勤打开字幕。",
+                  "seconds": 4,
+                  "material_ids": [
+                    "P01"
+                  ],
+                  "claims": [
+                    {
+                      "text": "支持字幕",
+                      "material_id": "P01"
+                    }
+                  ]
+                },
+                {
+                  "scene_id": 2,
+                  "visual": "耳机外观特写。",
+                  "voiceover": "外观与佩戴细节特写。",
+                  "subtitle": "外观与佩戴细节。",
+                  "seconds": 4,
+                  "material_ids": [
+                    "P01"
+                  ],
+                  "claims": []
+                },
+                {
+                  "scene_id": 3,
+                  "visual": "设置界面特写。",
+                  "voiceover": "设置中开启字幕。",
+                  "subtitle": "设置中开启字幕。",
+                  "seconds": 3,
+                  "material_ids": [
+                    "P01"
+                  ],
+                  "claims": [
+                    {
+                      "text": "支持字幕",
+                      "material_id": "P01"
+                    }
+                  ]
+                },
+                {
+                  "scene_id": 4,
+                  "visual": "产品收尾。",
+                  "voiceover": "按需开启，实际为准。",
+                  "subtitle": "按需开启，实际为准。",
+                  "seconds": 3,
+                  "material_ids": [
+                    "P01"
+                  ],
+                  "claims": []
+                }
+              ]
+            },
+            "draft_version": "mini"
+          }
+        },
+        "rationale": "多次压缩后仍超时，明确失败，不虚报满足时长。"
+      },
+      "tool_errors": [],
+      "limits": {
+        "max_steps": 10,
+        "max_tool_calls": 8
+      },
+      "usage": {
+        "steps": 7,
+        "tool_calls": 6,
+        "elapsed_ms": 1
+      },
+      "started_at": "2026-11-05T12:55:31+08:00",
+      "finished_at": "2026-11-05T12:55:31+08:00",
+      "trace_path": "examples/traces/04-duration-unmet.jsonl",
+      "step_records": [
+        {
+          "step": 1,
+          "action": "tool",
+          "decision_basis": "读取任务简报，确认关键字段。",
+          "tool": "get_brief",
+          "arguments": {},
+          "ok": true,
+          "summary": "读取任务：通勤降噪耳机 / douyin / 目标 10 秒"
+        },
+        {
+          "step": 2,
+          "action": "tool",
+          "decision_basis": "检索产品素材，确认可用来源。",
+          "tool": "search_materials",
+          "arguments": {
+            "query": "通勤降噪耳机 耳机",
+            "limit": 5
+          },
+          "ok": true,
+          "summary": "检索到 4 个可用素材；首选 P01"
+        },
+        {
+          "step": 3,
+          "action": "tool",
+          "decision_basis": "生成首稿并估算时长。",
+          "tool": "estimate_duration",
+          "arguments": {
+            "script": {
+              "title": "通勤降噪耳机｜10 秒字幕功能演示",
+              "platform": "douyin",
+              "audience": "通勤上班族",
+              "style": "简洁可信",
+              "target_duration_seconds": 10,
+              "draft_version": "long",
+              "scenes": [
+                {
+                  "scene_id": 1,
+                  "visual": "通勤地铁内，手持耳机，字幕浮层出现。",
+                  "voiceover": "通勤路上戴上耳机，地铁噪音很大，打开字幕就能看懂关键信息。",
+                  "subtitle": "通勤路上，打开字幕也能看懂关键信息。",
+                  "seconds": 10,
+                  "material_ids": [
+                    "P01"
+                  ],
+                  "claims": [
+                    {
+                      "text": "支持字幕",
+                      "material_id": "P01"
+                    }
+                  ]
+                },
+                {
+                  "scene_id": 2,
+                  "visual": "耳机外观与佩戴细节特写。",
+                  "voiceover": "镜头展示耳机外观和佩戴细节，字幕同步说明当前画面。",
+                  "subtitle": "耳机外观与佩戴细节特写。",
+                  "seconds": 10,
+                  "material_ids": [
+                    "P01"
+                  ],
+                  "claims": []
+                },
+                {
+                  "scene_id": 3,
+                  "visual": "耳机放回充电盒，设置界面特写。",
+                  "voiceover": "把耳机放回充电盒，画面提示字幕功能可以在设置中开启。",
+                  "subtitle": "字幕功能可在设置中开启。",
+                  "seconds": 9,
+                  "material_ids": [
+                    "P01"
+                  ],
+                  "claims": [
+                    {
+                      "text": "支持字幕",
+                      "material_id": "P01"
+                    }
+                  ]
+                },
+                {
+                  "scene_id": 4,
+                  "visual": "产品与字幕界面同框，收尾。",
+                  "voiceover": "结尾提醒观众按需开启字幕，并以实际使用为准。",
+                  "subtitle": "按需开启字幕，实际使用为准。",
+                  "seconds": 9,
+                  "material_ids": [
+                    "P01"
+                  ],
+                  "claims": []
+                }
+              ]
+            }
+          },
+          "ok": true,
+          "summary": "估算 38.0 秒，超过目标 28.0 秒"
+        },
+        {
+          "step": 4,
+          "action": "tool",
+          "decision_basis": "首稿超时，压缩脚本。",
+          "tool": "estimate_duration",
+          "arguments": {
+            "script": {
+              "title": "通勤降噪耳机｜10 秒字幕功能演示",
+              "platform": "douyin",
+              "audience": "通勤上班族",
+              "style": "简洁可信",
+              "target_duration_seconds": 10,
+              "draft_version": "short",
+              "scenes": [
+                {
+                  "scene_id": 1,
+                  "visual": "通勤地铁内，字幕浮层出现。",
+                  "voiceover": "通勤路上打开字幕，地铁再吵也能看懂关键信息。",
+                  "subtitle": "通勤打开字幕，地铁再吵也能看懂。",
+                  "seconds": 7,
+                  "material_ids": [
+                    "P01"
+                  ],
+                  "claims": [
+                    {
+                      "text": "支持字幕",
+                      "material_id": "P01"
+                    }
+                  ]
+                },
+                {
+                  "scene_id": 2,
+                  "visual": "耳机外观与佩戴细节特写。",
+                  "voiceover": "耳机外观与佩戴细节特写，字幕同步说明。",
+                  "subtitle": "耳机外观与佩戴细节。",
+                  "seconds": 7,
+                  "material_ids": [
+                    "P01"
+                  ],
+                  "claims": []
+                },
+                {
+                  "scene_id": 3,
+                  "visual": "设置界面特写。",
+                  "voiceover": "在设置中开启字幕，画面展示操作路径。",
+                  "subtitle": "设置中可开启字幕。",
+                  "seconds": 7,
+                  "material_ids": [
+                    "P01"
+                  ],
+                  "claims": [
+                    {
+                      "text": "支持字幕",
+                      "material_id": "P01"
+                    }
+                  ]
+                },
+                {
+                  "scene_id": 4,
+                  "visual": "产品与字幕界面同框。",
+                  "voiceover": "按需开启字幕，请以实际使用为准。",
+                  "subtitle": "按需开启，实际为准。",
+                  "seconds": 7,
+                  "material_ids": [
+                    "P01"
+                  ],
+                  "claims": []
+                }
+              ]
+            }
+          },
+          "ok": true,
+          "summary": "估算 28.0 秒，超过目标 18.0 秒"
+        },
+        {
+          "step": 5,
+          "action": "tool",
+          "decision_basis": "继续压缩脚本。",
+          "tool": "estimate_duration",
+          "arguments": {
+            "script": {
+              "title": "通勤降噪耳机｜10 秒字幕功能演示",
+              "platform": "douyin",
+              "audience": "通勤上班族",
+              "style": "简洁可信",
+              "target_duration_seconds": 10,
+              "draft_version": "mini",
+              "scenes": [
+                {
+                  "scene_id": 1,
+                  "visual": "通勤地铁内，字幕浮层出现。",
+                  "voiceover": "通勤打开字幕，地铁也看得清。",
+                  "subtitle": "通勤打开字幕。",
+                  "seconds": 4,
+                  "material_ids": [
+                    "P01"
+                  ],
+                  "claims": [
+                    {
+                      "text": "支持字幕",
+                      "material_id": "P01"
+                    }
+                  ]
+                },
+                {
+                  "scene_id": 2,
+                  "visual": "耳机外观特写。",
+                  "voiceover": "外观与佩戴细节特写。",
+                  "subtitle": "外观与佩戴细节。",
+                  "seconds": 4,
+                  "material_ids": [
+                    "P01"
+                  ],
+                  "claims": []
+                },
+                {
+                  "scene_id": 3,
+                  "visual": "设置界面特写。",
+                  "voiceover": "设置中开启字幕。",
+                  "subtitle": "设置中开启字幕。",
+                  "seconds": 3,
+                  "material_ids": [
+                    "P01"
+                  ],
+                  "claims": [
+                    {
+                      "text": "支持字幕",
+                      "material_id": "P01"
+                    }
+                  ]
+                },
+                {
+                  "scene_id": 4,
+                  "visual": "产品收尾。",
+                  "voiceover": "按需开启，实际为准。",
+                  "subtitle": "按需开启，实际为准。",
+                  "seconds": 3,
+                  "material_ids": [
+                    "P01"
+                  ],
+                  "claims": []
+                }
+              ]
+            }
+          },
+          "ok": true,
+          "summary": "估算 14.0 秒，超过目标 4.0 秒"
+        },
+        {
+          "step": 6,
+          "action": "tool",
+          "decision_basis": "检查最终候选，确认无法满足时长。",
+          "tool": "check_rules",
+          "arguments": {
+            "script": {
+              "title": "通勤降噪耳机｜10 秒字幕功能演示",
+              "platform": "douyin",
+              "audience": "通勤上班族",
+              "style": "简洁可信",
+              "target_duration_seconds": 10,
+              "draft_version": "mini",
+              "scenes": [
+                {
+                  "scene_id": 1,
+                  "visual": "通勤地铁内，字幕浮层出现。",
+                  "voiceover": "通勤打开字幕，地铁也看得清。",
+                  "subtitle": "通勤打开字幕。",
+                  "seconds": 4,
+                  "material_ids": [
+                    "P01"
+                  ],
+                  "claims": [
+                    {
+                      "text": "支持字幕",
+                      "material_id": "P01"
+                    }
+                  ]
+                },
+                {
+                  "scene_id": 2,
+                  "visual": "耳机外观特写。",
+                  "voiceover": "外观与佩戴细节特写。",
+                  "subtitle": "外观与佩戴细节。",
+                  "seconds": 4,
+                  "material_ids": [
+                    "P01"
+                  ],
+                  "claims": []
+                },
+                {
+                  "scene_id": 3,
+                  "visual": "设置界面特写。",
+                  "voiceover": "设置中开启字幕。",
+                  "subtitle": "设置中开启字幕。",
+                  "seconds": 3,
+                  "material_ids": [
+                    "P01"
+                  ],
+                  "claims": [
+                    {
+                      "text": "支持字幕",
+                      "material_id": "P01"
+                    }
+                  ]
+                },
+                {
+                  "scene_id": 4,
+                  "visual": "产品收尾。",
+                  "voiceover": "按需开启，实际为准。",
+                  "subtitle": "按需开启，实际为准。",
+                  "seconds": 3,
+                  "material_ids": [
+                    "P01"
+                  ],
+                  "claims": []
+                }
+              ]
+            }
+          },
+          "ok": true,
+          "summary": "规则检查阻断：估算 14.0 秒，超过目标 10 秒 4.0 秒"
+        },
+        {
+          "step": 7,
+          "action": "finish",
+          "decision_basis": "多次压缩后仍超时，明确失败，不虚报满足时长。",
+          "finish_claim": {
+            "kind": "finish",
+            "rationale": "多次压缩后仍超时，明确失败，不虚报满足时长。",
+            "payload": {
+              "script": {
+                "title": "通勤降噪耳机｜10 秒字幕功能演示",
+                "platform": "douyin",
+                "audience": "通勤上班族",
+                "style": "简洁可信",
+                "target_duration_seconds": 10,
+                "draft_version": "mini",
+                "scenes": [
+                  {
+                    "scene_id": 1,
+                    "visual": "通勤地铁内，字幕浮层出现。",
+                    "voiceover": "通勤打开字幕，地铁也看得清。",
+                    "subtitle": "通勤打开字幕。",
+                    "seconds": 4,
+                    "material_ids": [
+                      "P01"
+                    ],
+                    "claims": [
+                      {
+                        "text": "支持字幕",
+                        "material_id": "P01"
+                      }
+                    ]
+                  },
+                  {
+                    "scene_id": 2,
+                    "visual": "耳机外观特写。",
+                    "voiceover": "外观与佩戴细节特写。",
+                    "subtitle": "外观与佩戴细节。",
+                    "seconds": 4,
+                    "material_ids": [
+                      "P01"
+                    ],
+                    "claims": []
+                  },
+                  {
+                    "scene_id": 3,
+                    "visual": "设置界面特写。",
+                    "voiceover": "设置中开启字幕。",
+                    "subtitle": "设置中开启字幕。",
+                    "seconds": 3,
+                    "material_ids": [
+                      "P01"
+                    ],
+                    "claims": [
+                      {
+                        "text": "支持字幕",
+                        "material_id": "P01"
+                      }
+                    ]
+                  },
+                  {
+                    "scene_id": 4,
+                    "visual": "产品收尾。",
+                    "voiceover": "按需开启，实际为准。",
+                    "subtitle": "按需开启，实际为准。",
+                    "seconds": 3,
+                    "material_ids": [
+                      "P01"
+                    ],
+                    "claims": []
+                  }
+                ]
+              },
+              "duration": {
+                "total_seconds": 14.0,
+                "target_seconds": 10,
+                "within_target": false,
+                "gap_seconds": 4.0,
+                "scene_estimates": [
+                  {
+                    "scene_id": 1,
+                    "seconds": 4.0,
+                    "speech_chars": 12,
+                    "chars_per_second": 3.0,
+                    "pacing_ok": true
+                  },
+                  {
+                    "scene_id": 2,
+                    "seconds": 4.0,
+                    "speech_chars": 9,
+                    "chars_per_second": 2.25,
+                    "pacing_ok": true
+                  },
+                  {
+                    "scene_id": 3,
+                    "seconds": 3.0,
+                    "speech_chars": 7,
+                    "chars_per_second": 2.33,
+                    "pacing_ok": true
+                  },
+                  {
+                    "scene_id": 4,
+                    "seconds": 3.0,
+                    "speech_chars": 8,
+                    "chars_per_second": 2.67,
+                    "pacing_ok": true
+                  }
+                ],
+                "script": {
+                  "title": "通勤降噪耳机｜10 秒字幕功能演示",
+                  "platform": "douyin",
+                  "audience": "通勤上班族",
+                  "style": "简洁可信",
+                  "target_duration_seconds": 10,
+                  "draft_version": "mini",
+                  "scenes": [
+                    {
+                      "scene_id": 1,
+                      "visual": "通勤地铁内，字幕浮层出现。",
+                      "voiceover": "通勤打开字幕，地铁也看得清。",
+                      "subtitle": "通勤打开字幕。",
+                      "seconds": 4,
+                      "material_ids": [
+                        "P01"
+                      ],
+                      "claims": [
+                        {
+                          "text": "支持字幕",
+                          "material_id": "P01"
+                        }
+                      ]
+                    },
+                    {
+                      "scene_id": 2,
+                      "visual": "耳机外观特写。",
+                      "voiceover": "外观与佩戴细节特写。",
+                      "subtitle": "外观与佩戴细节。",
+                      "seconds": 4,
+                      "material_ids": [
+                        "P01"
+                      ],
+                      "claims": []
+                    },
+                    {
+                      "scene_id": 3,
+                      "visual": "设置界面特写。",
+                      "voiceover": "设置中开启字幕。",
+                      "subtitle": "设置中开启字幕。",
+                      "seconds": 3,
+                      "material_ids": [
+                        "P01"
+                      ],
+                      "claims": [
+                        {
+                          "text": "支持字幕",
+                          "material_id": "P01"
+                        }
+                      ]
+                    },
+                    {
+                      "scene_id": 4,
+                      "visual": "产品收尾。",
+                      "voiceover": "按需开启，实际为准。",
+                      "subtitle": "按需开启，实际为准。",
+                      "seconds": 3,
+                      "material_ids": [
+                        "P01"
+                      ],
+                      "claims": []
+                    }
+                  ]
+                },
+                "draft_version": "mini"
+              }
+            },
+            "status": "duration_unmet",
+            "summary": "最短版本 14.0 秒仍超过目标 10 秒",
+            "pending_items": [
+              "放宽目标时长，或补充可删减的素材/分镜。"
+            ]
+          }
+        }
+      ],
+      "scenario": {
+        "id": "04-duration-unmet",
+        "title": "超时长无法修正：目标 10 秒，最短仍 14 秒",
+        "covers": [
+          "超时长",
+          "明确失败",
+          "不虚报"
+        ]
+      }
+    }
+  ],
+  "checks": {
+    "status_match": true,
+    "no_forbidden_effect_claim": true,
+    "total_14": true,
+    "not_ready": true,
+    "gap_4": true
+  },
+  "checks_passed": true,
+  "traces": [
+    "examples/traces/04-duration-unmet.jsonl"
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "id": "06-check-failure",
+  "title": "工具失败：规则检查连续失败，不把脚本标为 ready",
+  "covers": ["工具失败", "不虚报 ready", "任务状态"],
+  "request": {
+    "request_id": "REQ-SV-06",
+    "theme": "通勤降噪耳机",
+    "audience": "通勤上班族",
+    "platform": "douyin",
+    "target_duration_seconds": 30,
+    "style": "简洁可信",
+    "product": "耳机"
+  },
+  "run": {
+    "expect": "tool_failure",
+    "fail_tools": {"check_rules": 99}
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "id": "03-no-material",
+  "title": "无素材：宠物猫粮没有可用素材，不编造脚本",
+  "covers": ["无素材", "不编造", "未完成原因"],
+  "request": {
+    "request_id": "REQ-SV-03",
+    "theme": "宠物猫粮",
+    "audience": "养猫人群",
+    "platform": "douyin",
+    "target_duration_seconds": 30,
+    "style": "简洁可信",
+    "product": ""
+  },
+  "run": {
+    "expect": "insufficient_material"
+  }
+}

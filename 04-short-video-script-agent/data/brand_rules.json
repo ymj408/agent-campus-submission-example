@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "version": "2026.11-demo",
+  "required_fields": ["title", "platform", "audience", "target_duration_seconds", "scenes"],
+  "platform_duration_seconds": {
+    "douyin": {"min": 10, "max": 60},
+    "xiaohongshu": {"min": 10, "max": 90},
+    "wechat": {"min": 10, "max": 180}
+  },
+  "forbidden_phrases": [
+    "效率提升 80%",
+    "效率提升80%",
+    "提升 80%",
+    "提升80%",
+    "保证",
+    "第一",
+    "最有效",
+    "100%",
+    "绝对"
+  ],
+  "claim_policy": "每个 claims[].text 必须能在同一 material_id 的 facts 中找到；没有素材事实支持的效果结论一律阻断。",
+  "speech_rate": {
+    "min_chars_per_second": 2.0,
+    "max_chars_per_second": 6.0
+  },
+  "required_subtitles": true
+}

@@ -2,7 +2,7 @@
 
 本仓库按**题号目录**组织，每个题目保持自包含（README / src / tests / examples / data / docs）。
 
-> 当前已完成并提交**项目题 1、项目题 2、项目题 3**。剩余一题尚未完成，因此不占空目录；后续按同样结构新增 `04-*`。
+> 当前已完成并提交**项目题 1、2、3、4**，每题独立自包含。
 
 ## 题目索引
 
@@ -11,9 +11,9 @@
 | 1 | 素材审核与发布排期 Agent | ✅ 已完成 | [01-media-review-scheduler/](01-media-review-scheduler/) | 47 tests |
 | 2 | 内容任务规划 Agent | ✅ 已完成 | [02-content-planning-agent/](02-content-planning-agent/) | 40 tests |
 | 3 | 企业知识问答 Agent | ✅ 已完成 | [03-enterprise-knowledge-qa-agent/](03-enterprise-knowledge-qa-agent/) | 40 tests |
-| 4 | 待完成 | — | — | — |
+| 4 | 短视频脚本 Agent | ✅ 已完成 | [04-short-video-script-agent/](04-short-video-script-agent/) | 39 tests |
 
-考核要求是“四选一”。当前提交包含三个完整项目，可任选其一评审；每个题目目录独立，新增项目不影响已完成题目。
+考核要求是“四选一”，但当前仓库已提供四个完整项目，可任选其一评审；每个题目目录独立，互不影响。
 
 ## 题 1 快速入口
 
@@ -60,12 +60,27 @@ python scripts/run_tests.py
 - 资料外：[无资料不回答](03-enterprise-knowledge-qa-agent/examples/outputs/03-out-of-scope.json)
 - 运行总览：[examples/outputs/index.json](03-enterprise-knowledge-qa-agent/examples/outputs/index.json)
 
+## 题 4 快速入口
+
+```bash
+cd 04-short-video-script-agent
+python run.py verify
+python run.py run --theme "通勤降噪耳机" --audience "通勤上班族" --platform douyin --target-duration 30
+python scripts/run_tests.py
+```
+
+- 题 4 说明：[04-short-video-script-agent/README.md](04-short-video-script-agent/README.md)
+- 正常脚本：[38 → 28 秒，P01 引用](04-short-video-script-agent/examples/outputs/01-normal-30s.json)
+- 超时长失败：[14 秒仍超 10 秒](04-short-video-script-agent/examples/outputs/04-duration-unmet.json)
+- 规则风险修正：[删除“效率提升 80%”](04-short-video-script-agent/examples/outputs/07-rule-risk-clean.json)
+- 运行总览：[examples/outputs/index.json](04-short-video-script-agent/examples/outputs/index.json)
+
 ## 提交信息
 
 - **仓库**：<https://github.com/ymj408/agent-campus-submission-example>
-- **项目目录**：`01-media-review-scheduler/`、`02-content-planning-agent/`、`03-enterprise-knowledge-qa-agent/`
+- **项目目录**：`01-media-review-scheduler/`、`02-content-planning-agent/`、`03-enterprise-knowledge-qa-agent/`、`04-short-video-script-agent/`
 - **最终 commit SHA**：见远程 `main` 分支最新提交，或本仓库提交回复
-- **AI 使用记录**：题 1 [docs/04-ai-usage.md](01-media-review-scheduler/docs/04-ai-usage.md)；题 2 [docs/04-ai-usage.md](02-content-planning-agent/docs/04-ai-usage.md)；题 3 [docs/04-ai-usage.md](03-enterprise-knowledge-qa-agent/docs/04-ai-usage.md)
+- **AI 使用记录**：题 1 [docs/04-ai-usage.md](01-media-review-scheduler/docs/04-ai-usage.md)；题 2 [docs/04-ai-usage.md](02-content-planning-agent/docs/04-ai-usage.md)；题 3 [docs/04-ai-usage.md](03-enterprise-knowledge-qa-agent/docs/04-ai-usage.md)；题 4 [docs/04-ai-usage.md](04-short-video-script-agent/docs/04-ai-usage.md)
 
 ## 目录约定
 
@@ -84,7 +99,12 @@ python scripts/run_tests.py
 │   ├── src/ tests/ examples/ data/ docs/
 │   ├── run.py
 │   └── pyproject.toml / requirements.txt / .env.example
-└── 03-enterprise-knowledge-qa-agent/ # 题 3，自包含
+├── 03-enterprise-knowledge-qa-agent/ # 题 3，自包含
+│   ├── README.md
+│   ├── src/ tests/ examples/ data/ docs/
+│   ├── run.py
+│   └── pyproject.toml / requirements.txt / .env.example
+└── 04-short-video-script-agent/    # 题 4，自包含
     ├── README.md
     ├── src/ tests/ examples/ data/ docs/
     ├── run.py

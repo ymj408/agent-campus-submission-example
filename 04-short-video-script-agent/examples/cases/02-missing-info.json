@@ -1,0 +1,15 @@
+{
+  "id": "02-missing-info",
+  "title": "缺关键信息：缺受众与目标时长，不生成脚本",
+  "covers": ["缺关键信息", "阻断", "未完成原因"],
+  "request": {
+    "request_id": "REQ-SV-02",
+    "theme": "通勤降噪耳机",
+    "platform": "douyin",
+    "style": "简洁可信",
+    "product": "耳机"
+  },
+  "run": {
+    "expect": "blocked_missing_fields"
+  }
+}

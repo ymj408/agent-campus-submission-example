@@ -1,0 +1,55 @@
+command: python scripts/run_tests.py
+started_at: 2026-11-05T12:55:31+08:00
+python: 3.13.5 | packaged by Anaconda, Inc. | (main, Jun 12 2025, 16:37:03) [MSC v.1929 64 bit (AMD64)]
+==============================================================================
+test_check_failure (tests.test_agent.AgentTest.test_check_failure) ... ok
+test_duration_unmet (tests.test_agent.AgentTest.test_duration_unmet) ... ok
+test_estimate_failure (tests.test_agent.AgentTest.test_estimate_failure) ... ok
+test_missing_critical_info (tests.test_agent.AgentTest.test_missing_critical_info) ... ok
+test_no_material (tests.test_agent.AgentTest.test_no_material) ... ok
+test_normal_38_to_28 (tests.test_agent.AgentTest.test_normal_38_to_28) ... ok
+test_rule_risk_is_cleaned (tests.test_agent.AgentTest.test_rule_risk_is_cleaned) ... ok
+test_runtime_rejects_false_duration_claim (tests.test_agent.AgentTest.test_runtime_rejects_false_duration_claim) ... ok
+test_runtime_rejects_false_ready_on_rule_violation (tests.test_agent.AgentTest.test_runtime_rejects_false_ready_on_rule_violation) ... ok
+test_search_failure (tests.test_agent.AgentTest.test_search_failure) ... ok
+test_step_limit (tests.test_agent.AgentTest.test_step_limit) ... ok
+test_target_change_changes_revision_path (tests.test_agent.AgentTest.test_target_change_changes_revision_path) ... ok
+test_trace_contains_checks (tests.test_agent.AgentTest.test_trace_contains_checks) ... ok
+test_case_run_writes_json (tests.test_cli.CliTest.test_case_run_writes_json) ... ok
+test_duration_unmet_human_output (tests.test_cli.CliTest.test_duration_unmet_human_output) ... ok
+test_openai_without_key (tests.test_cli.CliTest.test_openai_without_key) ... ok
+test_verify (tests.test_cli.CliTest.test_verify) ... ok
+test_duration_unmet_is_explicit (tests.test_examples_artifacts.ExamplesArtifactTest.test_duration_unmet_is_explicit) ... ok
+test_reference_38_to_28 (tests.test_examples_artifacts.ExamplesArtifactTest.test_reference_38_to_28) ... ok
+test_required_cases_present (tests.test_examples_artifacts.ExamplesArtifactTest.test_required_cases_present) ... ok
+test_rule_risk_clean_final (tests.test_examples_artifacts.ExamplesArtifactTest.test_rule_risk_clean_final) ... ok
+test_target_change_changes_revision (tests.test_examples_artifacts.ExamplesArtifactTest.test_target_change_changes_revision) ... ok
+test_totals (tests.test_examples_artifacts.ExamplesArtifactTest.test_totals) ... ok
+test_traces_exist (tests.test_examples_artifacts.ExamplesArtifactTest.test_traces_exist) ... ok
+test_http_error_is_wrapped (tests.test_llm_adapter.LLMAdapterTest.test_http_error_is_wrapped) ... ok
+test_json_fallback_parser (tests.test_llm_adapter.LLMAdapterTest.test_json_fallback_parser) ... ok
+test_missing_key_is_rejected (tests.test_llm_adapter.LLMAdapterTest.test_missing_key_is_rejected) ... ok
+test_native_tool_calling_loop (tests.test_llm_adapter.LLMAdapterTest.test_native_tool_calling_loop) ... ok
+test_brief_missing_fields (tests.test_tools.ToolTest.test_brief_missing_fields) ... ok
+test_duration_violation_for_mini_at_target_10 (tests.test_tools.ToolTest.test_duration_violation_for_mini_at_target_10) ... ok
+test_long_script_fails_duration_rule (tests.test_tools.ToolTest.test_long_script_fails_duration_rule) ... ok
+test_long_script_is_38_seconds (tests.test_tools.ToolTest.test_long_script_is_38_seconds) ... ok
+test_no_material_query (tests.test_tools.ToolTest.test_no_material_query) ... ok
+test_pacing_violation (tests.test_tools.ToolTest.test_pacing_violation) ... ok
+test_search_excludes_unusable_material (tests.test_tools.ToolTest.test_search_excludes_unusable_material) ... ok
+test_short_script_is_28_seconds (tests.test_tools.ToolTest.test_short_script_is_28_seconds) ... ok
+test_short_script_passes_rules (tests.test_tools.ToolTest.test_short_script_passes_rules) ... ok
+test_tool_failure_is_visible (tests.test_tools.ToolTest.test_tool_failure_is_visible) ... ok
+test_unsupported_effect_claim_is_blocked (tests.test_tools.ToolTest.test_unsupported_effect_claim_is_blocked) ... ok
+
+----------------------------------------------------------------------
+Ran 39 tests in 1.513s
+
+OK
+==============================================================================
+success: True
+tests_run: 39
+failures: 0
+errors: 0
+skipped: 0
+finished_at: 2026-11-05T12:55:33+08:00

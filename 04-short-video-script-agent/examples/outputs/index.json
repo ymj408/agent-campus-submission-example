@@ -1,0 +1,173 @@
+{
+  "generated_at": "2026-11-05T12:55:31+08:00",
+  "provider": "mock",
+  "boundary": "MOCK 只验证时长修正、素材事实、规则检查与失败处理；不证明真实模型创作质量。",
+  "scenarios": [
+    {
+      "id": "01-normal-30s",
+      "title": "正常生成：30 秒目标，首稿 38 秒，压缩到 28 秒",
+      "status": "script_ready",
+      "total": 28.0,
+      "revisions": [
+        38.0,
+        28.0
+      ],
+      "checks_passed": true,
+      "checks": {
+        "status_match": true,
+        "no_forbidden_effect_claim": true,
+        "script_ready": true,
+        "has_storyboard": true,
+        "has_p01": true,
+        "rule_pass": true,
+        "within_target": true,
+        "revisions_38_28": true,
+        "total_28": true
+      },
+      "output": "examples/outputs/01-normal-30s.json",
+      "trace": "examples/traces/01-normal-30s.jsonl"
+    },
+    {
+      "id": "02-missing-info",
+      "title": "缺关键信息：缺受众与目标时长，不生成脚本",
+      "status": "blocked_missing_fields",
+      "total": null,
+      "revisions": [],
+      "checks_passed": true,
+      "checks": {
+        "status_match": true,
+        "no_forbidden_effect_claim": true
+      },
+      "output": "examples/outputs/02-missing-info.json",
+      "trace": "examples/traces/02-missing-info.jsonl"
+    },
+    {
+      "id": "03-no-material",
+      "title": "无素材：宠物猫粮没有可用素材，不编造脚本",
+      "status": "insufficient_material",
+      "total": null,
+      "revisions": [],
+      "checks_passed": true,
+      "checks": {
+        "status_match": true,
+        "no_forbidden_effect_claim": true,
+        "no_script": true
+      },
+      "output": "examples/outputs/03-no-material.json",
+      "trace": "examples/traces/03-no-material.jsonl"
+    },
+    {
+      "id": "04-duration-unmet",
+      "title": "超时长无法修正：目标 10 秒，最短仍 14 秒",
+      "status": "duration_unmet",
+      "total": 14.0,
+      "revisions": [
+        38.0,
+        28.0,
+        14.0
+      ],
+      "checks_passed": true,
+      "checks": {
+        "status_match": true,
+        "no_forbidden_effect_claim": true,
+        "total_14": true,
+        "not_ready": true,
+        "gap_4": true
+      },
+      "output": "examples/outputs/04-duration-unmet.json",
+      "trace": "examples/traces/04-duration-unmet.jsonl"
+    },
+    {
+      "id": "05-search-failure",
+      "title": "工具失败：素材检索连续失败，不输出脚本",
+      "status": "tool_failure",
+      "total": null,
+      "revisions": [],
+      "checks_passed": true,
+      "checks": {
+        "status_match": true,
+        "no_forbidden_effect_claim": true,
+        "not_ready": true
+      },
+      "output": "examples/outputs/05-search-failure.json",
+      "trace": "examples/traces/05-search-failure.jsonl"
+    },
+    {
+      "id": "06-check-failure",
+      "title": "工具失败：规则检查连续失败，不把脚本标为 ready",
+      "status": "tool_failure",
+      "total": 28.0,
+      "revisions": [
+        38.0,
+        28.0
+      ],
+      "checks_passed": true,
+      "checks": {
+        "status_match": true,
+        "no_forbidden_effect_claim": true,
+        "not_ready": true
+      },
+      "output": "examples/outputs/06-check-failure.json",
+      "trace": "examples/traces/06-check-failure.jsonl"
+    },
+    {
+      "id": "07-rule-risk-clean",
+      "title": "规则风险修正：夸张风格加入无依据效果 claim，删除后通过",
+      "status": "script_ready",
+      "total": 28.0,
+      "revisions": [
+        38.0,
+        28.0,
+        28.0
+      ],
+      "checks_passed": true,
+      "checks": {
+        "status_match": true,
+        "no_forbidden_effect_claim": true,
+        "script_ready": true,
+        "has_storyboard": true,
+        "has_p01": true,
+        "rule_pass": true,
+        "within_target": true,
+        "revisions_38_28_28": true
+      },
+      "output": "examples/outputs/07-rule-risk-clean.json",
+      "trace": "examples/traces/07-rule-risk-clean.jsonl"
+    },
+    {
+      "id": "08-target-20s",
+      "title": "改变目标时长：20 秒目标触发第三版 14 秒脚本",
+      "status": "script_ready",
+      "total": 14.0,
+      "revisions": [
+        38.0,
+        28.0,
+        14.0
+      ],
+      "checks_passed": true,
+      "checks": {
+        "status_match": true,
+        "no_forbidden_effect_claim": true,
+        "script_ready": true,
+        "has_storyboard": true,
+        "has_p01": true,
+        "rule_pass": true,
+        "within_target": true,
+        "revisions_38_28_14": true,
+        "total_14": true
+      },
+      "output": "examples/outputs/08-target-20s.json",
+      "trace": "examples/traces/08-target-20s.jsonl"
+    }
+  ],
+  "totals": {
+    "scenarios": 8,
+    "runs": 8,
+    "script_ready": 3,
+    "blocked_missing_fields": 1,
+    "insufficient_material": 1,
+    "duration_unmet": 1,
+    "tool_failure": 2,
+    "all_checks_passed": true
+  }
+}

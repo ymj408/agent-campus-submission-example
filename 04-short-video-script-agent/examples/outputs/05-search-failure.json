@@ -1,0 +1,176 @@
+{
+  "scenario": {
+    "id": "05-search-failure",
+    "title": "工具失败：素材检索连续失败，不输出脚本",
+    "covers": [
+      "工具失败",
+      "不编造",
+      "任务状态"
+    ],
+    "expect": "tool_failure",
+    "source": "examples/cases/05-search-failure.json"
+  },
+  "command": "python run.py run --case examples/cases/05-search-failure.json",
+  "generated_at": "2026-11-05T12:55:31+08:00",
+  "provider": "mock",
+  "boundary": "MOCK 只验证时长修正、素材事实、规则检查与失败处理；不证明真实模型创作质量。",
+  "runs": [
+    {
+      "schema_version": 1,
+      "run_id": "RUN-20261105125531-0f97fc",
+      "mode": "script_generation_with_checks",
+      "provider": "mock",
+      "model": "deterministic-script-revision-policy-v1",
+      "task": {
+        "request_id": "REQ-SV-05",
+        "theme": "通勤降噪耳机",
+        "audience": "通勤上班族",
+        "platform": "douyin",
+        "target_duration_seconds": 30,
+        "style": "简洁可信",
+        "product": "耳机",
+        "note": "",
+        "missing_fields": []
+      },
+      "status": "tool_failure",
+      "completed": false,
+      "terminal": true,
+      "needs_user_action": true,
+      "summary": "未生成脚本：工具失败，无法确认时长或规则。",
+      "title": null,
+      "script": null,
+      "storyboard": [],
+      "sources": [],
+      "risks": [
+        "工具失败，无法确认最终脚本"
+      ],
+      "total_duration_seconds": null,
+      "target_duration_seconds": 30,
+      "duration_check": {
+        "target": 30,
+        "estimated": null,
+        "within_target": false,
+        "gap_seconds": null
+      },
+      "rule_check": null,
+      "revisions": [],
+      "draft_version": null,
+      "missing_information": [],
+      "pending_items": [
+        "工具失败，未输出可确认的 ready 脚本。"
+      ],
+      "model_claim": {
+        "status": "tool_failure",
+        "summary": "",
+        "payload": {},
+        "rationale": "素材检索连续失败。"
+      },
+      "tool_errors": [
+        {
+          "tool": "search_materials",
+          "code": "tool_failed",
+          "message": "注入的工具故障：search_materials 执行失败"
+        },
+        {
+          "tool": "search_materials",
+          "code": "tool_failed",
+          "message": "注入的工具故障：search_materials 执行失败"
+        }
+      ],
+      "limits": {
+        "max_steps": 10,
+        "max_tool_calls": 8
+      },
+      "usage": {
+        "steps": 4,
+        "tool_calls": 3,
+        "elapsed_ms": 0
+      },
+      "started_at": "2026-11-05T12:55:31+08:00",
+      "finished_at": "2026-11-05T12:55:31+08:00",
+      "trace_path": "examples/traces/05-search-failure.jsonl",
+      "step_records": [
+        {
+          "step": 1,
+          "action": "tool",
+          "decision_basis": "读取任务简报，确认关键字段。",
+          "tool": "get_brief",
+          "arguments": {},
+          "ok": true,
+          "summary": "读取任务：通勤降噪耳机 / douyin / 目标 30 秒"
+        },
+        {
+          "step": 2,
+          "action": "tool",
+          "decision_basis": "检索产品素材，确认可用来源。",
+          "tool": "search_materials",
+          "arguments": {
+            "query": "通勤降噪耳机 耳机",
+            "limit": 5
+          },
+          "ok": false,
+          "summary": "注入的工具故障：search_materials 执行失败",
+          "error": {
+            "code": "tool_failed",
+            "message": "注入的工具故障：search_materials 执行失败",
+            "retryable": true,
+            "details": {
+              "failed_key": "search_materials"
+            }
+          }
+        },
+        {
+          "step": 3,
+          "action": "tool",
+          "decision_basis": "检索产品素材，确认可用来源。",
+          "tool": "search_materials",
+          "arguments": {
+            "query": "通勤降噪耳机 耳机",
+            "limit": 5
+          },
+          "ok": false,
+          "summary": "注入的工具故障：search_materials 执行失败",
+          "error": {
+            "code": "tool_failed",
+            "message": "注入的工具故障：search_materials 执行失败",
+            "retryable": true,
+            "details": {
+              "failed_key": "search_materials"
+            }
+          }
+        },
+        {
+          "step": 4,
+          "action": "finish",
+          "decision_basis": "素材检索连续失败。",
+          "finish_claim": {
+            "kind": "finish",
+            "rationale": "素材检索连续失败。",
+            "payload": {},
+            "status": "tool_failure",
+            "summary": "",
+            "pending_items": []
+          }
+        }
+      ],
+      "scenario": {
+        "id": "05-search-failure",
+        "title": "工具失败：素材检索连续失败，不输出脚本",
+        "covers": [
+          "工具失败",
+          "不编造",
+          "任务状态"
+        ]
+      }
+    }
+  ],
+  "checks": {
+    "status_match": true,
+    "no_forbidden_effect_claim": true,
+    "not_ready": true
+  },
+  "checks_passed": true,
+  "traces": [
+    "examples/traces/05-search-failure.jsonl"
+  ]
+}

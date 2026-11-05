@@ -1,0 +1,18 @@
+{
+  "id": "05-search-failure",
+  "title": "工具失败：素材检索连续失败，不输出脚本",
+  "covers": ["工具失败", "不编造", "任务状态"],
+  "request": {
+    "request_id": "REQ-SV-05",
+    "theme": "通勤降噪耳机",
+    "audience": "通勤上班族",
+    "platform": "douyin",
+    "target_duration_seconds": 30,
+    "style": "简洁可信",
+    "product": "耳机"
+  },
+  "run": {
+    "expect": "tool_failure",
+    "fail_tools": {"search_materials": 99}
+  }
+}

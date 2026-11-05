@@ -1,0 +1,130 @@
+{
+  "scenario": {
+    "id": "02-missing-info",
+    "title": "缺关键信息：缺受众与目标时长，不生成脚本",
+    "covers": [
+      "缺关键信息",
+      "阻断",
+      "未完成原因"
+    ],
+    "expect": "blocked_missing_fields",
+    "source": "examples/cases/02-missing-info.json"
+  },
+  "command": "python run.py run --case examples/cases/02-missing-info.json",
+  "generated_at": "2026-11-05T12:55:31+08:00",
+  "provider": "mock",
+  "boundary": "MOCK 只验证时长修正、素材事实、规则检查与失败处理；不证明真实模型创作质量。",
+  "runs": [
+    {
+      "schema_version": 1,
+      "run_id": "RUN-20261105125531-6b8826",
+      "mode": "script_generation_with_checks",
+      "provider": "mock",
+      "model": "deterministic-script-revision-policy-v1",
+      "task": {
+        "request_id": "REQ-SV-02",
+        "theme": "通勤降噪耳机",
+        "audience": "",
+        "platform": "douyin",
+        "target_duration_seconds": null,
+        "style": "简洁可信",
+        "product": "耳机",
+        "note": "",
+        "missing_fields": [
+          "audience",
+          "target_duration_seconds"
+        ]
+      },
+      "status": "blocked_missing_fields",
+      "completed": false,
+      "terminal": true,
+      "needs_user_action": true,
+      "summary": "未生成脚本：关键信息缺失（audience、target_duration_seconds）。",
+      "title": null,
+      "script": null,
+      "storyboard": [],
+      "sources": [],
+      "risks": [],
+      "total_duration_seconds": null,
+      "target_duration_seconds": null,
+      "duration_check": {
+        "target": null,
+        "estimated": null,
+        "within_target": false,
+        "gap_seconds": null
+      },
+      "rule_check": null,
+      "revisions": [],
+      "draft_version": null,
+      "missing_information": [
+        "缺少 audience",
+        "缺少 target_duration_seconds"
+      ],
+      "pending_items": [
+        "补充：audience、target_duration_seconds"
+      ],
+      "model_claim": {
+        "status": "blocked_missing_fields",
+        "summary": "",
+        "payload": {},
+        "rationale": "关键信息缺失，不能编造受众或时长。"
+      },
+      "tool_errors": [],
+      "limits": {
+        "max_steps": 10,
+        "max_tool_calls": 8
+      },
+      "usage": {
+        "steps": 2,
+        "tool_calls": 1,
+        "elapsed_ms": 1
+      },
+      "started_at": "2026-11-05T12:55:31+08:00",
+      "finished_at": "2026-11-05T12:55:31+08:00",
+      "trace_path": "examples/traces/02-missing-info.jsonl",
+      "step_records": [
+        {
+          "step": 1,
+          "action": "tool",
+          "decision_basis": "读取任务简报，确认关键字段。",
+          "tool": "get_brief",
+          "arguments": {},
+          "ok": true,
+          "summary": "任务缺少关键信息：audience, target_duration_seconds"
+        },
+        {
+          "step": 2,
+          "action": "finish",
+          "decision_basis": "关键信息缺失，不能编造受众或时长。",
+          "finish_claim": {
+            "kind": "finish",
+            "rationale": "关键信息缺失，不能编造受众或时长。",
+            "payload": {},
+            "status": "blocked_missing_fields",
+            "summary": "",
+            "pending_items": [
+              "补充：audience、target_duration_seconds"
+            ]
+          }
+        }
+      ],
+      "scenario": {
+        "id": "02-missing-info",
+        "title": "缺关键信息：缺受众与目标时长，不生成脚本",
+        "covers": [
+          "缺关键信息",
+          "阻断",
+          "未完成原因"
+        ]
+      }
+    }
+  ],
+  "checks": {
+    "status_match": true,
+    "no_forbidden_effect_claim": true
+  },
+  "checks_passed": true,
+  "traces": [
+    "examples/traces/02-missing-info.jsonl"
+  ]
+}

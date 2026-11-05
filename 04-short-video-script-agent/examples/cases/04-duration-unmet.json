@@ -1,0 +1,17 @@
+{
+  "id": "04-duration-unmet",
+  "title": "超时长无法修正：目标 10 秒，最短仍 14 秒",
+  "covers": ["超时长", "明确失败", "不虚报"],
+  "request": {
+    "request_id": "REQ-SV-04",
+    "theme": "通勤降噪耳机",
+    "audience": "通勤上班族",
+    "platform": "douyin",
+    "target_duration_seconds": 10,
+    "style": "简洁可信",
+    "product": "耳机"
+  },
+  "run": {
+    "expect": "duration_unmet"
+  }
+}

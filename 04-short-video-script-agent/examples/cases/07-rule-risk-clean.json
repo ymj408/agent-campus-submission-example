@@ -1,0 +1,17 @@
+{
+  "id": "07-rule-risk-clean",
+  "title": "规则风险修正：夸张风格加入无依据效果 claim，删除后通过",
+  "covers": ["规则风险", "无效果数据不编造", "修正后重检", "P01 引用"],
+  "request": {
+    "request_id": "REQ-SV-07",
+    "theme": "通勤降噪耳机",
+    "audience": "通勤上班族",
+    "platform": "douyin",
+    "target_duration_seconds": 30,
+    "style": "夸张营销",
+    "product": "耳机"
+  },
+  "run": {
+    "expect": "script_ready"
+  }
+}

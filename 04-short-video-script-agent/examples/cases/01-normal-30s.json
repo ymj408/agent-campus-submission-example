@@ -1,0 +1,19 @@
+{
+  "id": "01-normal-30s",
+  "title": "正常生成：30 秒目标，首稿 38 秒，压缩到 28 秒",
+  "covers": ["正常生成", "超时长修正", "P01 引用", "规则检查"],
+  "request": {
+    "request_id": "REQ-SV-01",
+    "theme": "通勤降噪耳机",
+    "audience": "通勤上班族",
+    "platform": "douyin",
+    "target_duration_seconds": 30,
+    "style": "简洁可信",
+    "product": "耳机"
+  },
+  "run": {
+    "expect": "script_ready",
+    "max_steps": 10,
+    "max_tool_calls": 8
+  }
+}

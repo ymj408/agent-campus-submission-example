@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "description": "合成产品素材库；不含真实品牌、产品参数或效果数据。",
+  "materials": {
+    "P01": {
+      "id": "P01",
+      "title": "P01 通勤耳机字幕演示片段",
+      "type": "video",
+      "duration_seconds": 12,
+      "license": "original",
+      "usable": true,
+      "tags": ["耳机", "通勤", "字幕", "产品"],
+      "summary": "通勤场景中的产品演示片段，展示字幕功能，不包含效果数据。",
+      "facts": ["支持字幕"]
+    },
+    "P02": {
+      "id": "P02",
+      "title": "P02 耳机外观特写",
+      "type": "video",
+      "duration_seconds": 8,
+      "license": "original",
+      "usable": true,
+      "tags": ["耳机", "外观", "配色", "产品"],
+      "summary": "产品外观与配色特写，无性能结论。",
+      "facts": ["有三种配色"]
+    },
+    "P03": {
+      "id": "P03",
+      "title": "P03 办公场景空镜",
+      "type": "video",
+      "duration_seconds": 10,
+      "license": "original",
+      "usable": true,
+      "tags": ["通勤", "办公", "场景"],
+      "summary": "办公与通勤环境空镜，不含产品事实。",
+      "facts": []
+    },
+    "P04": {
+      "id": "P04",
+      "title": "P04 快充演示片段",
+      "type": "video",
+      "duration_seconds": 6,
+      "license": "expired",
+      "usable": false,
+      "tags": ["耳机", "快充", "产品"],
+      "summary": "授权已过期，不进入检索。",
+      "facts": ["支持 30W 快充"]
+    },
+    "P05": {
+      "id": "P05",
+      "title": "P05 包装与配件展示",
+      "type": "image",
+      "duration_seconds": 5,
+      "license": "original",
+      "usable": true,
+      "tags": ["耳机", "配件", "包装"],
+      "summary": "包装与耳塞配件展示。",
+      "facts": ["包含三种耳塞尺寸"]
+    }
+  }
+}

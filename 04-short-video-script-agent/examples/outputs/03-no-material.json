@@ -1,0 +1,137 @@
+{
+  "scenario": {
+    "id": "03-no-material",
+    "title": "无素材：宠物猫粮没有可用素材，不编造脚本",
+    "covers": [
+      "无素材",
+      "不编造",
+      "未完成原因"
+    ],
+    "expect": "insufficient_material",
+    "source": "examples/cases/03-no-material.json"
+  },
+  "command": "python run.py run --case examples/cases/03-no-material.json",
+  "generated_at": "2026-11-05T12:55:31+08:00",
+  "provider": "mock",
+  "boundary": "MOCK 只验证时长修正、素材事实、规则检查与失败处理；不证明真实模型创作质量。",
+  "runs": [
+    {
+      "schema_version": 1,
+      "run_id": "RUN-20261105125531-d231b9",
+      "mode": "script_generation_with_checks",
+      "provider": "mock",
+      "model": "deterministic-script-revision-policy-v1",
+      "task": {
+        "request_id": "REQ-SV-03",
+        "theme": "宠物猫粮",
+        "audience": "养猫人群",
+        "platform": "douyin",
+        "target_duration_seconds": 30,
+        "style": "简洁可信",
+        "product": "",
+        "note": "",
+        "missing_fields": []
+      },
+      "status": "insufficient_material",
+      "completed": false,
+      "terminal": true,
+      "needs_user_action": true,
+      "summary": "未生成脚本：没有检索到可用产品素材。",
+      "title": null,
+      "script": null,
+      "storyboard": [],
+      "sources": [],
+      "risks": [],
+      "total_duration_seconds": null,
+      "target_duration_seconds": 30,
+      "duration_check": {
+        "target": 30,
+        "estimated": null,
+        "within_target": false,
+        "gap_seconds": null
+      },
+      "rule_check": null,
+      "revisions": [],
+      "draft_version": null,
+      "missing_information": [],
+      "pending_items": [
+        "补充可用产品素材，或调整主题后重试。"
+      ],
+      "model_claim": {
+        "status": "insufficient_material",
+        "summary": "",
+        "payload": {},
+        "rationale": "没有可用素材，不能生成有事实依据的脚本。"
+      },
+      "tool_errors": [],
+      "limits": {
+        "max_steps": 10,
+        "max_tool_calls": 8
+      },
+      "usage": {
+        "steps": 3,
+        "tool_calls": 2,
+        "elapsed_ms": 0
+      },
+      "started_at": "2026-11-05T12:55:31+08:00",
+      "finished_at": "2026-11-05T12:55:31+08:00",
+      "trace_path": "examples/traces/03-no-material.jsonl",
+      "step_records": [
+        {
+          "step": 1,
+          "action": "tool",
+          "decision_basis": "读取任务简报，确认关键字段。",
+          "tool": "get_brief",
+          "arguments": {},
+          "ok": true,
+          "summary": "读取任务：宠物猫粮 / douyin / 目标 30 秒"
+        },
+        {
+          "step": 2,
+          "action": "tool",
+          "decision_basis": "检索产品素材，确认可用来源。",
+          "tool": "search_materials",
+          "arguments": {
+            "query": "宠物猫粮",
+            "limit": 5
+          },
+          "ok": true,
+          "summary": "没有检索到与「宠物猫粮」匹配的可用素材"
+        },
+        {
+          "step": 3,
+          "action": "finish",
+          "decision_basis": "没有可用素材，不能生成有事实依据的脚本。",
+          "finish_claim": {
+            "kind": "finish",
+            "rationale": "没有可用素材，不能生成有事实依据的脚本。",
+            "payload": {},
+            "status": "insufficient_material",
+            "summary": "",
+            "pending_items": [
+              "补充产品素材，或调整主题后重试。"
+            ]
+          }
+        }
+      ],
+      "scenario": {
+        "id": "03-no-material",
+        "title": "无素材：宠物猫粮没有可用素材，不编造脚本",
+        "covers": [
+          "无素材",
+          "不编造",
+          "未完成原因"
+        ]
+      }
+    }
+  ],
+  "checks": {
+    "status_match": true,
+    "no_forbidden_effect_claim": true,
+    "no_script": true
+  },
+  "checks_passed": true,
+  "traces": [
+    "examples/traces/03-no-material.jsonl"
+  ]
+}

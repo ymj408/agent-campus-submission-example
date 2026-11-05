@@ -1,0 +1,17 @@
+{
+  "id": "08-target-20s",
+  "title": "改变目标时长：20 秒目标触发第三版 14 秒脚本",
+  "covers": ["目标变化", "再次压缩", "有效修正"],
+  "request": {
+    "request_id": "REQ-SV-08",
+    "theme": "通勤降噪耳机",
+    "audience": "通勤上班族",
+    "platform": "douyin",
+    "target_duration_seconds": 20,
+    "style": "简洁可信",
+    "product": "耳机"
+  },
+  "run": {
+    "expect": "script_ready"
+  }
+}
